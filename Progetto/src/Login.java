@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import util.DbConnector;
+
 @WebServlet("/Login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -48,6 +50,12 @@ public class Login extends HttpServlet {
 				response.getWriter().print("false");
 		} else if (request.getParameter("logout") != null) {
 			request.getSession().removeAttribute("account");
+		} else if (request.getParameter("register") != null) {
+			String s = request.getParameter("register");
+			s = s.substring(1, s.length() - 1);
+			DbConnector d = new DbConnector();
+			String[] par = s.split(";");
+			d.registraNuovoAccount(par[0], par[1], par[2], par[3], par[4]);
 		}
 	}
 
