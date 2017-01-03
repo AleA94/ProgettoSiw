@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import DAO.Categoria;
 import util.DbConnector;
 
 /**
@@ -44,8 +45,8 @@ public class HomeLoad extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String s = request.getParameter("query");
-		for (String st : d.executeQuery(s, "nome")) {
-			response.getWriter().print(st + ";");
+		for (Categoria st : d.getCategorie()) {
+			response.getWriter().print(st.getNome() + ";");
 
 		}
 

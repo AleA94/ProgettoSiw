@@ -1,74 +1,93 @@
 package util;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.NoResultException;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+import DAO.Categoria;
+import DAO.Utente;
 
 public class DbConnector {
-	private Statement s;
-	private Connection c;
+	private static SessionFactory factory;
 
 	public DbConnector() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
-
-			c = DriverManager.getConnection("jdbc:mysql://sql8.freemysqlhosting.net:3306/sql8151699", "sql8151699",
-					"9AZKtF5ZyT");
-			s = c.createStatement();
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			factory = new Configuration().configure().buildSessionFactory();
+		} catch (Throwable ex) {
+			System.err.println("Failed to create sessionFactory object." + ex);
+			throw new ExceptionInInitializerError(ex);
 		}
+
 	}
 
-	public ArrayList<String> executeQuery(String q, String columnName) {
-
-		q = q.substring(1, q.length() - 1);
-		ArrayList<String> l = new ArrayList<>();
+	@SuppressWarnings("unchecked")
+	public List<Categoria> getCategorie() {
+		Session session = factory.openSession();
+		Transaction tx = null;
+		List<Categoria> l = null;
 		try {
-			ResultSet r = s.executeQuery(q);
-			while (r.next()) {
-				l.add(r.getString(columnName));
-			}
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			tx = session.beginTransaction();
+			l = session.createQuery("FROM Categoria where sottocategoria=null").getResultList();
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
 			e.printStackTrace();
+		} finally {
+			session.close();
 		}
 		return l;
+	}
+
+	public Utente getUtente(String mail, String password) {
+		Session session = factory.openSession();
+		Transaction tx = null;
+		Utente u = null;
+		try {
+			tx = session.beginTransaction();
+			u = (Utente) session.createQuery("FROM Utente where Email=:email and Password=:passw")
+					.setParameter("email", mail).setParameter("passw", password).getSingleResult();
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} catch (NoResultException e) {
+			return null;
+		} finally {
+			session.close();
+		}
+		return u;
 
 	}
 
 	public void registraNuovoAccount(String nome, String cognome, String indirizzo, String email, String password) {
+		Session session = factory.openSession();
+		Transaction tx = null;
 		try {
-			PreparedStatement p = c
-					.prepareStatement("insert into Utente (email,password,nome,cognome,indirizzo) values(?,?,?,?,?)");
-			p.setString(1, email);
-			p.setString(2, password);
-			p.setString(3, nome);
-			p.setString(4, cognome);
-			p.setString(5, indirizzo);
-
-			p.executeUpdate();
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			tx = session.beginTransaction();
+			Utente utente = new Utente(email, nome, cognome, indirizzo, password, 0, 0);
+			session.save(utente);
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
 			e.printStackTrace();
+		} finally {
+			session.close();
 		}
+	}
+
+	public static void main(String[] args) {
+		DbConnector d = new DbConnector();
+		for (Categoria c : d.getCategorie())
+			System.out.println(c.getNome());
 	}
 
 }

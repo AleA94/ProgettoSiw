@@ -130,16 +130,12 @@ function isEmail(email) {
 }
 
 function Login() {
-	var account = {
-		user : $('#mail').val(),
-		password : $('#pass').val(),
-	}
 	$.ajax({
 		type : "POST",
 		url : "Login",
 		datatype : "json",
 		data : {
-			user : JSON.stringify(account),
+			user : JSON.stringify( $('#mail').val()+";"+$('#pass').val()),
 		},
 		success : function(data) {
 			var res = data.split(";");
