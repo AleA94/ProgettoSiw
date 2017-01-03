@@ -23,7 +23,7 @@ public class HomeLoad extends HttpServlet {
 	 */
 	public HomeLoad() {
 		super();
-		d = new DbConnector();
+		d = DbConnector.getInstance();
 	}
 
 	/**

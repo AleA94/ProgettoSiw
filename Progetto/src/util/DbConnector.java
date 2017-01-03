@@ -15,6 +15,7 @@ import DAO.Utente;
 
 public class DbConnector {
 	private static SessionFactory factory;
+	static DbConnector instance;
 
 	public DbConnector() {
 		try {
@@ -24,6 +25,12 @@ public class DbConnector {
 			throw new ExceptionInInitializerError(ex);
 		}
 
+	}
+
+	public static DbConnector getInstance() {
+		if (instance == null)
+			instance = new DbConnector();
+		return instance;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -85,9 +92,11 @@ public class DbConnector {
 	}
 
 	public static void main(String[] args) {
-		DbConnector d = new DbConnector();
-		for (Categoria c : d.getCategorie())
-			System.out.println(c.getNome());
+		DbConnector d = DbConnector.getInstance();
+		for (int i = 0; i < 4; i++) {
+			for (Categoria c : d.getCategorie())
+				System.out.println(c.getNome());
+		}
 	}
 
 }
