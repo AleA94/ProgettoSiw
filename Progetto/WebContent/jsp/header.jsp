@@ -29,7 +29,7 @@ List<Categoria> l;
 <link href="css/creative.css" rel="stylesheet">
 <link href="css/creative.min.css" rel="stylesheet">
 <script src="js/jquery-3.1.1.min.js"></script>
-<script src="js/script.js"></script>
+<script src="js/index.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 </head>
 
