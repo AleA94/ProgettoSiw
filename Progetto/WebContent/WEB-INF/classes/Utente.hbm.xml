@@ -12,6 +12,6 @@
       <property name="cognome" column="Cognome" type="string"/>
       <property name="indirizzo" column="indirizzo" type="string"/>
       <property name="eVenditore" column="eVenditore" type="int"/>
-      <property name="eAttivo" column="e_attivo" type="int"/>
+      <property name="eAttivo" column="eAttivo" type="int"/>
    </class>
 </hibernate-mapping>

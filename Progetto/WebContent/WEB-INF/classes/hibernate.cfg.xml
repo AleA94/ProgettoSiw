@@ -13,13 +13,13 @@
 
    <!-- Assume test is the database name -->
    <property name="hibernate.connection.url">
-      jdbc:mysql://sql8.freemysqlhosting.net:3306/sql8151699
+      jdbc:mysql://sql7.freemysqlhosting.net:3306/sql7152991
    </property>
    <property name="hibernate.connection.username">
-      sql8151699
+      sql7152991
    </property>
    <property name="hibernate.connection.password">
-      9AZKtF5ZyT
+      AAANb9dn5f
    </property>
 
    <!-- List of XML mapping files -->
