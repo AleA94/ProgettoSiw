@@ -915,8 +915,8 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: modal.js v3.3.7
- * http://getbootstrap.com/javascript/#modals
+ * Bootstrap: .js v3.3.7
+ * http://getbootstrap.com/javascript/#s
  * ========================================================================
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -926,7 +926,7 @@ if (typeof jQuery === 'undefined') {
 +function ($) {
   'use strict';
 
-  // MODAL CLASS DEFINITION
+  //  CLASS DEFINITION
   // ======================
 
   var Modal = function (element, options) {
@@ -1098,7 +1098,7 @@ if (typeof jQuery === 'undefined') {
     this.$backdrop = null
   }
 
-  Modal.prototype.backdrop = function (callback) {
+ Modal.prototype.backdrop = function (callback) {
     var that = this
     var animate = this.$element.hasClass('fade') ? 'fade' : ''
 

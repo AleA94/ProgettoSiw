@@ -993,7 +993,7 @@ th {
 .glyphicon-menu-hamburger:before {
   content: "\e236";
 }
-.glyphicon-modal-window:before {
+.glyphicon--window:before {
   content: "\e237";
 }
 .glyphicon-oil:before {
@@ -1079,7 +1079,7 @@ th {
 html {
   font-size: 10px;
 
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: #800040;
 }
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -1097,12 +1097,12 @@ textarea {
   line-height: inherit;
 }
 a {
-  color: #337ab7;
+  color: #A3A300;
   text-decoration: none;
 }
 a:hover,
 a:focus {
-  color: #23527c;
+  color: #A3A300;
   text-decoration: underline;
 }
 a:focus {
@@ -1337,11 +1337,11 @@ mark,
   color: #777;
 }
 .text-primary {
-  color: #337ab7;
+  color: #A3A300;
 }
 a.text-primary:hover,
 a.text-primary:focus {
-  color: #286090;
+  color: #A3A300;
 }
 .text-success {
   color: #3c763d;
@@ -1351,11 +1351,11 @@ a.text-success:focus {
   color: #2b542c;
 }
 .text-info {
-  color: #31708f;
+  color: #A3A300;
 }
 a.text-info:hover,
 a.text-info:focus {
-  color: #245269;
+  color: #A3A300;
 }
 .text-warning {
   color: #8a6d3b;
@@ -1369,15 +1369,15 @@ a.text-warning:focus {
 }
 a.text-danger:hover,
 a.text-danger:focus {
-  color: #843534;
+  color: #543534;
 }
 .bg-primary {
   color: #fff;
-  background-color: #337ab7;
+  background-color: #3C8D2F;
 }
 a.bg-primary:hover,
 a.bg-primary:focus {
-  background-color: #286090;
+  background-color: #3C8D2F;
 }
 .bg-success {
   background-color: #dff0d8;
@@ -1387,11 +1387,11 @@ a.bg-success:focus {
   background-color: #c1e2b3;
 }
 .bg-info {
-  background-color: #d9edf7;
+  background-color: #3C8D2F;
 }
 a.bg-info:hover,
 a.bg-info:focus {
-  background-color: #afd9ee;
+  background-color: #3C8D2F;
 }
 .bg-warning {
   background-color: #fcf8e3;
@@ -4493,15 +4493,15 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default {
-  background-color: #f8f8f8;
-  border-color: #e7e7e7;
+  background-color: #060303;
+  border-color: #060303;
 }
 .navbar-default .navbar-brand {
-  color: #777;
+  color: #060303;
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-  color: #5e5e5e;
+  color: #060303;
   background-color: transparent;
 }
 .navbar-default .navbar-text {
@@ -4512,7 +4512,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-  color: #333;
+  color: #060303;
   background-color: transparent;
 }
 .navbar-default .navbar-nav > .active > a,
@@ -4539,13 +4539,13 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-default .navbar-collapse,
 .navbar-default .navbar-form {
-  border-color: #e7e7e7;
+  border-color: #060303;
 }
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
   color: #555;
-  background-color: #e7e7e7;
+  background-color: #060303;
 }
 @media (max-width: 767px) {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
@@ -5867,7 +5867,6 @@ button.close {
   overflow: hidden;
 }
 .modal {
-  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
@@ -5915,12 +5914,12 @@ button.close {
           box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
 }
 .modal-backdrop {
-  position: fixed;
+  /* position: fixed; */
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1040;
+  z-index: -1;
   background-color: #000;
 }
 .modal-backdrop.fade {

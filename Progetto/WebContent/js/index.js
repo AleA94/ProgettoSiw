@@ -1,3 +1,5 @@
+
+
 $(document).ready(function() {
 	checkSession();
 //	fillHome();
@@ -9,7 +11,7 @@ $(document).ready(function() {
 		if (isEmail(mail.val()))
 			Login();
 		else
-			mail.css('border-color', 'red');
+			mail.css('border-color', 'blue');
 
 	});
 	$("#logout").click(function(e) {
