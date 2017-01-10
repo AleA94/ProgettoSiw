@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name="DAO.Negozio" table="Negozio">
+      <id name="email" type="string" column="email">
+      </id>
+      <property name="nome" column="Nome" type="string"/>
+   </class>
+</hibernate-mapping>

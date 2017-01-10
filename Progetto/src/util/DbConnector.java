@@ -1,5 +1,6 @@
 package util;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.NoResultException;
@@ -11,6 +12,7 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 import DAO.Categoria;
+import DAO.Prodotto;
 import DAO.Utente;
 
 public class DbConnector {
@@ -91,12 +93,66 @@ public class DbConnector {
 		}
 	}
 
-	public static void main(String[] args) {
-		DbConnector d = DbConnector.getInstance();
-		for (int i = 0; i < 4; i++) {
-			for (Categoria c : d.getCategorie())
-				System.out.println(c.getNome());
+	@SuppressWarnings("unchecked")
+	public List<Categoria> getSubCategorie() {
+		Session session = factory.openSession();
+		Transaction tx = null;
+		List<Categoria> l = null;
+		try {
+			tx = session.beginTransaction();
+			l = session.createQuery("FROM Categoria where sottocategoria is not null").getResultList();
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
 		}
+		return l;
+	}
+
+	public static void main(String[] args) {
+		for (Prodotto p : DbConnector.getInstance().getProdottoPerNegozio("g@g.com"))
+			System.out.println(p.getNome());
+	}
+
+	public void nuovoProdotto(String nome, String descrizione, int categoria, int inAsta, float prezzo, Date dataInizio,
+			Date dataFine) {
+		Session session = factory.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			Prodotto p = new Prodotto(inAsta, categoria, prezzo, nome, dataInizio, dataFine, descrizione);
+			session.save(p);
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
+	}
+
+	public List<Prodotto> getProdottoPerNegozio(String email) {
+		Session session = factory.openSession();
+		Transaction tx = null;
+		List<Prodotto> l = null;
+		try {
+			tx = session.beginTransaction();
+			l = session.createQuery("FROM Prodotto where Negozio=:negozio").setParameter("negozio", email)
+					.getResultList();
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return l;
 	}
 
 }

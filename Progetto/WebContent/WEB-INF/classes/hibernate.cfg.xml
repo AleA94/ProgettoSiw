@@ -25,6 +25,7 @@
    <!-- List of XML mapping files -->
    <mapping resource="Utente.hbm.xml"/>
    <mapping resource="Categoria.hbm.xml"/>
+   <mapping resource="Prodotto.hbm.xml"/>
 
 </session-factory>
 </hibernate-configuration>

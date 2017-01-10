@@ -20,4 +20,20 @@
     <servlet-name>HomeLoad</servlet-name>
     <url-pattern>/HomeLoad</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>NewItem</servlet-name>
+    <servlet-class>NewItem</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NewItem</servlet-name>
+    <url-pattern>/NewItem</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ShopManager</servlet-name>
+    <servlet-class>ShopManager</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShopManager</servlet-name>
+    <url-pattern>/ShopManager</url-pattern>
+  </servlet-mapping>
 </web-app>
