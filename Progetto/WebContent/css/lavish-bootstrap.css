@@ -1073,7 +1073,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857;
-  color: #295BAC;
+  color: #ffffff;
   background-color: #A0B1CD; }
 
 input,
@@ -1085,7 +1085,7 @@ textarea {
   line-height: inherit; }
 
 a {
-  color: #4C74B5;
+  color: #ffffff;
   text-decoration: none; }
   a:hover, a:focus {
     color: #355180;
@@ -1157,7 +1157,7 @@ h1, h2, h3, h4, h5, h6,
   font-family: inherit;
   font-weight: 500;
   line-height: 1.1;
-  color: inherit; }
+  color: white; }
   h1 small,
   h1 .small, h2 small,
   h2 .small, h3 small,
