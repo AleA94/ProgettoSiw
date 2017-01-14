@@ -1,4 +1,4 @@
-package DAO;
+package data;
 
 public class Utente {
 	public Utente(String email, String nome, String cognome, String indirizzo, String password, Integer eVenditore,

@@ -36,10 +36,10 @@
 				</tr>
 			</thead>
 			<tbody>
-				<%
+				<%-- <%
 					for(DAO.Prodotto p:DbConnector.getInstance().getProdottoPerNegozio("g@g.com"))
 						out.print("<tr><td><img class=\"picture\" src=\"immagini/categorie/Elettronica.jpg\"></td><td>"+p.getNome()+"</td><td>"+p.getDescrizione()+"</td><td>"+p.getPrezzo()+"</td><td>"+((p.getInAsta()==0)?"No":"Si")+"</td><td><a href=\"#\"><span class=\"glyphicon glyphicon-edit\"></span></a></td><td><a href=\"#\"><span class=\"glyphicon glyphicon-trash\"></span></a></td></tr>");
-				%>
+				%> --%>
 			</tbody>
 		</table>
 	</div>

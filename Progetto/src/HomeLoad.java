@@ -7,8 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.Categoria;
-import util.DbConnector;
+import DAO.CategoriaDAO;
+import data.Categoria;
+import persistence.MySQLDaoFactory;
 
 /**
  * Servlet implementation class HomeLoad
@@ -16,14 +17,19 @@ import util.DbConnector;
 @WebServlet("/HomeLoad")
 public class HomeLoad extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private DbConnector d;
+	CategoriaDAO d = MySQLDaoFactory.getDAOFactory().getCategoriaDao();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public HomeLoad() {
-		super();
-		d = DbConnector.getInstance();
+	@Override
+	public void init() throws ServletException {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -45,7 +51,7 @@ public class HomeLoad extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String s = request.getParameter("query");
-		for (Categoria st : d.getCategorie()) {
+		for (Categoria st : d.getMacroCategorie()) {
 			response.getWriter().print(st.getNome() + ";");
 
 		}

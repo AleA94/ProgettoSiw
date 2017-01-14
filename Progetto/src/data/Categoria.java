@@ -1,4 +1,4 @@
-package DAO;
+package data;
 
 public class Categoria {
 	Integer id, sottocategoria;

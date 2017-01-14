@@ -7,16 +7,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.Utente;
-import util.DbConnector;
+import DAO.UtenteDAO;
+import data.Utente;
+import persistence.DAOFactory;
 
 @WebServlet("/Login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private DbConnector d;
+	UtenteDAO d = DAOFactory.getDAOFactory().getUtenteDao();
 
-	public Login() {
-		d = DbConnector.getInstance();
+	@Override
+	public void init() throws ServletException {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -51,7 +58,8 @@ public class Login extends HttpServlet {
 			String s = request.getParameter("register");
 			s = s.substring(1, s.length() - 1);
 			String[] par = s.split(";");
-			d.registraNuovoAccount(par[0], par[1], par[2], par[3], par[4]);
+			Utente u = new Utente(par[0], par[1], par[2], par[3], par[4], 0, 0);
+			d.save(u);
 		}
 	}
 

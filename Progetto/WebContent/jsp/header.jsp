@@ -1,18 +1,6 @@
-<%@page import="DAO.Categoria"%>
 <%@page import="java.util.List"%>
-<%@page import="util.DbConnector"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
-<%!List<Categoria> l;
-
-	public void jspInit() {
-		l = DbConnector.getInstance().getCategorie();
-
-	}
-
-	public void jspDestroy() {
-	}%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -114,10 +102,6 @@
 							</button>
 							<ul id="srcCat" class="dropdown-menu">
 								<li class="active"><a>Tutte Le categorie</a></li>
-								<%
-									for (Categoria c : l)
-										out.println("<li><a>" + c.getNome() + "</a></li>");
-								%>
 							</ul>
 						</span> <input type="text" class="form-control"> <span
 							class="input-group-btn">

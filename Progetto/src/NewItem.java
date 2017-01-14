@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import util.DbConnector;
+import DAO.ProdottoDAO;
+import data.Prodotto;
+import data.Utente;
+import persistence.MySQLDaoFactory;
 
 /**
  * Servlet implementation class NewItem
@@ -19,13 +22,16 @@ import util.DbConnector;
 @WebServlet("/NewItem")
 public class NewItem extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	ProdottoDAO d = MySQLDaoFactory.getDAOFactory().getProdottoDao();
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public NewItem() {
-		super();
-		// TODO Auto-generated constructor stub
+	@Override
+	public void init() throws ServletException {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -74,8 +80,10 @@ public class NewItem extends HttpServlet {
 
 		float prezzo = Float.parseFloat(request.getParameter("prezzo"));
 
-		DbConnector.getInstance().nuovoProdotto(nome, descrizione, categoria, inAsta, prezzo, inizio, fine);
+		Prodotto p = new Prodotto(inAsta, categoria, inizio, fine, prezzo, nome, descrizione,
+				((Utente) request.getSession().getAttribute("account")).getEmail());
 
+		d.save(p);
 		forwardOnJsp(request, response, "/jsp/index.jsp");
 	}
 

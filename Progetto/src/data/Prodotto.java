@@ -1,15 +1,12 @@
-package DAO;
+package data;
 
 import java.util.Date;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 
 public class Prodotto {
 	int idProdotto, inAsta, idCategoria;
 	Date dataInizio, dataFine;
 	float prezzo;
-	String nome, descrizione;
+	String nome, descrizione, negozio;
 
 	public Prodotto() {
 	}
@@ -30,7 +27,6 @@ public class Prodotto {
 		this.descrizione = descrizione;
 	}
 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int getIdProdotto() {
 		return idProdotto;
 	}
@@ -102,4 +98,24 @@ public class Prodotto {
 		this.descrizione = descrizione;
 	}
 
+	public Prodotto(int inAsta, int idCategoria, Date dataInizio, Date dataFine, float prezzo, String nome,
+			String descrizione, String negozio) {
+		super();
+		this.inAsta = inAsta;
+		this.idCategoria = idCategoria;
+		this.dataInizio = dataInizio;
+		this.dataFine = dataFine;
+		this.prezzo = prezzo;
+		this.nome = nome;
+		this.descrizione = descrizione;
+		this.negozio = negozio;
+	}
+
+	public String getNegozio() {
+		return negozio;
+	}
+
+	public void setNegozio(String s) {
+		negozio = s;
+	}
 }

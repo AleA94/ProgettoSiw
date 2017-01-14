@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import DAO.ProdottoDAO;
+import persistence.MySQLDaoFactory;
+
 /**
  * Servlet implementation class ShopManager
  */
@@ -15,12 +18,16 @@ import javax.servlet.http.HttpServletResponse;
 public class ShopManager extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public ShopManager() {
-		super();
-		// TODO Auto-generated constructor stub
+	ProdottoDAO d = MySQLDaoFactory.getDAOFactory().getProdottoDao();
+
+	@Override
+	public void init() throws ServletException {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+
+			e.printStackTrace();
+		}
 	}
 
 	/**

@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
-    <%
-    	DbConnector d=DbConnector.getInstance();
-    	List<Categoria> l=d.getSubCategorie();
-    
-    %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -40,10 +35,7 @@
 		
 		<label for="name">Scegli una categoria</label> 
 		<select required name="categoria" class="form-control">
-			<%
-			for(Categoria c:l)	
-			out.println("<option value="+c.getId()+">"+c.getNome()+"</option>");
-			%>
+			
 		</select>
 		<br>
 		<label for="inAsta">Spunta qui per metterlo in asta </label>

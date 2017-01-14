@@ -2,7 +2,7 @@
 
 $(document).ready(function() {
 	checkSession();
-//	fillHome();
+	fillHome();
 
 	prevCat=$('#srcCat li');
 	
@@ -57,32 +57,29 @@ function register() {
 	})
 }
 
-//function fillHome() {
-//	$.ajax({
-//		type : "POST",
-//		url : "HomeLoad",
-//		datatype : "json",
-//		data : {
-//			query : JSON.stringify('select * from Categoria where sottocategoria is null'),
-//		},success : function(data) {
-//			data = data.substring(0, data.length - 1);
-//			var cat = data.split(';');
-//			var row=$('<div class=row></div>');
-//			var i=0;
-//			cat.forEach(function(c) {
-//				if((i++)%3==0){
-//					row=$('<div class=row></div>');
-//					$('#categorie').append(row);
-//				}
-//				var p = $('<div class="col-md-4"><div class="hero"><a class="btn btn-default" href="" role="button" target="blank">'+c+'</a><img src="immagini/'+c+'.jpg"><br></div></div>');
-//				$('#srcCat').append($('<li><a href="#">'+c+'</a></li>'));
-//				row.append(p);
-//			});
-//		},fail : function() {
-//			alert('niente');
-//		}
-//	});
-//}
+function fillHome() {
+	$.ajax({
+		type : "POST",
+		url : "HomeLoad",
+		datatype : "json",
+		data : {
+			query : JSON.stringify('select * from Categoria where sottocategoria is null'),
+		},success : function(data) {
+			data = data.substring(0, data.length - 1);
+			var cat = data.split(';');
+			var row=$('<div class=row></div>');
+			var i=0;
+			cat.forEach(function(c) {
+				$('.popup-gallery').append('<div class=\"col-lg-4 col-sm-6\"><a class=\"portfolio-box\"> <img src=\"immagini/categorie/'+c+
+						'.jpg\" class=\"img-responsive\" alt=\"\"><div class=\"portfolio-box-caption\">	<div class=\"portfolio-box-caption-content\">	<div class=\"project-category text-faded\">Category</div><div class=\"project-name\">'+
+						c+'</div>	</div>	</div></a></div>');
+				$('#srcCat').append($('<li><a href="#">'+c+'</a></li>'));
+			});
+		},fail : function() {
+			alert('niente');
+		}
+	});
+}
 
 function checkSession() {
 	$.ajax({
