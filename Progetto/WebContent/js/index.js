@@ -38,14 +38,22 @@ $("#srcCat").on('click', 'li a', function(){
 var b = false;
 
 function register() {
+	var utente={
+		email:$('#Rmail').val(),
+		password:$('#Rpass').val(),
+		nome:$('#Rnome').val(),
+		cognome:$('#Rcogn').val(),
+		indirizzo: $('#Raddr').val(),
+		eVenditore:0,
+		eAttivo:0
+	}
+	
 	$.ajax({
 		type : "POST",
 		url : "Login",
 		datatype : "json",
 		data : {
-			register : JSON.stringify($('#Rnome').val() + ";"
-					+ $('#Rcogn').val() + ";" + $('#Raddr').val() + ";"
-					+ $('#Rmail').val() + ";" + $('#Rpass').val()),
+			register : JSON.stringify(utente),
 		},
 		success : function(data) {
 			alert('registrazione completata con successo');

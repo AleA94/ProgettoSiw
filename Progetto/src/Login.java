@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import DAO.UtenteDAO;
 import data.Utente;
 import persistence.DAOFactory;
@@ -56,10 +58,9 @@ public class Login extends HttpServlet {
 			request.getSession().removeAttribute("account");
 		} else if (request.getParameter("register") != null) {
 			String s = request.getParameter("register");
-			s = s.substring(1, s.length() - 1);
-			String[] par = s.split(";");
-			Utente u = new Utente(par[0], par[1], par[2], par[3], par[4], 0, 0);
-			d.save(u);
+			ObjectMapper mapper = new ObjectMapper();
+			Utente utente = mapper.readValue(s, Utente.class);
+			d.save(utente);
 		}
 	}
 
