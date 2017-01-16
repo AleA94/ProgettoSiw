@@ -6,6 +6,7 @@ import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +21,7 @@ import persistence.MySQLDaoFactory;
  * Servlet implementation class NewItem
  */
 @WebServlet("/NewItem")
+@MultipartConfig
 public class NewItem extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ProdottoDAO d = MySQLDaoFactory.getDAOFactory().getProdottoDao();
@@ -80,11 +82,12 @@ public class NewItem extends HttpServlet {
 
 		float prezzo = Float.parseFloat(request.getParameter("prezzo"));
 
-		Prodotto p = new Prodotto(inAsta, categoria, inizio, fine, prezzo, nome, descrizione,
-				((Utente) request.getSession().getAttribute("account")).getEmail());
+		Utente utente = (Utente) request.getSession().getAttribute("account");
+		Prodotto p = new Prodotto(inAsta, categoria, inizio, fine, prezzo, nome, descrizione, utente.getEmail());
 
 		d.save(p);
-		forwardOnJsp(request, response, "/jsp/index.jsp");
+
+		response.sendRedirect("/ShopManager");
 	}
 
 	private void forwardOnJsp(HttpServletRequest req, HttpServletResponse resp, String nextJsp)

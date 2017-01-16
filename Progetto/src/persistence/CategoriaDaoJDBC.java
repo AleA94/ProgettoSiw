@@ -28,6 +28,7 @@ public class CategoriaDaoJDBC implements CategoriaDAO {
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
 				Categoria c = new Categoria();
+				c.setId(result.getInt("idCategoria"));
 				c.setNome(result.getString("Nome"));
 				categorie.add(c);
 			}
@@ -54,6 +55,7 @@ public class CategoriaDaoJDBC implements CategoriaDAO {
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
 				Categoria c = new Categoria();
+				c.setId(result.getInt("idCategoria"));
 				c.setNome(result.getString("Nome"));
 				categorie.add(c);
 			}

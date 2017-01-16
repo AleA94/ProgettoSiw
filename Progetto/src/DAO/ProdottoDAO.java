@@ -8,4 +8,10 @@ public interface ProdottoDAO {
 	public void save(Prodotto p);
 
 	public List<Prodotto> findByNegozio(String email);
+
+	public void removeById(int id);
+
+	Prodotto findById(int id);
+
+	public void edit(Prodotto p);
 }
