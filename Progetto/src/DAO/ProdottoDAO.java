@@ -14,4 +14,7 @@ public interface ProdottoDAO {
 	Prodotto findById(int id);
 
 	public void edit(Prodotto p);
+
+	public List<Prodotto> findProdotto(String nameProduct);
+
 }

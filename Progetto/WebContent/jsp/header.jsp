@@ -94,22 +94,27 @@
 			<div class="row"></div>
 			<div class="row">
 				<div class="col-lg-12 col-sm-12">
+				<form action="SearchProduct">
 					<div class="input-group searchBar">
 						<span class="input-group-btn">
 							<button type="button" class="btn btn-default dropdown-toggle"
 								data-toggle="dropdown">
-								<b id="selCat">Tutte le Categorie</b> <span class="caret"></span>
+								<b id="selCat">Tutte le Categorie</b><span class="caret"></span>
 							</button>
 							<ul id="srcCat" class="dropdown-menu">
-								<li class="active"><a>Tutte Le categorie</a></li>
+								<li class="active"><a >Tutte Le categorie</a></li>
 							</ul>
-						</span> <input type="text" class="form-control"> <span
-							class="input-group-btn">
-							<button class="btn btn-default" type="button">
-								<span class="glyphicon glyphicon-search"></span>&nbsp;
-							</button>
 						</span>
+						
+						<input type="text" name="nomeProdotto" class="form-control"> <span
+							class="input-group-btn">
+							<button class="btn btn-default" type="submit">
+								<span class="glyphicon glyphicon-search"></span>&nbsp;
+							</button>	
+						</span>
+						
 					</div>
+					</form> 
 				</div>
 			</div>
 		</div>

@@ -10,7 +10,7 @@
 
 <%@include file="header.jsp"%>
 
-<div class="container tile">
+<div class="container tile navTop">
 		<div class="row">
 			<div class="page-header">
 				<h1 style="text-align: center">Le nostre categorie</h1>
