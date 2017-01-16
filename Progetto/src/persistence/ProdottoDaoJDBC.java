@@ -102,6 +102,40 @@ public class ProdottoDaoJDBC implements ProdottoDAO {
 		}
 		return prodotti;
 	}
+	
+	public List<Prodotto> findProdottoByCategoria(String nameProduct,String categoria) {
+		Connection connection = this.dataSource.getConnection();
+		List<Prodotto> prodotti = new ArrayList<Prodotto>();
+		try {
+			PreparedStatement statement;
+			String query = "select * From Prodotto JOIN Categoria on Prodotto.idCategoria=Categoria.idCategoria where Prodotto.nome like ? AND Prodotto.idCategoria = Categoria.idCategoria AND Categoria.Nome = ?";
+			statement = connection.prepareStatement(query);
+			statement.setString(1, "%"+nameProduct+"%");
+			statement.setString(2, categoria);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				Prodotto p = new Prodotto();
+				p.setIdProdotto(result.getInt("idProdotto"));
+				p.setNome(result.getString("Nome"));
+				p.setDescrizione(result.getString("Descrizione"));
+				p.setInAsta(result.getInt("inAsta"));
+				p.setPrezzo(result.getFloat("Prezzo"));
+				p.setIdCategoria(result.getInt("idCategoria"));
+				p.setDataInizio(result.getDate("DataInizio"));
+				p.setDataFine(result.getDate("DataFine"));
+				prodotti.add(p);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return prodotti;
+	}
 
 	@Override
 	public void removeById(int id) {
