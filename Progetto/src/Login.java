@@ -43,14 +43,14 @@ public class Login extends HttpServlet {
 			String[] par = s.split(";");
 			Utente u = d.getUtente(par[0], par[1]);
 			if (u != null) {
-				response.getWriter().print("true;" + u.getNome());
+				response.getWriter().print("true;" + u.getNome() + ";" + u.geteVenditore());
 				request.getSession().setAttribute("account", u);
 			} else
 				response.getWriter().print("false");
 		} else if (request.getParameter("session") != null) {
 			Utente a = (Utente) request.getSession().getAttribute("account");
 			if (a != null) {
-				response.getWriter().print("true;" + a.getNome());
+				response.getWriter().print("true;" + a.getNome() + ";" + a.geteVenditore());
 				request.getSession().setAttribute("account", a);
 			} else
 				response.getWriter().print("false");

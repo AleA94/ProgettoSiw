@@ -1,6 +1,8 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -76,9 +78,9 @@
 				class="dropdown-toggle" data-toggle="dropdown"> <b id="person"></b>
 					<b class="caret"></b>
 			</a>
-				<ul class="dropdown-menu">
-					<li><a href="#">I tuoi ordini</a></li>
+				<ul class="dropdown-menu user-menu">
 					<li><a href="#">I tuoi dati</a></li>
+					<li><a href="#">I tuoi ordini</a></li>
 					<li class="divider"></li>
 					<li><a id="logout" href="#"><span
 							class="glyphicon glyphicon-log-out"></span> Logout</a></li>
@@ -97,6 +99,7 @@
 				<form action="SearchProduct">
 					<div class="input-group searchBar">
 						<span class="input-group-btn">
+							<input type=hidden name="categoria" id="currCat">
 							<button type="button" class="btn btn-default dropdown-toggle"
 								data-toggle="dropdown">
 								<b id="selCat">Tutte le Categorie</b><span class="caret"></span>

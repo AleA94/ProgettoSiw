@@ -30,6 +30,7 @@ $("#srcCat").on('click', 'li a', function(){
 	prevCat=$(this).parent();
 	$(this).parent().addClass('active');
     $("#selCat").text($(this).text());
+    $('#currCat').val($(this).text());
 });
 
 
@@ -102,6 +103,8 @@ function checkSession() {
 			if (res[0] == "true") {
 				$('#user').toggleClass("disappear");
 				$('#person').html(res[1]);
+				if(res[2]==1)
+					$('.user-menu').prepend($('<li><a href="/ShopManager">Gestisci il tuo negozio</a></li>'))
 				$('#log').toggleClass('disappear');
 				$('#login-modal').modal('hide');
 			}
@@ -123,6 +126,7 @@ function logout() {
 		success : function(data) {
 			$('#user').toggleClass("disappear");
 			$('#log').toggleClass('disappear');
+			$('#shopLink').remove();
 		},
 		fail : function() {
 			alert('niente');
@@ -149,14 +153,14 @@ function Login() {
 			if (res[0] == "true") {
 				$('#user').toggleClass("disappear");
 				$('#person').html(res[1]);
+				if(res[2]==1)
+					$('.user-menu').prepend($('<li id="shopLink"><a href="/ShopManager">Gestisci il tuo negozio</a></li>'))
 				$('#log').toggleClass('disappear');
 				$('#login-modal').modal('hide');
+				$('#mail').val('');
+				$('#pass').val('');
 			} else {
-				if (b != "true") {
-					$("<b>username or password invalid<b>").insertBefore(
-							$('#mail'));
-					b = "true";
-				}
+				alert('nome utente o password errati!!!')
 			}
 		},
 		fail : function() {
