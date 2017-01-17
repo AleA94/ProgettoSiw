@@ -28,12 +28,13 @@ public class UtenteDaoJDBC implements UtenteDAO {
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
 				u = new Utente();
-				u.setEmail(result.getString("Email"));
+				u.setEmail(user);
 				u.setNome(result.getString("Nome"));
 				u.setCognome(result.getString("Cognome"));
 				u.seteAttivo(result.getInt("eAttivo"));
 				u.seteVenditore(result.getInt("eVenditore"));
 				u.setIndirizzo(result.getString("Indirizzo"));
+				u.setPassword(pass);
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -64,6 +65,53 @@ public class UtenteDaoJDBC implements UtenteDAO {
 
 			statement.executeUpdate();
 
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+
+	}
+
+	@Override
+	public void updateDatas(Utente u) {
+		Connection connection = this.dataSource.getConnection();
+		try {
+			String update = "update Utente set Nome=?, Cognome=?, Indirizzo=? where Email=?";
+			PreparedStatement statement = connection.prepareStatement(update);
+			statement.setString(1, u.getNome());
+			statement.setString(2, u.getCognome());
+			statement.setString(3, u.getIndirizzo());
+			statement.setString(4, u.getEmail());
+
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+
+	}
+
+	@Override
+	public void editPass(String user, String pass) {
+
+		Connection connection = this.dataSource.getConnection();
+		try {
+			String update = "update Utente set Password=? where Email=?";
+			PreparedStatement statement = connection.prepareStatement(update);
+			statement.setString(1, pass);
+			statement.setString(2, user);
+
+			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {

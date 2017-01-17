@@ -79,7 +79,7 @@
 					<b class="caret"></b>
 			</a>
 				<ul class="dropdown-menu user-menu">
-					<li><a href="#">I tuoi dati</a></li>
+					<li><a href="${request.getContextPath()}/ProfileManager">I tuoi dati</a></li>
 					<li><a href="#">I tuoi ordini</a></li>
 					<li class="divider"></li>
 					<li><a id="logout" href="#"><span
