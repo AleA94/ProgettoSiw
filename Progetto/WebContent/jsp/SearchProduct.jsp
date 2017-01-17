@@ -13,7 +13,7 @@
 		<c:forEach items="${prodotti}" var="i">
 			<div class="col-md-4 col-sm-6 col-xs-7">
 				<div class="jumbotron">
-					<d1>
+					<dl>
 					<dd>${i.idProdotto}</dd>
 					<dd>${i.nome}</dd>
 					<dd>${i.descrizione}</dd>
@@ -21,11 +21,10 @@
 					<dd>${i.prezzo} &euro;</dd>
 					<dd>${i.dataInizio}</dd>
 					<dd>${i.dataFine} </dd>
-					</d1>
+					</dl>
 				</div>
 			</div>
-		</c:forEach>
-		
+		</c:forEach> 
 	</div>
     
 </body>

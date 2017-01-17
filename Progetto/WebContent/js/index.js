@@ -79,9 +79,9 @@ function fillHome() {
 			var row=$('<div class=row></div>');
 			var i=0;
 			cat.forEach(function(c) {
-				$('.popup-gallery').append('<div class=\"col-lg-4 col-sm-6\"><a class=\"portfolio-box\"> <img src=\"immagini/categorie/'+c+
-						'.jpg\" class=\"img-responsive\" alt=\"\"><div class=\"portfolio-box-caption\">	<div class=\"portfolio-box-caption-content\">	<div class=\"project-category text-faded\">Category</div><div class=\"project-name\">'+
-						c+'</div>	</div>	</div></a></div>');
+				$('.popup-gallery').append('<div class=\"col-lg-4 col-sm-6\"><form action="SearchProduct"> <input type=hidden name="nomeProdotto" value=""> <a class=\"portfolio-box\">  <img src=\"immagini/categorie/'+c+
+						'.jpg\" class=\"img-responsive\" alt=\"\"><button class=\"portfolio-box-caption\" style="border:none" type="submit" name="categoria" value='+c+'>	<div class=\"portfolio-box-caption-content\">	<div class=\"project-category text-faded\">Category</div><div class=\"project-name\">'+
+						c+'</div>	</div>	</button></a></input></form></div>');
 				$('#srcCat').append($('<li><a href="#">'+c+'</a></li>'));
 			});
 		},fail : function() {
