@@ -2,7 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   <display-name>Progetto</display-name>
   <welcome-file-list>
-    <welcome-file>jsp/index.jsp</welcome-file>
+    <welcome-file></welcome-file>
   </welcome-file-list>
   <servlet>
     <servlet-name>Login</servlet-name>
@@ -11,14 +11,6 @@
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
     <url-pattern>/Login</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>HomeLoad</servlet-name>
-    <servlet-class>HomeLoad</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>HomeLoad</servlet-name>
-    <url-pattern>/HomeLoad</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>NewItem</servlet-name>

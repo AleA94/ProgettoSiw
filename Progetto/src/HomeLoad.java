@@ -1,6 +1,7 @@
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +15,7 @@ import persistence.MySQLDaoFactory;
 /**
  * Servlet implementation class HomeLoad
  */
-@WebServlet("/HomeLoad")
+@WebServlet("")
 public class HomeLoad extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	CategoriaDAO d = MySQLDaoFactory.getDAOFactory().getCategoriaDao();
@@ -40,7 +41,10 @@ public class HomeLoad extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.setAttribute("categorie", d.getMacroCategorie());
+		System.out.println("ciao");
+		forwardOnJsp(request, response, "/jsp/index.jsp");
+
 	}
 
 	/**
@@ -56,6 +60,12 @@ public class HomeLoad extends HttpServlet {
 
 		}
 
+	}
+
+	private void forwardOnJsp(HttpServletRequest req, HttpServletResponse resp, String nextJsp)
+			throws ServletException, IOException {
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJsp);
+		dispatcher.forward(req, resp);
 	}
 
 }

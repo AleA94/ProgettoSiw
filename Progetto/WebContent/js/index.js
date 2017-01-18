@@ -2,9 +2,14 @@
 
 $(document).ready(function() {
 	checkSession();
-	fillHome();
 
-	prevCat=$('#srcCat li');
+    $('.search-panel .dropdown-menu').find('a').click(function(e) {
+    	e.preventDefault();
+		var param = $(this).attr("href").replace("#","");
+		var concept = $(this).text();
+		$('.search-panel span#search_concept').text(concept);
+		$('.input-group #search_param').val(param);
+	});
 	
 	$("#login").click(function() {
 		var mail = $('#mail');
@@ -24,16 +29,6 @@ $(document).ready(function() {
 		register();
 	});
 	
-
-$("#srcCat").on('click', 'li a', function(){
-    prevCat.removeClass('active');
-	prevCat=$(this).parent();
-	$(this).parent().addClass('active');
-    $("#selCat").text($(this).text());
-    $('#currCat').val($(this).text());
-});
-
-
 });
 
 var b = false;
@@ -104,7 +99,7 @@ function checkSession() {
 				$('#user').toggleClass("disappear");
 				$('#person').html(res[1]);
 				if(res[2]==1)
-					$('.user-menu').prepend($('<li id="shopLink"><a href="${request.getContextPath()}/ShopManager">Gestisci il tuo negozio</a></li>'))
+					$('.user-menu').prepend($('<li id="shopLink"><a href="/ShopManager">Gestisci il tuo negozio</a></li>'))
 				$('#log').toggleClass('disappear');
 				$('#login-modal').modal('hide');
 			}
@@ -154,7 +149,7 @@ function Login() {
 				$('#user').toggleClass("disappear");
 				$('#person').html(res[1]);
 				if(res[2]==1)
-					$('.user-menu').prepend($('<li id="shopLink"><a href="${request.getContextPath()}/ShopManager">Gestisci il tuo negozio</a></li>'))
+					$('.user-menu').prepend($('<li id="shopLink"><a href="/ShopManager">Gestisci il tuo negozio</a></li>'))
 				$('#log').toggleClass('disappear');
 				$('#login-modal').modal('hide');
 				$('#mail').val('');

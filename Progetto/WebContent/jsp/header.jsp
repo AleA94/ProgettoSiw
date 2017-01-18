@@ -37,18 +37,20 @@
 		<div class="col-sm-8  col-sm-offset-1">
 			<form action="SearchProduct">
 				<div class="input-group" style="margin-top: 7px">
-					<div class="input-group-btn search-panelp">
-						<span class="input-group-btn"> <input type=hidden
-							name="categoria" id="currCat">
-							<button type="button" class="btn btn-default dropdown-toggle"
-								data-toggle="dropdown">
-								<b id="selCat">Tutte Le Categorie</b> <span class="caret"></span>
-							</button>
-							<ul id="srcCat" class="dropdown-menu" role="menu">
-								<li class="active"><a>Tutte Le categorie</a></li>
-							</ul>
-						</span>
-					</div>
+					<div class="input-group-btn search-panel">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    	<span id="search_concept">All</span> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                    	<c:forEach var="c" items="${categorie}">
+							<li><a href="#${c.id }">${c.nome}</a></li>                    	
+                    	</c:forEach>
+                      
+                      <li class="divider"></li>
+                      <li><a href="#all">All</a></li>
+                    </ul>
+                </div>
+                <input type="hidden" name="search_param" value="all" id="search_param">  
 					<input type="text" name="nomeProdotto" class="form-control"
 						placeholder="Search.."> <span class="input-group-btn">
 						<button class="btn btn-default" type="submit">
