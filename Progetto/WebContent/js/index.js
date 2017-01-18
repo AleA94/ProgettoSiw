@@ -104,7 +104,7 @@ function checkSession() {
 				$('#user').toggleClass("disappear");
 				$('#person').html(res[1]);
 				if(res[2]==1)
-					$('.user-menu').prepend($('<li id="shopLink"><a href="/ShopManager">Gestisci il tuo negozio</a></li>'))
+					$('.user-menu').prepend($('<li id="shopLink"><a href="${request.getContextPath()}/ShopManager">Gestisci il tuo negozio</a></li>'))
 				$('#log').toggleClass('disappear');
 				$('#login-modal').modal('hide');
 			}
@@ -154,7 +154,7 @@ function Login() {
 				$('#user').toggleClass("disappear");
 				$('#person').html(res[1]);
 				if(res[2]==1)
-					$('.user-menu').prepend($('<li id="shopLink"><a href="/ShopManager">Gestisci il tuo negozio</a></li>'))
+					$('.user-menu').prepend($('<li id="shopLink"><a href="${request.getContextPath()}/ShopManager">Gestisci il tuo negozio</a></li>'))
 				$('#log').toggleClass('disappear');
 				$('#login-modal').modal('hide');
 				$('#mail').val('');

@@ -9,7 +9,7 @@
 <body>
 	<%@include file="header.jsp"%>
 
-	<section class="container tile">
+	<section class="container tile navTop">
 	<div class="row">
 		<div class="page-header">
 			<h1 style="text-align: center">Modifica il tuo profilo</h1>

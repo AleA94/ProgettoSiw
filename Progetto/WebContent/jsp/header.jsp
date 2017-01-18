@@ -22,17 +22,43 @@
 </head>
 
 <body>
-
-	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"> 
 	<div class="navbar-header">
 		<button type="button" class="navbar-toggle" data-toggle="collapse"
-			data-target="#menu">
+			data-target="#bs-example-navbar-collapse-1">
 			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
 			<span class="icon-bar"></span> <span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="/"> Sito Bello </a>
+		<a class="navbar-brand" href="/">
+			uBuy</a>
 	</div>
-	<div class="collapse navbar-collapse" id="menu">
+
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		<div class="col-sm-8  col-sm-offset-1">
+			<form action="SearchProduct">
+				<div class="input-group" style="margin-top: 7px">
+					<div class="input-group-btn search-panelp">
+						<span class="input-group-btn"> <input type=hidden
+							name="categoria" id="currCat">
+							<button type="button" class="btn btn-default dropdown-toggle"
+								data-toggle="dropdown">
+								<b id="selCat">Tutte Le Categorie</b> <span class="caret"></span>
+							</button>
+							<ul id="srcCat" class="dropdown-menu" role="menu">
+								<li class="active"><a>Tutte Le categorie</a></li>
+							</ul>
+						</span>
+					</div>
+					<input type="text" name="nomeProdotto" class="form-control"
+						placeholder="Search.."> <span class="input-group-btn">
+						<button class="btn btn-default" type="submit">
+							<span class="glyphicon glyphicon-search"></span>&nbsp;
+						</button>
+					</span>
+				</div>
+			</form>
+		</div>
+
 		<ul class="nav navbar-nav navbar-right">
 			<li><a id="log" data-toggle="modal" data-target="#login-modal"
 				href="#"> <span class="glyphicon glyphicon-user"></span> login
@@ -40,9 +66,7 @@
 				<div class="modal fade" id="login-modal" tabindex="-1" role="dialog"
 					aria-labelledby="myModalLabel" aria-hidden="true"
 					style="display: none;">
-					<div class="modal-backdrop" style="display: none;">
-					
-					</div>
+					<div class="modal-backdrop" style="display: none;"></div>
 
 					<div class="modal-dialog">
 						<div class="loginmodal-container">
@@ -53,7 +77,7 @@
 								value="Login">
 							<div class="login-help">
 								<a href="#" data-toggle="modal" data-target="#register-modal">Register</a>
-								 <a href="#">Forgot Password</a>
+								<a href="#">Forgot Password</a>
 							</div>
 						</div>
 					</div>
@@ -90,39 +114,6 @@
 		</ul>
 	</div>
 	</nav>
-
-	<div class="container">
-		<div class="row tile navTop">
-			<div class="row"></div>
-			<div class="row">
-				<div class="col-lg-12 col-sm-12">
-				<form action="SearchProduct">
-					<div class="input-group searchBar">
-						<span class="input-group-btn">
-							<input type=hidden name="categoria" id="currCat">
-							<button type="button" class="btn btn-default dropdown-toggle"
-								data-toggle="dropdown">
-								<b id="selCat">Tutte le Categorie</b><span class="caret"></span>
-							</button>
-							<ul id="srcCat" class="dropdown-menu">
-								<li class="active"><a >Tutte Le categorie</a></li>
-							</ul>
-						</span>
-						
-						<input type="text" name="nomeProdotto" class="form-control"> <span
-							class="input-group-btn">
-							<button class="btn btn-default" type="submit">
-								<span class="glyphicon glyphicon-search"></span>&nbsp;
-							</button>	
-						</span>
-						
-					</div>
-					</form> 
-				</div>
-			</div>
-		</div>
-	</div>
-
 </body>
 
 </html>
