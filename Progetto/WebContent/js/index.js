@@ -14,7 +14,7 @@ $(document).ready(function() {
 	$("#login").click(function() {
 		var mail = $('#mail');
 		if (isEmail(mail.val()))
-			Login();
+			Login($(this).attr('context'));
 		else
 			mail.css('border-color', 'blue');
 
@@ -61,30 +61,6 @@ function register() {
 	})
 }
 
-function fillHome() {
-	$.ajax({
-		type : "POST",
-		url : "HomeLoad",
-		datatype : "json",
-		data : {
-			query : JSON.stringify('select * from Categoria where sottocategoria is null'),
-		},success : function(data) {
-			data = data.substring(0, data.length - 1);
-			var cat = data.split(';');
-			var row=$('<div class=row></div>');
-			var i=0;
-			cat.forEach(function(c) {
-				$('.popup-gallery').append('<div class=\"col-lg-4 col-sm-6\"><form action="SearchProduct"> <input type=hidden name="nomeProdotto" value=""> <a class=\"portfolio-box\">  <img src=\"immagini/categorie/'+c+
-						'.jpg\" class=\"img-responsive\" alt=\"\"><button class=\"portfolio-box-caption\" style="border:none" type="submit" name="categoria" value='+c+'>	<div class=\"portfolio-box-caption-content\">	<div class=\"project-category text-faded\">Category</div><div class=\"project-name\">'+
-						c+'</div>	</div>	</button></a></input></form></div>');
-				$('#srcCat').append($('<li><a href="#">'+c+'</a></li>'));
-			});
-		},fail : function() {
-			alert('niente');
-		}
-	});
-}
-
 function checkSession() {
 	$.ajax({
 		type : "POST",
@@ -99,7 +75,7 @@ function checkSession() {
 				$('#user').toggleClass("disappear");
 				$('#person').html(res[1]);
 				if(res[2]==1)
-					$('.user-menu').prepend($('<li id="shopLink"><a href="/ShopManager">Gestisci il tuo negozio</a></li>'))
+					$('.user-menu').prepend($('<li id="shopLink"><a href="'+$('#context').val()+'/ShopManager">Gestisci il tuo negozio</a></li>'));
 				$('#log').toggleClass('disappear');
 				$('#login-modal').modal('hide');
 			}
@@ -135,7 +111,7 @@ function isEmail(email) {
 	return regex.test(email);
 }
 
-function Login() {
+function Login(c) {
 	$.ajax({
 		type : "POST",
 		url : "Login",
@@ -149,7 +125,7 @@ function Login() {
 				$('#user').toggleClass("disappear");
 				$('#person').html(res[1]);
 				if(res[2]==1)
-					$('.user-menu').prepend($('<li id="shopLink"><a href="/ShopManager">Gestisci il tuo negozio</a></li>'))
+					$('.user-menu').prepend($('<li id="shopLink"><a href="'+$('#context').val()+'/ShopManager">Gestisci il tuo negozio</a></li>'));
 				$('#log').toggleClass('disappear');
 				$('#login-modal').modal('hide');
 				$('#mail').val('');
