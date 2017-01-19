@@ -22,6 +22,7 @@
 </head>
 
 <body>
+<input type="hidden" id="context" value="<%=request.getContextPath()%>">
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"> 
 	<div class="navbar-header">
 		<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -29,7 +30,7 @@
 			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
 			<span class="icon-bar"></span> <span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="/">
+		<a class="navbar-brand" href="<%=request.getContextPath()%>/">
 			uBuy</a>
 	</div>
 
@@ -105,7 +106,7 @@
 					<b class="caret"></b>
 			</a>
 				<ul class="dropdown-menu user-menu">
-					<li><a href="${request.getContextPath()}/ProfileManager">I tuoi dati</a></li>
+					<li><a href="<%=request.getContextPath()%>/ProfileManager">I tuoi dati</a></li>
 					<li><a href="#">I tuoi ordini</a></li>
 					<li class="divider"></li>
 					<li><a id="logout" href="#"><span
