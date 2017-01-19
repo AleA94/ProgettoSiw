@@ -42,6 +42,7 @@
 		</section>
 
 	</div>
+	<%@include file="AsteInScadenza.jsp"%>
 
 </body>
 </html>
