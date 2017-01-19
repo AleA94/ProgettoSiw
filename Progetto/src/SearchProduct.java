@@ -29,23 +29,23 @@ public class SearchProduct extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		String categoria = request.getParameter("categoria");
+		
 		String nomeProdotto = request.getParameter("nomeProdotto");
 		ProdottoDAO d = DAOFactory.getDAOFactory().getProdottoDao();
-		//System.out.println(categoria);
+		String k= "Non esistono prodotti per la tua ricerca!";
 		List<Prodotto> l;
-		if(categoria=="" || categoria=="Tutte Le categorie")
-		{
-			
-			 l = d.findProdotto(nomeProdotto);
-			
+		if (!request.getParameter("categoria").equals("all")) {
+
+			l = d.findProdottoByCategoria(nomeProdotto, Integer.parseInt(request.getParameter("categoria")));
+
+		} else {
+			l = d.findProdotto(nomeProdotto);
+
 		}
+		if(l.size()!=0)
+			request.setAttribute("prodotti", l);
 		else
-		{
-			 l = d.findProdottoByCategoria(nomeProdotto,categoria);			
-		}
-		request.setAttribute("prodotti", l);
+			request.setAttribute("emptyP", k);
 		forwardOnJsp(request, response, "/jsp/SearchProduct.jsp");
 
 	}

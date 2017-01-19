@@ -103,15 +103,15 @@ public class ProdottoDaoJDBC implements ProdottoDAO {
 		return prodotti;
 	}
 	
-	public List<Prodotto> findProdottoByCategoria(String nameProduct,String categoria) {
+	public List<Prodotto> findProdottoByCategoria(String nameProduct,int categoria) {
 		Connection connection = this.dataSource.getConnection();
 		List<Prodotto> prodotti = new ArrayList<Prodotto>();
 		try {
 			PreparedStatement statement;
-			String query = "select * From Prodotto JOIN Categoria on Prodotto.idCategoria=Categoria.idCategoria where Prodotto.nome like ? AND Prodotto.idCategoria = Categoria.idCategoria AND Categoria.Nome = ?";
+			String query = "select * From Prodotto JOIN Categoria on Prodotto.idCategoria=Categoria.idCategoria where Prodotto.nome like ? AND Prodotto.idCategoria = Categoria.idCategoria AND Categoria.idCategoria = ?";
 			statement = connection.prepareStatement(query);
 			statement.setString(1, "%"+nameProduct+"%");
-			statement.setString(2, categoria);
+			statement.setInt(2, categoria);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
 				Prodotto p = new Prodotto();
