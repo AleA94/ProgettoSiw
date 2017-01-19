@@ -12,6 +12,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Test</title>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="css/product.css" rel="stylesheet">
 <link href="css/stile.css" rel="stylesheet">
 <link href="css/creative.css" rel="stylesheet">
 <link href="css/creative.min.css" rel="stylesheet">

@@ -24,6 +24,8 @@ body {
 	margin-top: 70px;
 }
 
+
+
 .disappear {
     display: none !important;
 }
@@ -169,7 +171,7 @@ body {
   position: absolute;
   left: 0;
   top: 0;
-  height: 100%;
+  maxheight: 100px;
   z-index: -10;
   min-width:100%;
   min-height:100%
@@ -187,4 +189,11 @@ body {
   margin-bottom: 7pt;
   font-family: arial, helvetica, "san-serif";
   opacity: 0.8;
+}
+
+
+div#immagineAsta {
+	margin-left:50px;
+  max-height: 400px;
+  max-width: 200px;
 }

@@ -1,5 +1,6 @@
 package persistence;
 
+import DAO.AstaProdottoDAO;
 import DAO.CategoriaDAO;
 import DAO.ProdottoDAO;
 import DAO.UtenteDAO;
@@ -15,4 +16,6 @@ public abstract class DAOFactory {
 	public abstract ProdottoDAO getProdottoDao();
 
 	public abstract CategoriaDAO getCategoriaDao();
+
+	public abstract AstaProdottoDAO getAstaDao();
 }

@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import DAO.AstaProdottoDAO;
 import DAO.CategoriaDAO;
-import data.Categoria;
 import persistence.MySQLDaoFactory;
 
 /**
@@ -19,6 +19,7 @@ import persistence.MySQLDaoFactory;
 public class HomeLoad extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	CategoriaDAO d = MySQLDaoFactory.getDAOFactory().getCategoriaDao();
+	AstaProdottoDAO a = MySQLDaoFactory.getDAOFactory().getAstaDao();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -41,8 +42,8 @@ public class HomeLoad extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setAttribute("asteProdotto", a.getAste());
 		request.setAttribute("categorie", d.getMacroCategorie());
-		System.out.println("ciao");
 		forwardOnJsp(request, response, "/jsp/index.jsp");
 
 	}
@@ -54,11 +55,6 @@ public class HomeLoad extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String s = request.getParameter("query");
-		for (Categoria st : d.getMacroCategorie()) {
-			response.getWriter().print(st.getNome() + ";");
-
-		}
 
 	}
 
