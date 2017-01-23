@@ -37,8 +37,10 @@
 										<button class="add-to-cart btn btn-default" type="button">add
 											to cart</button>
 										<br> <br>
-										<button class="add-to-cart btn btn-default" type="button">visita
-											pagina prodotto</button>
+										<form action="VisitProduct" name="myForm">
+										<input type="hidden" name="idProdotto" value="${i.idProdotto}">  
+										<button  class="add-to-cart btn btn-default" type="submit" >visita
+											pagina prodotto</button></form>
 									</div>
 								</div>
 							</div>
