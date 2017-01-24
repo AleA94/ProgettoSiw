@@ -36,4 +36,12 @@
     <servlet-name>SearchProduct</servlet-name>
     <url-pattern>/SearchProduct</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <servlet-name>VisitProduct</servlet-name>
+    <servlet-class>VisitProduct</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>VisitProduct</servlet-name>
+    <url-pattern>/VisitProduct</url-pattern>
+  </servlet-mapping>
 </web-app>

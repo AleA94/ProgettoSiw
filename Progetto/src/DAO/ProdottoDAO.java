@@ -17,6 +17,8 @@ public interface ProdottoDAO {
 
 	public List<Prodotto> findProdotto(String nameProduct);
 	
-	public List<Prodotto> findProdottoByCategoria(String nameProduct,String categoria);
+	public List<Prodotto> findProdottoByCategoria(String nameProduct,int categoria);
+
+	Prodotto visitProdotto(int nameProduct);
 
 }
