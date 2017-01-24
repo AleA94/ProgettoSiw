@@ -37,7 +37,7 @@ public class ProfileManager extends HttpServlet {
 		if (request.getSession().getAttribute("account") != null)
 			forwardOnJsp(request, response, "/jsp/EditProfile.jsp");
 		else
-			response.sendRedirect("/");
+			response.sendRedirect(request.getContextPath() + "/");
 	}
 
 	@Override
@@ -50,7 +50,7 @@ public class ProfileManager extends HttpServlet {
 			u.setCognome(request.getParameter("cognome"));
 			u.setIndirizzo(request.getParameter("indirizzo"));
 			d.updateDatas(u);
-			response.sendRedirect("/ProfileManager");
+			response.sendRedirect(request.getContextPath() + "/ProfileManager");
 		} else if (request.getParameter("passCheck") != null) {
 			String s = request.getParameter("passCheck");
 			s = s.substring(1, s.length() - 1);

@@ -55,7 +55,7 @@ public class ShopManager extends HttpServlet {
 				forwardOnJsp(request, response, "/jsp/ShopManager.jsp");
 			}
 		} else {
-			response.sendRedirect("/");
+			response.sendRedirect(request.getContextPath() + "/");
 		}
 	}
 
@@ -85,7 +85,7 @@ public class ShopManager extends HttpServlet {
 			p.setNegozio(((Utente) request.getSession().getAttribute("account")).getEmail());
 			p.setPrezzo(Float.parseFloat(request.getParameter("prezzo")));
 			d.edit(p);
-			response.sendRedirect("/ShopManager");
+			response.sendRedirect(request.getContextPath() + "/ShopManager");
 
 		} else {
 			request.setAttribute("subCategorie", c.getSottoCategorie());

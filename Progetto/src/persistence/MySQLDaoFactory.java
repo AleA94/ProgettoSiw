@@ -1,6 +1,8 @@
 package persistence;
 
+import DAO.AcquistaDao;
 import DAO.AstaProdottoDAO;
+import DAO.CarrelloProdottoDAO;
 import DAO.CategoriaDAO;
 import DAO.ProdottoDAO;
 import DAO.UtenteDAO;
@@ -38,6 +40,16 @@ public class MySQLDaoFactory extends DAOFactory {
 	@Override
 	public AstaProdottoDAO getAstaDao() {
 		return new AstaProdottoDaoJDBC(dataSource);
+	}
+
+	@Override
+	public CarrelloProdottoDAO getCarrelloProdottoDAO() {
+		return new CarrelloProdottoDaoJDBC(dataSource);
+	}
+
+	@Override
+	public AcquistaDao getAcquistaDAO() {
+		return new AcquistaDaoJDBC(dataSource);
 	}
 
 }

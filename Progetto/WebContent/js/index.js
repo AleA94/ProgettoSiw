@@ -98,6 +98,8 @@ function logout() {
 			$('#user').toggleClass("disappear");
 			$('#log').toggleClass('disappear');
 			$('#shopLink').remove();
+			 var href = $('.navbar-brand').attr('href');
+		      window.location.href = href;
 		},
 		fail : function() {
 			alert('niente');

@@ -3,7 +3,7 @@ package data;
 import java.util.Date;
 
 public class Prodotto {
-	int idProdotto, inAsta, idCategoria;
+	int idProdotto, inAsta, idCategoria, quantita;
 	Date dataInizio, dataFine;
 	float prezzo;
 	String nome, descrizione, negozio;
@@ -73,6 +73,14 @@ public class Prodotto {
 
 	public void setPrezzo(float prezzo) {
 		this.prezzo = prezzo;
+	}
+
+	public int getQuantita() {
+		return quantita;
+	}
+
+	public void setQuantita(int quantita) {
+		this.quantita = quantita;
 	}
 
 	public Prodotto(int idProdotto, int inAsta, int idCategoria, Date dataInizio, Date dataFine, float prezzo,

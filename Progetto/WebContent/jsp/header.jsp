@@ -113,7 +113,7 @@
 					<li><a id="logout" href="#"><span
 							class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 				</ul></li>
-			<li><a><span class="glyphicon glyphicon-shopping-cart"></span>
+			<li><a href="<%=request.getContextPath() %>/Carrello"><span class="glyphicon glyphicon-shopping-cart"></span>
 					Carrello</a></li>
 		</ul>
 	</div>

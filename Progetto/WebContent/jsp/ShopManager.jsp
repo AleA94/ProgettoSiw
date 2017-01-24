@@ -3,7 +3,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link href="css/ShopManager.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Gestisci negozio</title>
 </head>
@@ -36,10 +35,10 @@
 			<tbody>
 				<c:forEach var="p" items="${prodotti}">
 					<tr>
-						<td><img class="picture" src="immagini/categorie/Elettronica.jpg"></td>
+						<td><img class="pic" src="immagini/categorie/Elettronica.jpg"></td>
 						<td>${p.nome}</td>
 						<td>${p.descrizione}</td>
-						<td>${p.prezzo}</td>
+						<td>${p.prezzo}&euro;</td>
 						<c:choose>
 							<c:when test="${p.inAsta==1}">
 								<td>Si</td>
@@ -48,7 +47,7 @@
 								<td>No</td>
 							</c:otherwise>				
 						</c:choose>
-						<td><a href="${request.getContextPath()}/ShopManager?action=edit&id=${p.idProdotto}"><span class="glyphicon glyphicon-edit"></span></a></td>
+						<td><a href="<%=request.getContextPath() %>/ShopManager?action=edit&id=${p.idProdotto}"><span class="glyphicon glyphicon-edit"></span></a></td>
 						<td><a class="remove" on="${p.idProdotto}" href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
 					</tr>
 				</c:forEach>
