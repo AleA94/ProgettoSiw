@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import DAO.UtenteDAO;
@@ -38,19 +41,41 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		if (request.getParameter("user") != null) {
-			String s = request.getParameter("user");
-			s = s.substring(1, s.length() - 1);
-			String[] par = s.split(";");
-			Utente u = d.getUtente(par[0], par[1]);
+			JSONObject o;
+			Utente u = null;
+			try {
+				o = new JSONObject(request.getParameter("user"));
+				u = d.getUtente(o.getString("mail"), o.getString("pass"));
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
 			if (u != null) {
-				response.getWriter().print("true;" + u.getNome() + ";" + u.geteVenditore());
+				JSONObject r = new JSONObject();
+				try {
+					r.put("log", true);
+					r.put("name", u.getNome());
+					r.put("sell", u.geteVenditore());
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+				response.setContentType("application/json");
+				response.getWriter().write(r.toString());
 				request.getSession().setAttribute("account", u);
 			} else
 				response.getWriter().print("false");
 		} else if (request.getParameter("session") != null) {
 			Utente a = (Utente) request.getSession().getAttribute("account");
 			if (a != null) {
-				response.getWriter().print("true;" + a.getNome() + ";" + a.geteVenditore());
+				JSONObject r = new JSONObject();
+				try {
+					r.put("log", true);
+					r.put("name", a.getNome());
+					r.put("sell", a.geteVenditore());
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+				response.setContentType("application/json");
+				response.getWriter().write(r.toString());
 				request.getSession().setAttribute("account", a);
 			} else
 				response.getWriter().print("false");

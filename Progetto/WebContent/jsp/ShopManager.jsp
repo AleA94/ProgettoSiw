@@ -14,12 +14,12 @@
 			<h1 style="text-align: center">il tuo negozio</h1>
 		</div>
 	</div>
-	<form method="post" action="ShopManager">
-		<input class="btn btn-default" value="Nuovo prodotto" type="submit">
-	</form>
+	<a href="<%=request.getContextPath() %>/ShopManager?action=new" class="btn btn-default">Nuovo Prodotto</a>
 	<br>
 	<br>
-	<div class="table-responsive">
+	<c:choose>
+	<c:when test="${not empty prodotti}">
+		<div class="table-responsive">
 		<table class="table">
 			<thead>
 				<tr>
@@ -28,6 +28,7 @@
 					<th>Descrizione</th>
 					<th>Prezzo</th>
 					<th>in Asta</th>
+					<th>Quantità</th>
 					<th>Modifica</th>
 					<th>Rimuovi</th>
 				</tr>
@@ -36,25 +37,34 @@
 				<c:forEach var="p" items="${prodotti}">
 					<tr>
 						<td><img class="pic" src="immagini/categorie/Elettronica.jpg"></td>
-						<td>${p.nome}</td>
-						<td>${p.descrizione}</td>
-						<td>${p.prezzo}&euro;</td>
+						<td>${p.prodotto.nome}</td>
+						<td>${p.prodotto.descrizione}</td>
+						<td>${p.prodotto.prezzo}&euro;</td>
 						<c:choose>
-							<c:when test="${p.inAsta==1}">
+							<c:when test="${p.prodotto.inAsta==1}">
 								<td>Si</td>
 							</c:when>		
 							<c:otherwise>
 								<td>No</td>
 							</c:otherwise>				
 						</c:choose>
-						<td><a href="<%=request.getContextPath() %>/ShopManager?action=edit&id=${p.idProdotto}"><span class="glyphicon glyphicon-edit"></span></a></td>
-						<td><a class="remove" on="${p.idProdotto}" href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
+						<td>
+						<c:if test="${p.quantita ne 0}">
+							${p.quantita}
+						</c:if>
+						</td>
+						<td><a href="<%=request.getContextPath() %>/ShopManager?action=edit&id=${p.prodotto.idProdotto}"><span class="glyphicon glyphicon-edit"></span></a></td>
+						<td><c:if test="${p.prodotto.inAsta eq 0}"><a class="remove" on="${p.prodotto.idProdotto}" href="#"><span class="glyphicon glyphicon-trash"></span></a></c:if></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</div>
-
+	</c:when>	
+	<c:otherwise>
+		<h1>nessun prodotto presente</h1>
+	</c:otherwise>
+	</c:choose>
 	</section>
 <script src="js/ShopManager.js" type="text/javascript"></script>
 </body>

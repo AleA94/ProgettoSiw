@@ -3,10 +3,9 @@ package data;
 import java.util.Date;
 
 public class Prodotto {
-	int idProdotto, inAsta, idCategoria, quantita;
-	Date dataInizio, dataFine;
+	int idProdotto, inAsta, idCategoria;
 	float prezzo;
-	String nome, descrizione, negozio;
+	String nome, descrizione;
 
 	public Prodotto() {
 	}
@@ -51,22 +50,6 @@ public class Prodotto {
 		this.idCategoria = idCategoria;
 	}
 
-	public Date getDataInizio() {
-		return dataInizio;
-	}
-
-	public void setDataInizio(Date dataInizio) {
-		this.dataInizio = dataInizio;
-	}
-
-	public Date getDataFine() {
-		return dataFine;
-	}
-
-	public void setDataFine(Date dataFine) {
-		this.dataFine = dataFine;
-	}
-
 	public float getPrezzo() {
 		return prezzo;
 	}
@@ -75,21 +58,11 @@ public class Prodotto {
 		this.prezzo = prezzo;
 	}
 
-	public int getQuantita() {
-		return quantita;
-	}
-
-	public void setQuantita(int quantita) {
-		this.quantita = quantita;
-	}
-
 	public Prodotto(int idProdotto, int inAsta, int idCategoria, Date dataInizio, Date dataFine, float prezzo,
 			String nome, String descrizione) {
 		this.idProdotto = idProdotto;
 		this.inAsta = inAsta;
 		this.idCategoria = idCategoria;
-		this.dataInizio = dataInizio;
-		this.dataFine = dataFine;
 		this.prezzo = prezzo;
 		this.nome = nome;
 		this.descrizione = descrizione;
@@ -99,8 +72,6 @@ public class Prodotto {
 			String descrizione) {
 		this.inAsta = inAsta;
 		this.idCategoria = idCategoria;
-		this.dataInizio = dataInizio;
-		this.dataFine = dataFine;
 		this.prezzo = prezzo;
 		this.nome = nome;
 		this.descrizione = descrizione;
@@ -111,19 +82,8 @@ public class Prodotto {
 		super();
 		this.inAsta = inAsta;
 		this.idCategoria = idCategoria;
-		this.dataInizio = dataInizio;
-		this.dataFine = dataFine;
 		this.prezzo = prezzo;
 		this.nome = nome;
 		this.descrizione = descrizione;
-		this.negozio = negozio;
-	}
-
-	public String getNegozio() {
-		return negozio;
-	}
-
-	public void setNegozio(String s) {
-		negozio = s;
 	}
 }

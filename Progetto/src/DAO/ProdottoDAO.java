@@ -5,7 +5,7 @@ import java.util.List;
 import data.Prodotto;
 
 public interface ProdottoDAO {
-	public void save(Prodotto p);
+	public int save(Prodotto p);
 
 	public List<Prodotto> findByNegozio(String email);
 
@@ -16,8 +16,8 @@ public interface ProdottoDAO {
 	public void edit(Prodotto p);
 
 	public List<Prodotto> findProdotto(String nameProduct);
-	
-	public List<Prodotto> findProdottoByCategoria(String nameProduct,int categoria);
+
+	public List<Prodotto> findProdottoByCategoria(String nameProduct, int categoria);
 
 	Prodotto visitProdotto(int nameProduct);
 

@@ -14,6 +14,7 @@ function rimuovi(e){
 		type : "POST",
 		url : "Carrello",
 		datatype : "json",
+		mimeType: "textPlain",
 		data : {
 			rimuovi : $(this).attr('on'),
 		},

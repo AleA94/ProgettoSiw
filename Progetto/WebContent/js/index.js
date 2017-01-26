@@ -66,15 +66,16 @@ function checkSession() {
 		type : "POST",
 		url : "Login",
 		datatype : "json",
+		mimeType: "textPlain",
 		data : {
-			session : JSON.stringify(" "),
+			session : ' ',
 		},
 		success : function(data) {
-			var res = data.split(";");
-			if (res[0] == "true") {
+			data=JSON.parse(data);
+			if (data.log == true) {
 				$('#user').toggleClass("disappear");
-				$('#person').html(res[1]);
-				if(res[2]==1)
+				$('#person').html(data.name);
+				if(data.sell==1)
 					$('.user-menu').prepend($('<li id="shopLink"><a href="'+$('#context').val()+'/ShopManager">Gestisci il tuo negozio</a></li>'));
 				$('#log').toggleClass('disappear');
 				$('#login-modal').modal('hide');
@@ -91,8 +92,9 @@ function logout() {
 		type : "POST",
 		url : "Login",
 		datatype : "json",
+		mimeType: "textPlain",
 		data : {
-			logout : JSON.stringify(" "),
+			logout : '',
 		},
 		success : function(data) {
 			$('#user').toggleClass("disappear");
@@ -114,19 +116,22 @@ function isEmail(email) {
 }
 
 function Login(c) {
+	var user={
+			mail:$('#mail').val(),
+			pass:$('#pass').val()
+	}
 	$.ajax({
 		type : "POST",
 		url : "Login",
 		datatype : "json",
 		data : {
-			user : JSON.stringify( $('#mail').val()+";"+$('#pass').val()),
+			user : JSON.stringify(user),
 		},
 		success : function(data) {
-			var res = data.split(";");
-			if (res[0] == "true") {
+			if (data.log == true) {				
 				$('#user').toggleClass("disappear");
-				$('#person').html(res[1]);
-				if(res[2]==1)
+				$('#person').html(data.name);
+				if(data.sell==1)
 					$('.user-menu').prepend($('<li id="shopLink"><a href="'+$('#context').val()+'/ShopManager">Gestisci il tuo negozio</a></li>'));
 				$('#log').toggleClass('disappear');
 				$('#login-modal').modal('hide');
