@@ -27,15 +27,16 @@
          	</div> 
          </div>
          <div id="asteInScadenza">
+         <li id="divider"></li>
 		<c:forEach var="c" items="${asteProdotto}">
-		<li id="divider"></li>
+		
 			<div class="row">
 				<div class="card">
 					<div class="col-sm-4 col-lg-4">
 						<div class="preview-pic tab-content">
 							<div class="tab-pane active" id="pic-1">
 								<div id="immagineAsta">
-									<img src="immagini/${c.nomeProdotto}.jpg"
+									<img id="immagine" src="immagini/${c.nomeProdotto}.jpg"
 										class="img-responsive" alt="">
 								</div>
 							</div>

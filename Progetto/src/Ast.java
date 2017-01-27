@@ -56,6 +56,8 @@ public class Ast extends HttpServlet {
 				JSONObject j = new JSONObject();
 				try {
 					j.put("asta", asteInScadenza.get(i).getNomeProdotto());
+					j.put("descrizione", asteInScadenza.get(i).getDescrizioneProdotto());
+					j.put("prezzo", asteInScadenza.get(i).getPrezzoCorrente());
 					a.put(j);
 
 				} catch (JSONException e) {
