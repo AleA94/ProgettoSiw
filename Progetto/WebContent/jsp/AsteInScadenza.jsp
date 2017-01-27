@@ -6,21 +6,32 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Aste In Scadenza</title>
+<link href="css/sp.css" rel="stylesheet">
+<script src="js/aggiornaAste.js"></script>
 </head>
-
 <body>
-	<div class="container tile navTop">
-		<h1 style="text-align: center">Aste in scadenza oggi</h1>
+<div class="container tile navTop">
+	<h1 style="text-align: center">Aste in scadenza</h1>
 
+	<div class="col-sm-12 col-lg-12">
+		<div id="rangeAste">
+			 <div class="range range-info"   > 
+            	<input id="sliderOre" type="range" name="range" min="0" max="24" value="1" onchange="rangeInfo1.value=value + ' ore'" >
+            	<output id="rangeInfo1">1 ore</output>
+         	 </div>  
+        	 <div class="range range-info"   > 
+        	    <input id "sliderGiorni" type="range" name="range" min="0" max="10" value="0" onchange="cambioData(this.value)" >
+            	<output id="rangeInfo2">0 giorni</output>
+         	</div> 
+         </div>
+         <div id="asteInScadenza">
 		<c:forEach var="c" items="${asteProdotto}">
+		<li id="divider"></li>
 			<div class="row">
-
 				<div class="card">
-
-					<div class="preview col-md-6">
+					<div class="col-sm-4 col-lg-4">
 						<div class="preview-pic tab-content">
 							<div class="tab-pane active" id="pic-1">
 								<div id="immagineAsta">
@@ -29,26 +40,28 @@
 								</div>
 							</div>
 						</div>
-						<ul class="preview-thumbnail nav nav-tabs">
-						</ul>
+						<ul class="preview-thumbnail nav nav-tabs"></ul>
 					</div>
-					<div class="details col-md-6">
+					<div class="col-sm-4 col-lg-8">
 						<h3 class="product-title">${c.nomeProdotto}</h3>
 						<h3 class="description">Descrizione:</h3>
-						<p class="product-description">${c.descrizioneProdotto}</p>
+						<p id="ciao" class="product-description">${c.descrizioneProdotto}</p>
 						<h4 class="price">
 							current price: <span>${c.prezzoCorrente}</span>
 						</h4>
-
 						<div class="action">
 							<button class="add-to-cart btn btn-default" type="button">fai
 								un offerta</button>
+								<input type="text" id="offertaMassima" placeholder="${c.prezzoCorrente+1}">
 						</div>
 					</div>
-				</div>
+				</div>	
 			</div>
+		<li id="divider"></li>
 		</c:forEach>
 	</div>
+	</div>
+</div>
 
 
 </body>

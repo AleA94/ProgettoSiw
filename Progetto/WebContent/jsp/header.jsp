@@ -13,10 +13,13 @@
 <title>Test</title>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="css/product.css" rel="stylesheet">
+<link href="css/sp.css" rel="stylesheet">
+
 <link href="css/stile.css" rel="stylesheet">
 <link href="css/creative.css" rel="stylesheet">
 <link href="css/creative.min.css" rel="stylesheet">
 <link href="css/lavish-bootstrap.css" rel="stylesheet">
+
 <script src="js/jquery-3.1.1.min.js"></script>
 <script src="js/index.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
@@ -51,9 +54,9 @@
                       <li><a href="#all">All</a></li>
                     </ul>
                 </div>
-                <input type="hidden" name="search_param" value="all" id="search_param">  
+                <input type="hidden" name="search_param" value="all" id="search_param"">  
 					<input type="text" name="nomeProdotto" class="form-control"
-						placeholder="Search.."> <span class="input-group-btn">
+						placeholder="Search.."> <span class="input-group-btn" >
 						<button class="btn btn-default" type="submit">
 							<span class="glyphicon glyphicon-search"></span>&nbsp;
 						</button>

@@ -1,5 +1,6 @@
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,22 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import DAO.AstaProdottoDAO;
-import DAO.CategoriaDAO;
+import data.AstaProdotto;
 import persistence.MySQLDaoFactory;
 
 /**
  * Servlet implementation class HomeLoad
  */
-@WebServlet("")
-public class HomeLoad extends HttpServlet {
+@WebServlet("/Ast")
+public class Ast extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	CategoriaDAO d = MySQLDaoFactory.getDAOFactory().getCategoriaDao();
 	AstaProdottoDAO a = MySQLDaoFactory.getDAOFactory().getAstaDao();
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	@Override
 	public void init() throws ServletException {
 		try {
@@ -34,24 +35,41 @@ public class HomeLoad extends HttpServlet {
 		}
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setAttribute("asteProdotto", a.getAste(1, 1));
-		request.setAttribute("categorie", d.getMacroCategorie());
-		forwardOnJsp(request, response, "/jsp/index.jsp");
+		if (request.getParameter("day") != null) {
+			System.out.println(
+					"ciao" + request.getParameter("day").substring(1, request.getParameter("day").length() - 1));
 
+			request.setAttribute("date",
+					a.getAste(
+							Integer.parseInt(
+									request.getParameter("day").substring(1, request.getParameter("day").length() - 1)),
+							1));
+			ArrayList<AstaProdotto> asteInScadenza = (ArrayList<AstaProdotto>) a.getAste(Integer
+					.parseInt(request.getParameter("day").substring(1, request.getParameter("day").length() - 1)), 1);
+
+			JSONArray a = new JSONArray();
+			for (int i = 0; i < asteInScadenza.size(); i++) {
+				JSONObject j = new JSONObject();
+				try {
+					j.put("asta", asteInScadenza.get(i).getNomeProdotto());
+					a.put(j);
+
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+			response.setContentType("application/json");
+			response.getWriter().print(a.toString());
+		} else {
+		}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

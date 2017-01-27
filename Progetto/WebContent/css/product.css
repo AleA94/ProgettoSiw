@@ -4,6 +4,10 @@ body {
 	overflow-x: hidden;
 }
 
+
+.prodotti{
+	margin-top: 50px;
+	}
 img {
 	max-width: 100%;
 }
@@ -20,6 +24,16 @@ img {
 	flex-direction: column;
 }
 
+
+#offertaMassima {
+   
+    height: 33px;
+    text-align: center;
+    color: black;
+    border-radius: 10%;
+    width: 100px;
+    border: aliceblue;
+}
 @media screen and (max-width: 996px) {
 	.preview {
 		margin-bottom: 20px;
@@ -70,7 +84,7 @@ img {
 }
 
 .card {
-	margin-top: 50px;
+	margin-top: 0px;
 	padding: 3em;
 	line-height: 1.5em;
 }
@@ -83,6 +97,12 @@ img {
 		display: flex;
 	}
 }
+
+#divider {
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+    background-color: #224c8f; }
 
 .details {
 	display: -webkit-box;
