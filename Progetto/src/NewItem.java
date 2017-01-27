@@ -87,7 +87,7 @@ public class NewItem extends HttpServlet {
 
 		d.save(p);
 
-		response.sendRedirect("/ShopManager");
+		response.sendRedirect(request.getContextPath() + "/ShopManager");
 	}
 
 	private void forwardOnJsp(HttpServletRequest req, HttpServletResponse resp, String nextJsp)

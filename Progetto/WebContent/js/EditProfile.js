@@ -19,10 +19,11 @@ $(document).ready(function(){
 function checkPassword(a){
 	$.ajax({
 		type : "POST",
-		url : "/ProfileManager",
+		url : "ProfileManager",
 		datatype : "json",
+		mimeType: "textPlain",
 		data : {
-			passCheck : JSON.stringify(a),
+			passCheck : a,
 		},
 		success : function(data) {
 			if(data=="true")

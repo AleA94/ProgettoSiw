@@ -5,27 +5,61 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Home</title>
+<link href="css/product.css" rel="stylesheet">
 </head>
 <body>
 
 	<%@include file="header.jsp"%>
-	<div class="container tile">
+	<div class="container tile navTop">
 		<c:forEach items="${prodotti}" var="i">
-			<div class="col-md-4 col-sm-6 col-xs-7">
-				<div class="jumbotron">
-					<dl>
-					<dd>${i.idProdotto}</dd>
-					<dd>${i.nome}</dd>
-					<dd>${i.descrizione}</dd>
-					<dd>${i.inAsta}</dd>
-					<dd>${i.prezzo} &euro;</dd>
-					<dd>${i.dataInizio}</dd>
-					<dd>${i.dataFine} </dd>
-					</dl>
+			<div class="col-lg-12 col-sm-12 ">
+				<div class="container">
+					<div class="card">
+						<div class="container-fliud">
+							<div class="wrapper row">
+								<div class="preview col-md-6">
+
+									<div class="preview-pic tab-content">
+										<div class="tab-pane active" id="pic-1">
+											<img src="http://placekitten.com/400/252">
+										</div>
+									</div>
+
+
+								</div>
+								<div class="details col-md-6">
+									<h3 class="product-title">${i.nome}</h3>
+									<p class="product-description">>${i.descrizione}</p>
+									<h4 class="price">
+										current price: <span>>${i.prezzo} &euro;</span>
+									</h4>
+									<div class="action">
+										<button class="add-to-cart btn btn-default" type="button">add
+											to cart</button>
+										<br> <br>
+										<form action="VisitProduct" name="myForm">
+										<input type="hidden" name="idProdotto" value="${i.idProdotto}">  
+										<button  class="add-to-cart btn btn-default" type="submit" >visita
+											pagina prodotto</button></form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
+
 			</div>
-		</c:forEach> 
+		</c:forEach>
+		<c:forEach items="${emptyP}" var="k">
+			<center>
+				<h1>${k}</h1>
+			</center>
+			<br>
+			<center>
+				<img src="immagini/varie/error.png"></img>
+			</center>
+		</c:forEach>
 	</div>
-    
+
 </body>
 </html>

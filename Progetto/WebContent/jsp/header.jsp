@@ -54,7 +54,7 @@
                       <li><a href="#all">All</a></li>
                     </ul>
                 </div>
-                <input type="hidden" name="search_param" value="all" id="search_param"">  
+                <input type="hidden" name="categoria" value="all" id="search_param"">  
 					<input type="text" name="nomeProdotto" class="form-control"
 						placeholder="Search.."> <span class="input-group-btn" >
 						<button class="btn btn-default" type="submit">

@@ -1,3 +1,5 @@
+
+
 import java.io.IOException;
 import java.util.List;
 
@@ -12,10 +14,13 @@ import DAO.ProdottoDAO;
 import data.Prodotto;
 import persistence.DAOFactory;
 
-@WebServlet("/SearchProduct")
-public class SearchProduct extends HttpServlet {
+/**
+ * Servlet implementation class VisitProduct
+ */
+@WebServlet("/VisitProduct")
+public class VisitProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
 	@Override
 	public void init() throws ServletException {
 		try {
@@ -25,34 +30,22 @@ public class SearchProduct extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		String nomeProdotto = request.getParameter("nomeProdotto");
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int nomeProdotto =Integer.parseInt(request.getParameter("idProdotto"));
 		ProdottoDAO d = DAOFactory.getDAOFactory().getProdottoDao();
-		String k= "Non esistono prodotti per la tua ricerca!";
-		List<Prodotto> l;
-		if (!request.getParameter("categoria").equals("all")) {
+		Prodotto p= d.visitProdotto(nomeProdotto);
+		System.out.println(p.getNome());
 
-			l = d.findProdottoByCategoria(nomeProdotto, Integer.parseInt(request.getParameter("categoria")));
-
-		} else {
-			l = d.findProdotto(nomeProdotto);
-
-		}
-		if(l.size()!=0)
-			request.setAttribute("prodotti", l);
-		else
-			request.setAttribute("emptyP", k);
-		forwardOnJsp(request, response, "/jsp/SearchProduct.jsp");
-
+		request.setAttribute("prodotto", p);
+		forwardOnJsp(request, response, "/jsp/VisitProduct.jsp");
 	}
 
+	
 	private void forwardOnJsp(HttpServletRequest req, HttpServletResponse resp, String nextJsp)
 			throws ServletException, IOException {
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJsp);
 		dispatcher.forward(req, resp);
 	}
+
 }

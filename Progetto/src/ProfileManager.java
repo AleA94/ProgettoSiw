@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import DAO.AcquistaProdottoDAO;
 import DAO.UtenteDAO;
 import data.Utente;
 import persistence.DAOFactory;
@@ -20,6 +21,7 @@ public class ProfileManager extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	UtenteDAO d = DAOFactory.getDAOFactory().getUtenteDao();
+	AcquistaProdottoDAO a = DAOFactory.getDAOFactory().getAcquistaProdottoDAO();
 
 	@Override
 	public void init() throws ServletException {
@@ -35,9 +37,15 @@ public class ProfileManager extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		if (request.getSession().getAttribute("account") != null)
-			forwardOnJsp(request, response, "/jsp/EditProfile.jsp");
+			if (request.getParameter("action") != null) {
+				String Utente = ((Utente) request.getSession().getAttribute("account")).getEmail();
+				request.setAttribute("acquisti", a.getAcquisti(Utente));
+				forwardOnJsp(request, response, "/jsp/completePurchases.jsp");
+			} else {
+				forwardOnJsp(request, response, "/jsp/EditProfile.jsp");
+			}
 		else
-			response.sendRedirect("/");
+			response.sendRedirect(request.getContextPath() + "/");
 	}
 
 	@Override
@@ -50,10 +58,9 @@ public class ProfileManager extends HttpServlet {
 			u.setCognome(request.getParameter("cognome"));
 			u.setIndirizzo(request.getParameter("indirizzo"));
 			d.updateDatas(u);
-			response.sendRedirect("/ProfileManager");
+			response.sendRedirect(request.getContextPath() + "/ProfileManager");
 		} else if (request.getParameter("passCheck") != null) {
 			String s = request.getParameter("passCheck");
-			s = s.substring(1, s.length() - 1);
 			if (s.equals(((Utente) request.getSession().getAttribute("account")).getPassword()))
 				response.getWriter().print("true");
 			else

@@ -18,7 +18,7 @@
 			<h1 style="text-align: center">Aggiungi un nuovo prodotto</h1>
 		</div>
 	</div>
-	<form method="post" action="NewItem" role="form">
+	<form method="post" action="ShopManager?par=new" role="form">
 		<div class="form-group">
 			<label for="name">Nome</label> <input type="text"
 				class="form-control" required name="nome" id="name"
@@ -46,6 +46,10 @@
 				</c:forEach>
 			</select>
 		</div>
+		<div class="form-group notAsta">
+			<label for="quantita">Quantità</label> 
+			<input type="number" name="quantita" class="form-control" placeholder="Quantità" id="quantita" min=1>
+		</div>
 		<div class="form-group">
 			<label for="inAsta">Spunta qui per metterlo in asta </label>
 			<div class="checkbox">
@@ -56,13 +60,17 @@
 			<div id="date" class="disappear">
 				<div class="form-group">
 					<label for="dataInizioAsta">Scegli la data in cui iniziare
-						l'asta... </label> <input type="date" name="dataInizio"
+						l'asta... </label> <input type="datetime-local" name="dataInizio"
 						class="form-control" placeholder="Data Inizio" id="dataInizioAsta">
 				</div>
 				<div class="form-group">
 					<label for="dataFineAsta">...e quella in cui terminare</label> <input
-						type="date" name="dataFine" class="form-control"
+						type="datetime-local" name="dataFine" class="form-control"
 						placeholder="Data Fine" id="dataFineAsta">
+				</div>
+				<div class="form-group">
+					<label for="riserva">Indica un prezzo di riserva</label> 
+					<input type="number" name="riserva" required class="form-control" placeholder="Prezzo di riserva" id="riserva" step=0.01 min=0>
 				</div>
 			</div>
 		</div>

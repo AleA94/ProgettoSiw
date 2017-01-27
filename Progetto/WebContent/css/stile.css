@@ -8,6 +8,10 @@ body {
 	margin-bottom: 0px !important;
 }
 
+.num{
+	width: 50px;
+}
+
 
 .tile {
     background-color: #5C87CB;
@@ -22,6 +26,10 @@ body {
 
 .navTop{
 	margin-top: 70px;
+}
+
+.pic{
+	width: 100px;
 }
 
 
