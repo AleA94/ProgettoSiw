@@ -13,17 +13,19 @@
 <title>Test</title>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="css/product.css" rel="stylesheet">
+<link href="css/sp.css" rel="stylesheet">
+
 <link href="css/stile.css" rel="stylesheet">
 <link href="css/creative.css" rel="stylesheet">
 <link href="css/creative.min.css" rel="stylesheet">
 <link href="css/lavish-bootstrap.css" rel="stylesheet">
+
 <script src="js/jquery-3.1.1.min.js"></script>
 <script src="js/index.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-<input type="hidden" id="context" value="<%=request.getContextPath()%>">
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"> 
 	<div class="navbar-header">
 		<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -31,7 +33,7 @@
 			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
 			<span class="icon-bar"></span> <span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="<%=request.getContextPath()%>/">
+		<a class="navbar-brand" href="/">
 			uBuy</a>
 	</div>
 
@@ -52,9 +54,9 @@
                       <li><a href="#all">All</a></li>
                     </ul>
                 </div>
-                <input type="hidden" name="categoria" value="all" id="search_param">  
+                <input type="hidden" name="categoria" value="all" id="search_param"">  
 					<input type="text" name="nomeProdotto" class="form-control"
-						placeholder="Search.."> <span class="input-group-btn">
+						placeholder="Search.."> <span class="input-group-btn" >
 						<button class="btn btn-default" type="submit">
 							<span class="glyphicon glyphicon-search"></span>&nbsp;
 						</button>
@@ -107,13 +109,13 @@
 					<b class="caret"></b>
 			</a>
 				<ul class="dropdown-menu user-menu">
-					<li><a href="<%=request.getContextPath()%>/ProfileManager">I tuoi dati</a></li>
-					<li><a href="<%=request.getContextPath()%>/ProfileManager?action=purchases">I tuoi ordini</a></li>
+					<li><a href="${request.getContextPath()}/ProfileManager">I tuoi dati</a></li>
+					<li><a href="#">I tuoi ordini</a></li>
 					<li class="divider"></li>
 					<li><a id="logout" href="#"><span
 							class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 				</ul></li>
-			<li><a href="<%=request.getContextPath() %>/Carrello"><span class="glyphicon glyphicon-shopping-cart"></span>
+			<li><a><span class="glyphicon glyphicon-shopping-cart"></span>
 					Carrello</a></li>
 		</ul>
 	</div>
