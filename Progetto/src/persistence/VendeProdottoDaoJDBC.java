@@ -38,6 +38,9 @@ public class VendeProdottoDaoJDBC implements VendeProdottoDAO {
 				p.setInAsta(result.getInt("inAsta"));
 				p.setPrezzo(result.getFloat("Prezzo"));
 				p.setIdCategoria(result.getInt("idCategoria"));
+				p.setImmagine(result.getString("ImmaginePrincipale"));
+				if (result.getString("ImmaginiAggiuntive") != null)
+					p.setImmaginiAggiuntive(result.getString("ImmaginiAggiuntive").split(";"));
 				v.setProdotto(p);
 				v.setNegozio(negozio);
 				v.setQuantita(result.getInt("Quantita"));
@@ -121,6 +124,9 @@ public class VendeProdottoDaoJDBC implements VendeProdottoDAO {
 				p.setInAsta(result.getInt("inAsta"));
 				p.setPrezzo(result.getFloat("Prezzo"));
 				p.setIdCategoria(result.getInt("idCategoria"));
+				p.setImmagine(result.getString("ImmaginePrincipale"));
+				if (result.getString("ImmaginiAggiuntive") != null)
+					p.setImmaginiAggiuntive(result.getString("ImmaginiAggiuntive").split(";"));
 				v.setProdotto(p);
 				v.setNegozio(negozio);
 				v.setQuantita(result.getInt("Quantita"));

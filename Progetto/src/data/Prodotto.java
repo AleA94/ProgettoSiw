@@ -1,13 +1,46 @@
 package data;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Prodotto {
 	int idProdotto, inAsta, idCategoria;
 	float prezzo;
-	String nome, descrizione;
+	String nome, descrizione, immagine;
+	List<String> immaginiAggiuntive = new ArrayList<>();
 
 	public Prodotto() {
+	}
+
+	public List<String> getImmaginiAggiuntive() {
+		return immaginiAggiuntive;
+	}
+
+	public String getImmaginiAggiuntiveString() {
+		if (immaginiAggiuntive != null) {
+			StringBuilder sb = new StringBuilder();
+			for (String s : immaginiAggiuntive)
+				sb.append(s + ";");
+			return sb.toString();
+		} else
+			return null;
+	}
+
+	public void setImmaginiAggiuntive(String[] immaginiAggiuntive) {
+		if (immaginiAggiuntive != null)
+			for (String s : immaginiAggiuntive)
+				this.immaginiAggiuntive.add(s);
+		else
+			this.immaginiAggiuntive = null;
+	}
+
+	public String getImmagine() {
+		return immagine;
+	}
+
+	public void setImmagine(String immagine) {
+		this.immagine = immagine;
 	}
 
 	public String getNome() {
@@ -58,32 +91,14 @@ public class Prodotto {
 		this.prezzo = prezzo;
 	}
 
-	public Prodotto(int idProdotto, int inAsta, int idCategoria, Date dataInizio, Date dataFine, float prezzo,
-			String nome, String descrizione) {
-		this.idProdotto = idProdotto;
-		this.inAsta = inAsta;
-		this.idCategoria = idCategoria;
-		this.prezzo = prezzo;
-		this.nome = nome;
-		this.descrizione = descrizione;
-	}
-
-	public Prodotto(int inAsta, int idCategoria, float prezzo, String nome, Date dataInizio, Date dataFine,
-			String descrizione) {
-		this.inAsta = inAsta;
-		this.idCategoria = idCategoria;
-		this.prezzo = prezzo;
-		this.nome = nome;
-		this.descrizione = descrizione;
-	}
-
 	public Prodotto(int inAsta, int idCategoria, Date dataInizio, Date dataFine, float prezzo, String nome,
-			String descrizione, String negozio) {
+			String descrizione, String negozio, String immagine) {
 		super();
 		this.inAsta = inAsta;
 		this.idCategoria = idCategoria;
 		this.prezzo = prezzo;
 		this.nome = nome;
 		this.descrizione = descrizione;
+		this.immagine = immagine;
 	}
 }

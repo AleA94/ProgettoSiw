@@ -25,13 +25,15 @@ public class ProdottoDaoJDBC implements ProdottoDAO {
 		Connection connection = this.dataSource.getConnection();
 		int id = -1;
 		try {
-			String insert = "insert into Prodotto (Nome, Descrizione, inAsta, Prezzo, idCategoria) values (?,?,?,?,?)";
+			String insert = "insert into Prodotto (Nome, Descrizione, inAsta, Prezzo, idCategoria, ImmaginePrincipale, ImmaginiAggiuntive) values (?,?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1, p.getNome());
 			statement.setString(2, p.getDescrizione());
 			statement.setInt(3, p.getInAsta());
 			statement.setFloat(4, p.getPrezzo());
 			statement.setInt(5, p.getIdCategoria());
+			statement.setString(6, p.getImmagine());
+			statement.setString(7, p.getImmaginiAggiuntiveString());
 			statement.executeUpdate();
 
 			ResultSet rs = statement.getGeneratedKeys();
@@ -222,6 +224,9 @@ public class ProdottoDaoJDBC implements ProdottoDAO {
 			p.setInAsta(result.getInt("inAsta"));
 			p.setPrezzo(result.getFloat("Prezzo"));
 			p.setIdCategoria(result.getInt("idCategoria"));
+			p.setImmagine(result.getString("ImmaginePrincipale"));
+			if (result.getString("ImmaginiAggiuntive") != null)
+				p.setImmaginiAggiuntive(result.getString("ImmaginiAggiuntive").split(";"));
 			prodotti.add(p);
 		}
 	}
@@ -230,14 +235,16 @@ public class ProdottoDaoJDBC implements ProdottoDAO {
 	public void edit(Prodotto p) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String update = "update Prodotto Set Nome=?, Descrizione=?, inAsta=?, Prezzo=?, idCategoria=? where idProdotto=?";
+			String update = "update Prodotto Set Nome=?, Descrizione=?, inAsta=?, Prezzo=?, idCategoria=?, ImmaginePrincipale=?, ImmaginiAggiuntive=? where idProdotto=?";
 			PreparedStatement statement = connection.prepareStatement(update);
 			statement.setString(1, p.getNome());
 			statement.setString(2, p.getDescrizione());
 			statement.setInt(3, p.getInAsta());
 			statement.setFloat(4, p.getPrezzo());
 			statement.setInt(5, p.getIdCategoria());
-			statement.setInt(6, p.getIdProdotto());
+			statement.setString(6, p.getImmagine());
+			statement.setString(7, p.getImmaginiAggiuntiveString());
+			statement.setInt(8, p.getIdProdotto());
 
 			statement.executeUpdate();
 
