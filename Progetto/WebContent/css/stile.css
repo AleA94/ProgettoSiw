@@ -30,9 +30,20 @@ body {
 
 .pic{
 	width: 100px;
+    object-fit: cover;
+    height: 100px;
 }
 
+.editImage{
+	width:400px;
+	max-height: 400px !important;
+	object-fit:cover;
+}
 
+.removeImage{
+	color:red;
+	position:absolute;
+}
 
 .disappear {
     display: none !important;

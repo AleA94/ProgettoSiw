@@ -36,7 +36,7 @@
 			<tbody>
 				<c:forEach var="p" items="${prodotti}">
 					<tr>
-						<td><img class="pic" src="immagini/categorie/Elettronica.jpg"></td>
+						<td><img class="pic" src="${p.prodotto.immagine}"></td>
 						<td>${p.prodotto.nome}</td>
 						<td>${p.prodotto.descrizione}</td>
 						<td>${p.prodotto.prezzo}&euro;</td>
