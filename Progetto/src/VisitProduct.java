@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DAO.ProdottoDAO;
+import DAO.VendeProdottoAstaDAO;
 import data.Prodotto;
+import data.VendeProdottoAsta;
 import persistence.DAOFactory;
 
 /**
@@ -33,9 +35,9 @@ public class VisitProduct extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int nomeProdotto =Integer.parseInt(request.getParameter("idProdotto"));
-		ProdottoDAO d = DAOFactory.getDAOFactory().getProdottoDao();
-		Prodotto p= d.visitProdotto(nomeProdotto);
-		System.out.println(p.getNome());
+		VendeProdottoAstaDAO d = DAOFactory.getDAOFactory().getVendeProdottoAstaDAO();
+		VendeProdottoAsta p= d.visitProdotto(nomeProdotto);
+		System.out.println(p.getProdotto().getNome());
 
 		request.setAttribute("prodotto", p);
 		forwardOnJsp(request, response, "/jsp/VisitProduct.jsp");
