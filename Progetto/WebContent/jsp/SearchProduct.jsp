@@ -21,17 +21,20 @@
 
 									<div class="preview-pic tab-content">
 										<div class="tab-pane active" id="pic-1">
-											<img src="http://placekitten.com/400/252">
+											<img src="${i.getProdotto().immagine}" >
 										</div>
 									</div>
 
 
 								</div>
+								<c:choose>
+									<c:when test="${i.getProdotto().inAsta==0}">
 								<div class="details col-md-6">
-									<h3 class="product-title">${i.nome}</h3>
-									<p class="product-description">>${i.descrizione}</p>
+									<h3 class="product-title">${i.getProdotto().nome}</h3>
+									<p class="product-description">>${i.getProdotto().descrizione}</p>
+									
 									<h4 class="price">
-										current price: <span>>${i.prezzo} &euro;</span>
+										current price: <span>>${i.getProdotto().prezzo} &euro;</span>
 									</h4>
 									<div class="action">
 										<button class="add-to-cart btn btn-default" type="button">add
@@ -43,6 +46,30 @@
 											pagina prodotto</button></form>
 									</div>
 								</div>
+								</c:when>
+								<c:when test="${i.getProdotto().inAsta==1}">
+								<div class="details col-md-6">
+									<h3 class="product-title">${i.getProdotto().nome}</h3>
+									<p class="product-description">>${i.getProdotto().descrizione}</p>
+									<p class="product-description">${i.dataInizio}</p>
+									<p class="product-description">${i.dataFine}</p>
+									<h4 class="price">
+										current price: <span>>${i.getProdotto().inAsta} &euro;</span>
+									</h4>
+									<div class="action">
+										<button class="add-to-cart btn btn-default" type="button">add
+											to cart</button>
+										<br> <br>
+										<button class="add-to-cart btn btn-default" type="button">Fai un'offerta</button>
+										<br> <br>
+										<form action="VisitProduct" name="myForm">
+										<input type="hidden" name="idProdotto" value="${i.idProdotto}">  
+										<button  class="add-to-cart btn btn-default" type="submit" >visita
+											pagina prodotto</button></form>
+									</div>
+								</div>
+								</c:when>
+								</c:choose>
 							</div>
 						</div>
 					</div>

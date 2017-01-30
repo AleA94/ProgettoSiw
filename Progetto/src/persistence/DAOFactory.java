@@ -8,6 +8,7 @@ import DAO.CarrelloProdottoDAO;
 import DAO.CategoriaDAO;
 import DAO.ProdottoDAO;
 import DAO.UtenteDAO;
+import DAO.VendeProdottoAstaDAO;
 import DAO.VendeProdottoDAO;
 
 public abstract class DAOFactory {
@@ -31,6 +32,8 @@ public abstract class DAOFactory {
 	public abstract VendeProdottoDAO getVendeProdottoDAO();
 
 	public abstract AstaDAO getADao();
+	
+	public abstract VendeProdottoAstaDAO getVendeProdottoAstaDAO();
 
 	public abstract AcquistaProdottoDAO getAcquistaProdottoDAO();
 }
