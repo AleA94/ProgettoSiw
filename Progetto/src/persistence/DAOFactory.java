@@ -6,9 +6,11 @@ import DAO.AstaDAO;
 import DAO.AstaProdottoDAO;
 import DAO.CarrelloProdottoDAO;
 import DAO.CategoriaDAO;
+import DAO.NotificaDAO;
 import DAO.ProdottoDAO;
 import DAO.UtenteDAO;
 import DAO.VendeProdottoDAO;
+import DAO.WishlistProdottoDAO;
 
 public abstract class DAOFactory {
 
@@ -33,4 +35,8 @@ public abstract class DAOFactory {
 	public abstract AstaDAO getADao();
 
 	public abstract AcquistaProdottoDAO getAcquistaProdottoDAO();
+
+	public abstract WishlistProdottoDAO getWishlistProdottoDAO();
+
+	public abstract NotificaDAO getNotificaDao();
 }

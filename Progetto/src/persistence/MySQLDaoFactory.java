@@ -6,9 +6,11 @@ import DAO.AstaDAO;
 import DAO.AstaProdottoDAO;
 import DAO.CarrelloProdottoDAO;
 import DAO.CategoriaDAO;
+import DAO.NotificaDAO;
 import DAO.ProdottoDAO;
 import DAO.UtenteDAO;
 import DAO.VendeProdottoDAO;
+import DAO.WishlistProdottoDAO;
 
 public class MySQLDaoFactory extends DAOFactory {
 
@@ -68,6 +70,16 @@ public class MySQLDaoFactory extends DAOFactory {
 	@Override
 	public AcquistaProdottoDAO getAcquistaProdottoDAO() {
 		return new AcquistaProdottoDaoJDBC(dataSource);
+	}
+
+	@Override
+	public WishlistProdottoDAO getWishlistProdottoDAO() {
+		return new WishlistProdottoDaoJDBC(dataSource);
+	}
+
+	@Override
+	public NotificaDAO getNotificaDao() {
+		return new NotificaDaoJDBC(dataSource);
 	}
 
 }

@@ -12,6 +12,7 @@ import org.json.JSONObject;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import DAO.NotificaDAO;
 import DAO.UtenteDAO;
 import data.Utente;
 import persistence.DAOFactory;
@@ -20,6 +21,7 @@ import persistence.DAOFactory;
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	UtenteDAO d = DAOFactory.getDAOFactory().getUtenteDao();
+	NotificaDAO n = DAOFactory.getDAOFactory().getNotificaDao();
 
 	@Override
 	public void init() throws ServletException {
@@ -61,6 +63,7 @@ public class Login extends HttpServlet {
 				response.setContentType("application/json");
 				response.getWriter().write(r.toString());
 				request.getSession().setAttribute("account", u);
+				request.getSession().setAttribute("numNotifiche", n.getUnread(u.getEmail()));
 			} else
 				response.getWriter().print("false");
 		} else if (request.getParameter("session") != null) {

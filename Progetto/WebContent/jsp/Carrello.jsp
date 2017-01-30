@@ -19,7 +19,7 @@
 								<th></th>
 								<th>Nome</th>
 								<th>Descrizione</th>
-								<th>Prezzo</th>
+								<th>Prezzo Unitario</th>
 								<th>Quantità</th>
 								<th>Compra</th>
 								<th>Rimuovi</th>
@@ -30,7 +30,7 @@
 								<tr>
 									<input type="hidden" name="id" value="${p.prodotto.idProdotto}">
 									<td><img class="pic"
-										src="immagini/categorie/Elettronica.jpg"></td>
+										src="${ p.prodotto.immagine}"></td>
 									<td>${p.prodotto.nome}</td>
 									<td>${p.prodotto.descrizione}</td>
 									<td>${p.prodotto.prezzo}&euro;</td>

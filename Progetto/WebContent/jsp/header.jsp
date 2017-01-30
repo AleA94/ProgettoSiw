@@ -84,7 +84,6 @@
 								value="Login">
 							<div class="login-help">
 								<a href="#" data-toggle="modal" data-target="#register-modal">Register</a>
-								<a href="#">Forgot Password</a>
 							</div>
 						</div>
 					</div>
@@ -112,6 +111,9 @@
 				<ul class="dropdown-menu user-menu">
 					<li><a href="<%=request.getContextPath()%>/ProfileManager">I tuoi dati</a></li>
          			<li><a href="<%=request.getContextPath()%>/ProfileManager?action=purchases">I tuoi ordini</a></li>
+         			<li><a href="<%=request.getContextPath()%>/ProfileManager?action=wish">I tuoi desideri</a></li>
+         			<li><a href="<%=request.getContextPath()%>/ProfileManager?action=notifica">Notifiche <span class="badge badge-notify">${numNotifiche}</span>
+         			</a></li>
 					<li class="divider"></li>
 					<li><a id="logout" href="#"><span
 							class="glyphicon glyphicon-log-out"></span> Logout</a></li>

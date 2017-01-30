@@ -13,4 +13,6 @@ public interface CarrelloProdottoDAO {
 
 	public void cleanCart(String utente);
 
+	public void addToCart(String utente, int id, int quantity);
+
 }

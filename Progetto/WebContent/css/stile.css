@@ -8,6 +8,10 @@ body {
 	margin-bottom: 0px !important;
 }
 
+.active{
+	color:black;
+}
+
 .num{
 	width: 50px;
 }
