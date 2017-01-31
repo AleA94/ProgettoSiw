@@ -11,7 +11,7 @@
 	<section class="container tile navTop">
 	<div class="row">
 		<div class="page-header">
-			<h1 style="text-align: center">il tuo negozio</h1>
+			<h1 style="text-align: center">il tuo negozio ${nome}</h1>
 		</div>
 	</div>
 	<a href="<%=request.getContextPath() %>/ShopManager?action=new" class="btn btn-default">Nuovo Prodotto</a>

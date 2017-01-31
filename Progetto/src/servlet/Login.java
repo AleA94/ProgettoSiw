@@ -12,10 +12,13 @@ import org.json.JSONObject;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import DAO.NegozioDAO;
 import DAO.NotificaDAO;
 import DAO.UtenteDAO;
+import data.Negozio;
 import data.Utente;
 import persistence.DAOFactory;
+import persistence.MySQLDaoFactory;
 
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -88,6 +91,9 @@ public class Login extends HttpServlet {
 			ObjectMapper mapper = new ObjectMapper();
 			Utente utente = mapper.readValue(s, Utente.class);
 			d.save(utente);
+			NegozioDAO n = MySQLDaoFactory.getDAOFactory().getNegozioDAO();
+
+			n.save(new Negozio(utente.getEmail(), request.getParameter("nome")));
 		}
 	}
 

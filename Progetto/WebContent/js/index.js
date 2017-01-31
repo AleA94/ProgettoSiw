@@ -3,6 +3,10 @@
 $(document).ready(function() {
 	checkSession();
 
+	$('#RVend').click(function(){
+		$('#nomeNegozio').toggleClass('disappear');
+	});
+	
     $('.search-panel .dropdown-menu').find('a').click(function(e) {
     	e.preventDefault();
 		var param = $(this).attr("href").replace("#","");
@@ -26,6 +30,11 @@ $(document).ready(function() {
 
 	$("#register").click(function(e) {
 		e.preventDefault();
+		if($('#RVend').is(':checked')){
+			$('#RVend').val(1);
+		}else{
+			$('#RVend').val(0);
+		}
 		register();
 	});
 	
@@ -40,7 +49,7 @@ function register() {
 		nome:$('#Rnome').val(),
 		cognome:$('#Rcogn').val(),
 		indirizzo: $('#Raddr').val(),
-		eVenditore:0,
+		eVenditore:$('#RVend').val(),
 		eAttivo:0
 	}
 	
@@ -50,6 +59,7 @@ function register() {
 		datatype : "json",
 		data : {
 			register : JSON.stringify(utente),
+			nome:$('#nomeNegozio').val()
 		},
 		success : function(data) {
 			alert('registrazione completata con successo');
