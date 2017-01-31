@@ -12,6 +12,7 @@ import org.joda.time.DateTime;
 
 import DAO.AstaDAO;
 import DAO.CategoriaDAO;
+import DAO.NegozioDAO;
 import DAO.VendeProdottoDAO;
 import data.Asta;
 import data.Prodotto;
@@ -29,6 +30,7 @@ public class ShopManager extends HttpServlet {
 	VendeProdottoDAO v = MySQLDaoFactory.getDAOFactory().getVendeProdottoDAO();
 	CategoriaDAO c = MySQLDaoFactory.getDAOFactory().getCategoriaDao();
 	AstaDAO a = MySQLDaoFactory.getDAOFactory().getAstaDao();
+	NegozioDAO n = MySQLDaoFactory.getDAOFactory().getNegozioDAO();
 
 	@Override
 	public void init() throws ServletException {
@@ -66,6 +68,8 @@ public class ShopManager extends HttpServlet {
 					forwardOnJsp(request, response, "/jsp/newItem.jsp");
 				}
 			} else if (utente.geteVenditore() == 1) {
+				String email = utente.getEmail();
+				request.setAttribute("nome", n.getNome(email));
 				request.setAttribute("prodotti", v.getProdottibyNegozio(utente.getEmail()));
 				forwardOnJsp(request, response, "/jsp/ShopManager.jsp");
 			}
