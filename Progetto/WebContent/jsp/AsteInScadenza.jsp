@@ -43,7 +43,7 @@
 						</div>
 						<ul class="preview-thumbnail nav nav-tabs"></ul>
 					</div>
-					<div class="col-sm-4 col-lg-8">
+					<div id="datiAsta" class="col-sm-4 col-lg-8">
 						<h3 class="product-title">${c.nomeProdotto}</h3>
 						<h3 class="description">Descrizione:</h3>
 						<p id="ciao" class="product-description">${c.descrizioneProdotto}</p>

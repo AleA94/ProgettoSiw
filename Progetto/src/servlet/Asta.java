@@ -59,7 +59,6 @@ public class Asta extends HttpServlet {
 					a.put(j);
 
 				} catch (JSONException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
@@ -72,53 +71,43 @@ public class Asta extends HttpServlet {
 			if (request.getParameter("prezzoCor") != null) {
 				OffertaVeloceDao offerta = MySQLDaoFactory.getDAOFactory().getOffertaVeloceDao();
 
-				// recupero offerta vincitore attuale select * from offerta
-				// where offerta_max=(select max(offerta_max) from offerta)
 				OffertaDao offerta_m = MySQLDaoFactory.getDAOFactory().getOfferta();
 				Offerta offertaMax = offerta_m.getOffertaMax(7);
-				System.out.println(offertaMax.getAsta() + " " + offertaMax.getEmail_utente() + " "
-						+ offertaMax.getImporto() + " " + offertaMax.getOfferta_max());
-
-				// importo >offeta max?
-				System.out.println(Double.parseDouble(request.getParameter("off")));
+				float offMax;
+				if (!(request.getParameter("offMax")).toString().equals("null"))
+					offMax = Float.parseFloat((request.getParameter("offMax")));
+				else {
+					offMax = Float.parseFloat(request.getParameter("off"));
+				}
 
 				if (Float.parseFloat(request.getParameter("off")) > offertaMax.getOfferta_max()) {
 					asteProd.updateAsta(Integer.parseInt(request.getParameter("asta")),
 							Float.parseFloat(request.getParameter("off")));
 					offerta.insertOfferta(((Utente) request.getSession().getAttribute("account")).getEmail(),
-							Float.parseFloat(request.getParameter("off")),
-							Float.parseFloat(request.getParameter("offMax")), request.getParameter("asta"));
-				}
-				// si settare asta con prezzo corrente= importo update asta set
-				// prezzoCorrente=? where id=?
+							Float.parseFloat(request.getParameter("off")), offMax, request.getParameter("asta"));
+					response.getWriter().print("attualeVincitore");
 
-				// no la mia offerta max è maggiore della vecchia offerta max?
-				else if (Float.parseFloat((request.getParameter("offMax"))) > offertaMax.getOfferta_max()) {
+				} else if (offMax > offertaMax.getOfferta_max()) {
 
 					asteProd.updateAsta(Integer.parseInt(request.getParameter("asta")),
 							(offertaMax.getOfferta_max() + 1));
 					offerta.insertOfferta(((Utente) request.getSession().getAttribute("account")).getEmail(),
-							(offertaMax.getOfferta_max() + 1), Float.parseFloat(request.getParameter("offMax")),
-							request.getParameter("asta"));
+							(offertaMax.getOfferta_max() + 1), offMax, request.getParameter("asta"));
+					response.getWriter().print("attualeVincitore");
 
 				}
 
-				// si 1) inserire nuova offerta non mia email offerta= sua
-				// offerta max+1 offerta max= mia offerta max
-				// 2)settare l asta prezzo corrente= sua offerta max +1
-				// no 1) inserire nuova offerta con sua email importo= mia+
-				else if (Float.parseFloat((request.getParameter("offMax"))) > offertaMax.getImporto()) {
+				else if (offMax > offertaMax.getImporto()) {
 
-					asteProd.updateAsta(Integer.parseInt(request.getParameter("asta")),
-							Float.parseFloat(request.getParameter("offMax")) + 1);
-					offerta.insertOfferta(offertaMax.getEmail_utente(),
-							Float.parseFloat(request.getParameter("offMax")) + 1, offertaMax.getOfferta_max(),
+					asteProd.updateAsta(Integer.parseInt(request.getParameter("asta")), offMax + 1);
+					offerta.insertOfferta(offertaMax.getEmail_utente(), offMax + 1, offertaMax.getOfferta_max(),
 							request.getParameter("asta"));
+					response.getWriter().print("OffertaMaxBassa");
+
+				} else {
+					response.getWriter().print("OffertaMaxMinoreImporto");
 
 				}
-
-				// offerta max +1 offerta max= sua offerta max
-				// 2)settare l'asta prezzo= mia offerta massima +1
 			}
 		}
 	}

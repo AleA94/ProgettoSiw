@@ -37,7 +37,7 @@ $
 										+ "</div>"
 										+ "<ul class='preview-thumbnail nav nav-tabs'></ul>"
 										+ "	</div>"
-										+ "<div class='col-sm-4 col-lg-8'>"
+										+ "<div  id='datiAsta' class='col-sm-4 col-lg-8'>"
 										//
 										+ " <h3 class='product-title'>"
 										+ data[i].asta
@@ -107,8 +107,25 @@ else
 		success : function(data)
 		{
 		cambioData(value, value1);
+		console.log(data);
 
-		console.log("asdkajhksdjashdj " + value + " " + value1)
+		if (data == "attualeVincitore")
+		{
+			alert('sei il vincitore attuale');
+
+		}
+		else if (data == "OffertaMaxBassa")
+		{
+			alert('la tua offerta \u00e9 stata superata');
+
+		}
+		else if (data == "OffertaMaxMinoreImporto")
+		{
+			alert('offerta massima minore dell\' importo offerto');
+
+		}
+
+		console.log(data);
 		},
 		fail : function()
 		{
