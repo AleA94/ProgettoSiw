@@ -37,7 +37,7 @@ public class AstaProdottoDaoJDBC implements AstaProdottoDAO {
 			statement = connection.prepareStatement(queryScadenzaOggi);
 			statement.executeQuery();
 
-			queryScadenzaOggi = "SELECT asta.id, Nome,Descrizione,prezzoCorrente,idProdotto,ImmaginePrincipale FROM asta , Prodotto where asta.id_prodotto=Prodotto.idProdotto and data_fine>=current_timestamp() and data_fine<=DATE_ADD(current_timestamp(),INTERVAL  @tot hour)";
+			queryScadenzaOggi = "SELECT asta.id, Nome,Descrizione,prezzoCorrente,data_fine,data_inizio,idProdotto,ImmaginePrincipale FROM asta , Prodotto where asta.id_prodotto=Prodotto.idProdotto and data_fine>=current_timestamp() and data_fine<=DATE_ADD(current_timestamp(),INTERVAL  @tot hour)";
 			statement = connection.prepareStatement(queryScadenzaOggi);
 			statement.executeQuery();
 
@@ -49,6 +49,9 @@ public class AstaProdottoDaoJDBC implements AstaProdottoDAO {
 				a.setDescrizioneProdotto(result.getString("Descrizione"));
 				a.setPrezzoCorrente(result.getFloat("prezzoCorrente"));
 				a.setUrlImg(result.getString("ImmaginePrincipale"));
+				a.setDataFineAsta(result.getString("data_fine"));
+				a.setDataInizioAsta(result.getString("data_inizio"));
+
 				aste.add(a);
 			}
 		} catch (Exception e) {

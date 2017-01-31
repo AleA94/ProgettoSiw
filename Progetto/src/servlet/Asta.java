@@ -56,6 +56,9 @@ public class Asta extends HttpServlet {
 					j.put("descrizione", asteInScadenza.get(i).getDescrizioneProdotto());
 					j.put("prezzo", asteInScadenza.get(i).getPrezzoCorrente());
 					j.put("urlImage", asteInScadenza.get(i).getUrlImg());
+					j.put("dataInizio", asteInScadenza.get(i).getDataInizioAsta());
+					j.put("dataFine", asteInScadenza.get(i).getDataFineAsta());
+
 					a.put(j);
 
 				} catch (JSONException e) {

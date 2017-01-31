@@ -47,6 +47,8 @@
 						<h3 class="product-title">${c.nomeProdotto}</h3>
 						<h3 class="description">Descrizione:</h3>
 						<p id="ciao" class="product-description">${c.descrizioneProdotto}</p>
+						<p class="product-description">data inizio asta: ${c.DataInizioAsta}</p>
+						<p class="product-description">data fine asta: ${c.DataFineAsta}</p>
 						<h4 class="price">
 							current price: <span id="prezzoCorr">${c.prezzoCorrente}</span>
 						</h4>

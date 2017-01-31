@@ -3,7 +3,6 @@ function cambioData(value, value1)
 var urs9 = window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/Ast";
 rangeInfo2.value = value + ' giorni';
 rangeInfo1.value = value1 + ' ore';
-console.log(value + " " + value1);
 $
 		.ajax(
 		{
@@ -21,7 +20,6 @@ $
 			$("#asteInScadenza").append("	<li id='divider'></li>");
 			for (var i = 0; i < data.length; i++)
 			{
-				console.log(data[i].asta);
 				var p = parseInt(data[i].prezzo) + 1;
 				$("#asteInScadenza")
 						.append(
@@ -45,6 +43,12 @@ $
 										+ "		<h3 class='description'>Descrizione:</h3>"
 										+ " <p id='ciao'class='product-description'>"
 										+ data[i].descrizione
+										+ "</p>"
+										+ "<p class='product-description'>data inizio asta: "
+										+ data[i].dataInizio
+										+ "</p>"
+										+ "<p class='product-description'>data fine asta: "
+										+ data[i].dataFine
 										+ "</p>"
 										+ "		<h4 class='price'>"
 										+ " current price:<span id='prezzoCorr'>"
@@ -82,7 +86,6 @@ $
 
 function offertaLampo(idasta, value, value1)
 {
-console.log(idasta);
 if ($('#user').hasClass('disappear'))
 {
 	alert('devi effettuare il login prima di poter effettuare un offerta');
@@ -107,7 +110,6 @@ else
 		success : function(data)
 		{
 		cambioData(value, value1);
-		console.log(data);
 
 		if (data == "attualeVincitore")
 		{
@@ -125,7 +127,6 @@ else
 
 		}
 
-		console.log(data);
 		},
 		fail : function()
 		{
