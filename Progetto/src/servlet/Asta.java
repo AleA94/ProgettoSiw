@@ -1,10 +1,10 @@
+package servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,8 +24,7 @@ import persistence.MySQLDaoFactory;
 /**
  * Servlet implementation class HomeLoad
  */
-@WebServlet("/Ast")
-public class Ast extends HttpServlet {
+public class Asta extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	AstaProdottoDAO asteProd = MySQLDaoFactory.getDAOFactory().getAstaProdottoDao();
 
@@ -108,7 +107,7 @@ public class Ast extends HttpServlet {
 				// offerta max+1 offerta max= mia offerta max
 				// 2)settare l asta prezzo corrente= sua offerta max +1
 				// no 1) inserire nuova offerta con sua email importo= mia+
-				else {
+				else if (Float.parseFloat((request.getParameter("offMax"))) > offertaMax.getImporto()) {
 
 					asteProd.updateAsta(Integer.parseInt(request.getParameter("asta")),
 							Float.parseFloat(request.getParameter("offMax")) + 1);

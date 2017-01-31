@@ -8,7 +8,7 @@ $
 		.ajax(
 		{
 			type : "GET",
-			url : "Ast",
+			url : "Asta",
 			datatype : "json",
 			data :
 			{
@@ -95,7 +95,7 @@ else
 	$.ajax(
 	{
 		type : "GET",
-		url : "Ast",
+		url : "Asta",
 		datatype : "json",
 		data :
 		{

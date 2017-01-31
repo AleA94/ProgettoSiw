@@ -1,20 +1,18 @@
+package servlet;
+
 import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.ProdottoDAO;
 import DAO.VendeProdottoAstaDAO;
-import data.Prodotto;
 import data.VendeProdottoAsta;
 import persistence.DAOFactory;
 
-@WebServlet("/SearchProduct")
 public class SearchProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -31,10 +29,10 @@ public class SearchProduct extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		String nomeProdotto = request.getParameter("nomeProdotto");
 		VendeProdottoAstaDAO d = DAOFactory.getDAOFactory().getVendeProdottoAstaDAO();
-		String k= "Non esistono prodotti per la tua ricerca!";
+		String k = "Non esistono prodotti per la tua ricerca!";
 		List<VendeProdottoAsta> l;
 		if (!request.getParameter("categoria").equals("all")) {
 
@@ -44,7 +42,7 @@ public class SearchProduct extends HttpServlet {
 			l = d.findProdotto(nomeProdotto);
 
 		}
-		if(l.size()!=0)
+		if (l.size() != 0)
 			request.setAttribute("prodotti", l);
 		else
 			request.setAttribute("emptyP", k);
