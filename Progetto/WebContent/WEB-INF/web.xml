@@ -6,7 +6,7 @@
   </welcome-file-list>
   <servlet>
     <servlet-name>Login</servlet-name>
-    <servlet-class>Login</servlet-class>
+    <servlet-class>servlet.Login</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
@@ -14,7 +14,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>NewItem</servlet-name>
-    <servlet-class>NewItem</servlet-class>
+    <servlet-class>servlet.NewItem</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>NewItem</servlet-name>
@@ -22,7 +22,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>ShopManager</servlet-name>
-    <servlet-class>ShopManager</servlet-class>
+    <servlet-class>servlet.ShopManager</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ShopManager</servlet-name>
@@ -30,7 +30,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>SearchProduct</servlet-name>
-    <servlet-class>SearchProduct</servlet-class>
+    <servlet-class>servlet.SearchProduct</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>SearchProduct</servlet-name>
@@ -38,10 +38,42 @@
   </servlet-mapping>
    <servlet>
     <servlet-name>VisitProduct</servlet-name>
-    <servlet-class>VisitProduct</servlet-class>
+    <servlet-class>servlet.VisitProduct</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>VisitProduct</servlet-name>
     <url-pattern>/VisitProduct</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <servlet-name>Asta</servlet-name>
+    <servlet-class>servlet.Asta</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Asta</servlet-name>
+    <url-pattern>/Asta</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <servlet-name>Carrello</servlet-name>
+    <servlet-class>servlet.Carrello</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Carrello</servlet-name>
+    <url-pattern>/Carrello</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <servlet-name>ProfileManager</servlet-name>
+    <servlet-class>servlet.ProfileManager</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProfileManager</servlet-name>
+    <url-pattern>/ProfileManager</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <servlet-name>HomeLoad</servlet-name>
+    <servlet-class>servlet.HomeLoad</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HomeLoad</servlet-name>
+    <url-pattern></url-pattern>
   </servlet-mapping>
 </web-app>

@@ -1,9 +1,9 @@
+package servlet;
 
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,14 +22,13 @@ import persistence.MySQLDaoFactory;
 /**
  * Servlet implementation class ShopManager
  */
-@WebServlet("/ShopManager")
 public class ShopManager extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	// ProdottoDAO d = MySQLDaoFactory.getDAOFactory().getProdottoDao();
 	VendeProdottoDAO v = MySQLDaoFactory.getDAOFactory().getVendeProdottoDAO();
 	CategoriaDAO c = MySQLDaoFactory.getDAOFactory().getCategoriaDao();
-	AstaDAO a = MySQLDaoFactory.getDAOFactory().getADao();
+	AstaDAO a = MySQLDaoFactory.getDAOFactory().getAstaDao();
 
 	@Override
 	public void init() throws ServletException {

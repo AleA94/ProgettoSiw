@@ -1,9 +1,9 @@
+package servlet;
 
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,7 +21,6 @@ import persistence.DAOFactory;
 /**
  * Servlet implementation class ProfileManager
  */
-@WebServlet("/ProfileManager")
 public class ProfileManager extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -45,17 +44,19 @@ public class ProfileManager extends HttpServlet {
 			throws ServletException, IOException {
 		if (request.getSession().getAttribute("account") != null) {
 			String Utente = ((Utente) request.getSession().getAttribute("account")).getEmail();
-			if (request.getParameter("action").equals("purchases")) {
-				request.setAttribute("acquisti", a.getAcquisti(Utente));
-				forwardOnJsp(request, response, "/jsp/completePurchases.jsp");
-			} else if (request.getParameter("action").equals("wish")) {
-				request.getSession().setAttribute("wishlist", w.getWishByUtente(Utente));
-				forwardOnJsp(request, response, "/jsp/Wishlist.jsp");
-			} else if (request.getParameter("action").equals("notifica")) {
-				request.getSession().setAttribute("notifiche", n.getNotifichebyUtente(Utente));
-				n.clear(Utente);
-				request.getSession().setAttribute("numNotifiche", 0);
-				forwardOnJsp(request, response, "/jsp/Notifiche.jsp");
+			if (request.getParameter("action") != null) {
+				if (request.getParameter("action").equals("purchases")) {
+					request.setAttribute("acquisti", a.getAcquisti(Utente));
+					forwardOnJsp(request, response, "/jsp/completePurchases.jsp");
+				} else if (request.getParameter("action").equals("wish")) {
+					request.getSession().setAttribute("wishlist", w.getWishByUtente(Utente));
+					forwardOnJsp(request, response, "/jsp/Wishlist.jsp");
+				} else if (request.getParameter("action").equals("notifica")) {
+					request.getSession().setAttribute("notifiche", n.getNotifichebyUtente(Utente));
+					n.clear(Utente);
+					request.getSession().setAttribute("numNotifiche", 0);
+					forwardOnJsp(request, response, "/jsp/Notifiche.jsp");
+				}
 			} else {
 				forwardOnJsp(request, response, "/jsp/EditProfile.jsp");
 			}

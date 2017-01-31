@@ -1,9 +1,9 @@
+package servlet;
 
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,11 +15,10 @@ import persistence.MySQLDaoFactory;
 /**
  * Servlet implementation class HomeLoad
  */
-@WebServlet("")
 public class HomeLoad extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	CategoriaDAO d = MySQLDaoFactory.getDAOFactory().getCategoriaDao();
-	AstaProdottoDAO a = MySQLDaoFactory.getDAOFactory().getAstaDao();
+	AstaProdottoDAO a = MySQLDaoFactory.getDAOFactory().getAstaProdottoDao();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -42,8 +41,8 @@ public class HomeLoad extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setAttribute("asteProdotto", a.getAste(1, 1));
-		request.getSession().setAttribute("categorie", d.getMacroCategorie());
+		request.setAttribute("asteProdotto", a.getAste(0, 1));
+		request.setAttribute("categorie", d.getMacroCategorie());
 		forwardOnJsp(request, response, "/jsp/index.jsp");
 
 	}
