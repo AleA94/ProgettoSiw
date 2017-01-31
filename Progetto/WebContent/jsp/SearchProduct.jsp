@@ -10,8 +10,9 @@
 <body>
 
 	<%@include file="header.jsp"%>
-	<div class="col-sm-2 col-lg-2 tile navTop">
+	<div class="container tile navTop">
 		<form action="SearchProduct?action=filter" method="POST">
+		<div class="col-lg-6 col-sm-6">
 			<h3>Filtra Categorie</h3>
 			<input type=hidden value="${nomeProdotto}">
 			<c:choose>
@@ -24,6 +25,8 @@
 					<h4>Nessuna SottoCategoria per questa Categoria</h4>
 				</c:otherwise>
 			</c:choose>
+			</div>
+			<div class="col-lg-3 col-sm-3">
 			<h3>Ordina Per</h3>
 			<p>
 				<select name="order" class="form-control">
@@ -32,6 +35,7 @@
 				</select>
 			</p>
 			<input type="submit" class="btn btn-default" value="Cerca"/>
+			</div>
 		</form>
 	</div>
 	<div class="container tile navTop">
@@ -43,7 +47,7 @@
 					<div class="card">
 						<div class="container-fliud">
 							<div class="wrapper row">
-								<div class="preview col-md-6">
+								<div class="preview col-md-4">
 
 									<div class="preview-pic tab-content">
 										<div class="tab-pane active" id="pic-1">
@@ -55,10 +59,10 @@
 								</div>
 								<c:choose>
 									<c:when test="${i.prodotto.inAsta==0}">
-								<div class="details col-md-6">
+								<div class="details col-md-8">
 									<h3 class="product-title">${i.prodotto.nome}</h3>
 									<h4 class="price">Descrizione:</h4>
-									<p class="product-description">${i.prodotto.descrizione}</p>
+									${i.prodotto.descrizione}
 									
 									<h4 class="price">
 										Prezzo: <span>${i.prodotto.prezzo} &euro;</span>
@@ -85,14 +89,13 @@
 								<div class="details col-md-6">
 									<h3 class="product-title">${i.prodotto.nome}</h3>
 									<h4 class="price">Descrizione:</h4>
-									<p class="product-description">${i.prodotto.descrizione}</p>
-									<p class="product-description"><h4 class="price">Data Inizio:</h4>${i.dataInizio}</p>
-									<p class="product-description"><h4 class="price">Data Fine</h4>${i.dataFine}</p>
+									<span>${i.prodotto.descrizione}</span>
+									<h4 class="price">Data Inizio: <span>${i.dataInizio}</span></h4>
+									<h4 class="price">Data Fine: <span>${i.dataFine}</span></h4>
 									<h4 class="price">
 										current price: <span>${i.prezzoCorrente} &euro;</span>
 									</h4>
 									<div class="action">
-										<br> <br>
 										<button class="btn btn-default" type="button">Fai un'offerta</button>
 										<br> <br>
 										<form action="VisitProduct" name="myForm">

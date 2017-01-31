@@ -53,7 +53,7 @@
 
 										<h3 class="product-title">${prodotto.getProdotto().nome}</h3>
 										<h4 class="price">Descrizione:</h4>
-										<p class="product-description">${prodotto.getProdotto().descrizione}</p>
+										${prodotto.getProdotto().descrizione}
 									
 										<h4 class="price">
 											Prezzo: <span>${prodotto.getProdotto().prezzo} &euro;</span>
@@ -71,9 +71,9 @@
 									<div class="details col-md-6">
 
 										<h3 class="product-title">${prodotto.getProdotto().nome}</h3>
-										<p class="product-description">>${prodotto.getProdotto().descrizione}</p>
-										<p class="product-description">${prodotto.dataInizio}</p>
-										<p class="product-description">${prodotto.dataFine}</p>
+										<span>${prodotto.getProdotto().descrizione}</span>
+										<h4 class="price">Data Inizio: <span>${prodotto.dataInizio}</span></h4>
+										<h4 class="price">Data Fine: <span>${prodotto.dataFine}</span></h4>
 										<h4 class="price">
 											current price: <span>>${prodotto.getProdotto().inAsta}
 												&euro;</span>
