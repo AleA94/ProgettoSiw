@@ -27,7 +27,7 @@ import persistence.MySQLDaoFactory;
 @WebServlet("/Ast")
 public class Ast extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	AstaProdottoDAO asteProd = MySQLDaoFactory.getDAOFactory().getAstaDao();
+	AstaProdottoDAO asteProd = MySQLDaoFactory.getDAOFactory().getAstaProdottoDao();
 
 	@Override
 	public void init() throws ServletException {

@@ -8,6 +8,10 @@ body {
 	margin-bottom: 0px !important;
 }
 
+.active{
+	color:black;
+}
+
 .num{
 	width: 50px;
 }
@@ -25,14 +29,25 @@ body {
 }
 
 .navTop{
-	margin-top: 70px;
+	margin-top: 50px;
 }
 
 .pic{
 	width: 100px;
+    object-fit: cover;
+    height: 100px;
 }
 
+.editImage{
+	width:400px;
+	max-height: 400px !important;
+	object-fit:cover;
+}
 
+.removeImage{
+	color:red;
+	position:absolute;
+}
 
 .disappear {
     display: none !important;

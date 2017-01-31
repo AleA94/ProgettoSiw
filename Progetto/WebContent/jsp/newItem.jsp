@@ -32,11 +32,12 @@
 		</div>
 		<div class="form-group">
 			<label class="control-label">Carica l'immagine principale</label>
-			<input id="mainPhoto" name="mainPhoto" type="file" class="file">
+			<input id="mainPhoto" class="form-control" placeholder="URL della foto" required name="mainPhoto" type="text">
 		</div>
 		<div class="form-group">
-			<label class="control-label">Carica delle immagini aggiuntive</label>
-			<input id="morePhotos" name="morePhotos" multiple="true" type="file" class="file">
+			<label>Carica Immagini aggiuntive</label> 
+			<a class="morePhotos" href="#"><span class="glyphicon glyphicon-plus"></span></a>
+			<a class="lessPhotos" href="#"><span class="glyphicon glyphicon-minus"></span></a>
 		</div>
 		<div class="form-group">
 			<label for="name">Scegli una categoria</label> <select required
@@ -53,7 +54,7 @@
 		<div class="form-group">
 			<label for="inAsta">Spunta qui per metterlo in asta </label>
 			<div class="checkbox">
-				<label><input id="inAsta" type="checkbox" name="inAsta" value="">Asta</label>
+				<label><input id="inAsta" type="checkbox" name="inAsta" value="1">Asta</label>
 			</div>
 		</div>
 		<div class="form-group">
@@ -70,7 +71,7 @@
 				</div>
 				<div class="form-group">
 					<label for="riserva">Indica un prezzo di riserva</label> 
-					<input type="number" name="riserva" required class="form-control" placeholder="Prezzo di riserva" id="riserva" step=0.01 min=0>
+					<input type="number" name="riserva" class="form-control" placeholder="Prezzo di riserva" id="riserva" step=0.01 min=0>
 				</div>
 			</div>
 		</div>

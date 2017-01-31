@@ -29,7 +29,7 @@ public class ShopManager extends HttpServlet {
 	// ProdottoDAO d = MySQLDaoFactory.getDAOFactory().getProdottoDao();
 	VendeProdottoDAO v = MySQLDaoFactory.getDAOFactory().getVendeProdottoDAO();
 	CategoriaDAO c = MySQLDaoFactory.getDAOFactory().getCategoriaDao();
-	AstaDAO a = MySQLDaoFactory.getDAOFactory().getADao();
+	AstaDAO a = MySQLDaoFactory.getDAOFactory().getAstaDao();
 
 	@Override
 	public void init() throws ServletException {
@@ -91,6 +91,11 @@ public class ShopManager extends HttpServlet {
 				p.setNome(request.getParameter("nome"));
 				p.setDescrizione(request.getParameter("descrizione"));
 				p.setIdCategoria(Integer.parseInt(request.getParameter("categoria")));
+				if (request.getParameter("photo") != null)
+					p.setImmagine(request.getParameter("photo"));
+				if (request.getParameterValues("photos") != null)
+					p.addImmaginiAggiuntive(request.getParameterValues("photos"));
+
 				if (p.getInAsta() == 1) {
 					Asta asta = new Asta();
 					asta.setIdProdotto(p.getIdProdotto());
@@ -114,15 +119,15 @@ public class ShopManager extends HttpServlet {
 				p.setNome(request.getParameter("nome"));
 				p.setDescrizione(request.getParameter("descrizione"));
 				p.setIdCategoria(Integer.parseInt(request.getParameter("categoria")));
+				p.setImmagine(request.getParameter("mainPhoto"));
+				p.setImmaginiAggiuntive(request.getParameterValues("photos"));
 				if (request.getParameter("inAsta") != null) {
 					p.setInAsta(1);
-					p.setPrezzo(Float.parseFloat(request.getParameter("riserva")));
-
 				} else {
 					p.setInAsta(0);
 					vende.setQuantita(Integer.parseInt(request.getParameter("quantita")));
-					p.setPrezzo(Float.parseFloat(request.getParameter("prezzo")));
 				}
+				p.setPrezzo(Float.parseFloat("prezzo"));
 				vende.setNegozio(((Utente) request.getSession().getAttribute("account")).getEmail());
 				vende.setProdotto(p);
 
@@ -142,6 +147,13 @@ public class ShopManager extends HttpServlet {
 				response.sendRedirect(request.getContextPath() + "/ShopManager");
 
 			}
+		} else if (request.getParameter("rmvImages") != null) {
+			VendeProdotto v = (VendeProdotto) request.getSession().getAttribute("p");
+			v.getProdotto().getImmaginiAggiuntive().remove(request.getParameter("rmvImages"));
+			System.out.println(request.getParameter("rmvImages"));
+		} else if (request.getParameter("rmvImage") != null) {
+			VendeProdotto v = (VendeProdotto) request.getSession().getAttribute("p");
+			v.getProdotto().setImmagine(null);
 		}
 	}
 

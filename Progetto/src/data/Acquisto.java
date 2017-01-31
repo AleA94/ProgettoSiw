@@ -11,9 +11,7 @@ public class Acquisto {
 
 	}
 
-	public Acquisto(int idAcquisto, int prodotto, int quantita, String utente, Date data) {
-		super();
-		this.idAcquisto = idAcquisto;
+	public Acquisto(int prodotto, int quantita, String utente, Date data) {
 		this.prodotto = prodotto;
 		this.quantita = quantita;
 		this.utente = utente;

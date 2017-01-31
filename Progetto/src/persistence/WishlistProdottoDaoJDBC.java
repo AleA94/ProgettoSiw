@@ -3,87 +3,89 @@ package persistence;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.HashMap;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-import DAO.CarrelloProdottoDAO;
-import DAO.VendeProdottoDAO;
-import data.CarrelloItem;
+import DAO.WishlistProdottoDAO;
 import data.Prodotto;
+import data.WishlistProdotto;
 
-public class CarrelloProdottoDaoJDBC implements CarrelloProdottoDAO {
+public class WishlistProdottoDaoJDBC implements WishlistProdottoDAO {
 	DataSource dataSource;
 
-	public CarrelloProdottoDaoJDBC(DataSource dataSource) {
+	public WishlistProdottoDaoJDBC(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
 
 	@Override
-	public HashMap<Integer, CarrelloItem> getCarrelloByUtente(String utente) {
+	public List<WishlistProdotto> getWishByUtente(String utente) {
 		Connection connection = this.dataSource.getConnection();
-		HashMap<Integer, CarrelloItem> carrello = new HashMap<Integer, CarrelloItem>();
+		List<WishlistProdotto> lista = new ArrayList<>();
 		try {
 			PreparedStatement statement;
-			String query = "select * from Carrello c inner join Prodotto p on c.Prodotto=p.idProdotto where Utente=?";
+			String query = "select * From WishList w inner join Prodotto p on w.Prodotto=p.idProdotto where Utente=?";
 			statement = connection.prepareStatement(query);
 			statement.setString(1, utente);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
-				CarrelloItem c = new CarrelloItem();
+				WishlistProdotto w = new WishlistProdotto();
 				Prodotto p = new Prodotto();
-				p.setIdProdotto(result.getInt("idProdotto"));
+				p.setIdProdotto(result.getInt("p.idProdotto"));
 				p.setNome(result.getString("Nome"));
 				p.setDescrizione(result.getString("Descrizione"));
 				p.setInAsta(result.getInt("inAsta"));
 				p.setPrezzo(result.getFloat("Prezzo"));
 				p.setIdCategoria(result.getInt("idCategoria"));
 				p.setImmagine(result.getString("ImmaginePrincipale"));
-				c.setProdotto(p);
-				c.setQuantita(result.getInt("Quantita"));
-				carrello.put(p.getIdProdotto(), c);
+				if (result.getString("ImmaginiAggiuntive") != null)
+					p.setImmaginiAggiuntive(result.getString("ImmaginiAggiuntive").split(";"));
+				w.setUtente(utente);
+				w.setProdotto(p);
+				w.setQuantita(result.getInt("Quantita"));
+				lista.add(w);
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {
 			try {
 				connection.close();
-			} catch (Exception e) {
+			} catch (SQLException e) {
 				throw new PersistenceException(e.getMessage());
 			}
 		}
-		return carrello;
+		return lista;
 	}
 
 	@Override
-	public void removeItem(int id, String utente) {
+	public void removeItem(String utente, int id) {
 		Connection connection = this.dataSource.getConnection();
 		try {
 			PreparedStatement statement;
-			String query = "delete from Carrello where Prodotto=? and Utente=?";
+			String query = "delete From WishList where Prodotto=? and Utente=?";
 			statement = connection.prepareStatement(query);
 			statement.setInt(1, id);
 			statement.setString(2, utente);
 			statement.executeUpdate();
-
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {
 			try {
 				connection.close();
-			} catch (Exception e) {
+			} catch (SQLException e) {
 				throw new PersistenceException(e.getMessage());
 			}
 		}
-
 	}
 
 	@Override
-	public void setQuantityAfterBuy(int qty, int id, String utente) {
+	public void setQuantityAfterBuy(int quantity, int id, String utente) {
 		Connection connection = this.dataSource.getConnection();
 		try {
 			PreparedStatement statement;
-			String query = "update Carrello set quantita=quantita-? where Prodotto=? and Utente=?";
+			String query = "update WishList set Quantita=Quantita-? where Prodotto=? and Utente=?";
 			statement = connection.prepareStatement(query);
-			statement.setInt(1, qty);
+			statement.setInt(1, quantity);
 			statement.setInt(2, id);
 			statement.setString(3, utente);
 			statement.executeUpdate();
@@ -96,41 +98,16 @@ public class CarrelloProdottoDaoJDBC implements CarrelloProdottoDAO {
 				throw new PersistenceException(e.getMessage());
 			}
 		}
-		VendeProdottoDAO v = MySQLDaoFactory.getDAOFactory().getVendeProdottoDAO();
-		v.updateQuantity(qty, id);
 	}
 
 	@Override
-	public void cleanCart(String utente) {
+	public void cleanWish(String utente) {
 		Connection connection = this.dataSource.getConnection();
 		try {
 			PreparedStatement statement;
-			String query = "delete from Carrello where Utente=? and quantita=0";
+			String query = "delete from WishList where Utente=? and Quantita=0";
 			statement = connection.prepareStatement(query);
 			statement.setString(1, utente);
-			statement.executeUpdate();
-		} catch (Exception e) {
-			throw new PersistenceException(e.getMessage());
-		} finally {
-			try {
-				connection.close();
-			} catch (Exception e) {
-				throw new PersistenceException(e.getMessage());
-			}
-		}
-
-	}
-
-	@Override
-	public void addToCart(String utente, int id, int quantity) {
-		Connection connection = this.dataSource.getConnection();
-		try {
-			PreparedStatement statement;
-			String query = "insert into Carrello (Utente,Prodotto,Quantita) Values (?,?,?)";
-			statement = connection.prepareStatement(query);
-			statement.setString(1, utente);
-			statement.setInt(2, id);
-			statement.setInt(3, quantity);
 			statement.executeUpdate();
 		} catch (Exception e) {
 			throw new PersistenceException(e.getMessage());

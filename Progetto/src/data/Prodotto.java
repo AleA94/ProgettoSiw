@@ -101,4 +101,10 @@ public class Prodotto {
 		this.descrizione = descrizione;
 		this.immagine = immagine;
 	}
+
+	public void addImmaginiAggiuntive(String[] immagini) {
+		for (String s : immagini)
+			immaginiAggiuntive.add(s);
+
+	}
 }

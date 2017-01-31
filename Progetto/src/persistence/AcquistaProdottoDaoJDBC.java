@@ -38,6 +38,7 @@ public class AcquistaProdottoDaoJDBC implements AcquistaProdottoDAO {
 				p.setNome(result.getString("Nome"));
 				p.setDescrizione(result.getString("Descrizione"));
 				p.setPrezzo(result.getFloat("Prezzo") * a.getQuantita());
+				p.setImmagine(result.getString("ImmaginePrincipale"));
 				a.setProdotto(p);
 				l.add(a);
 			}

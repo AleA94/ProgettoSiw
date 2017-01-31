@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DAO.ProdottoDAO;
+import DAO.VendeProdottoAstaDAO;
 import data.Prodotto;
+import data.VendeProdottoAsta;
 import persistence.DAOFactory;
 
 @WebServlet("/SearchProduct")
@@ -31,9 +33,9 @@ public class SearchProduct extends HttpServlet {
 			throws ServletException, IOException {
 		
 		String nomeProdotto = request.getParameter("nomeProdotto");
-		ProdottoDAO d = DAOFactory.getDAOFactory().getProdottoDao();
+		VendeProdottoAstaDAO d = DAOFactory.getDAOFactory().getVendeProdottoAstaDAO();
 		String k= "Non esistono prodotti per la tua ricerca!";
-		List<Prodotto> l;
+		List<VendeProdottoAsta> l;
 		if (!request.getParameter("categoria").equals("all")) {
 
 			l = d.findProdottoByCategoria(nomeProdotto, Integer.parseInt(request.getParameter("categoria")));

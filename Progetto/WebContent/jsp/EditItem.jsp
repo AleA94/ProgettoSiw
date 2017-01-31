@@ -48,6 +48,33 @@
 			<input type="number" name="quantita" required class="form-control" placeholder="Quantità" id="quantita" min=1 value="${p.quantita}">
 		</div>
 		</c:if>
+		<div class="form-group">
+			<label>Immagine Principale</label> 
+			<div>
+				<a class="removeImage first" href="#">
+					<span class="glyphicon glyphicon-remove"></span>
+				</a>
+				<img class="editImage img-responsive" src="${p.prodotto.immagine}"/>
+			</div>
+			<div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label>Immagini Aggiuntive</label> 
+			<c:forEach var="p" items="${p.prodotto.immaginiAggiuntive}">
+				<div class="secImage">
+					<a class="removeImage sec" href="#">
+						<span class="glyphicon glyphicon-remove"></span>
+					</a>
+					<img class="editImage img-responsive" src="${p}"/>
+				</div>
+			</c:forEach>
+		</div>
+		<div class="form-group">
+			<label>Carica altre</label> 
+			<a class="morePhotos" href="#"><span class="glyphicon glyphicon-plus"></span></a>
+			<a class="lessPhotos" href="#"><span class="glyphicon glyphicon-minus"></span></a>
+		</div>
 		<input type="hidden" name="inAsta" value="${p.prodotto.inAsta}">
 		<c:if test="${p.prodotto.inAsta eq 1}">
 			<div class="form-group">
@@ -87,4 +114,75 @@
 </section>
 
 </body>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.sec').click(function(e){
+		e.preventDefault();
+		var s=$(this).next().attr('src');
+		var parent=$(this).parent();
+		$.ajax({
+			type : "POST",
+			url : "ShopManager",
+			datatype : "json",
+			mimeType: "textPlain",
+			data : {
+				rmvImages : s,
+			},
+			success : function(data) {
+				parent.remove();
+			},
+			fail : function() {
+				alert('niente');
+			}
+		})
+	})
+	$('.first').click(function(e){
+		e.preventDefault();
+		var s=$(this).next().attr('src');
+		var parent=$(this).parent();
+		$.ajax({
+			type : "POST",
+			url : "ShopManager",
+			datatype : "json",
+			mimeType: "textPlain",
+			data : {
+				rmvImage : s,
+			},
+			success : function(data) {
+				parent.next().append($('<input type="text" name="photo" placeholder="inserisci URL" class="form-control"/>'))
+				parent.remove();
+			},
+			fail : function() {
+				alert('niente');
+			}
+		})
+	})
+	
+	$('.morePhotos').click(function(e){
+		e.preventDefault();
+		if($('input[name=photos]').length==0)
+			$(this).prepend();
+		$(this).parent().prepend($('<input type="text" name="photos" placeholder="inserisci URL" class="form-control"/>'));
+	});
+	$('.lessPhotos').click(function(e){
+		e.preventDefault();
+		if($('input[name=photos]').length!=0)
+			$('input[name=photos]').last().remove();
+	})
+	
+	$('input[value=salva]').click(function(e){
+		var n=$('input[name=photos]').filter(function(){
+		    return !$(this).val();
+		}).length;
+		
+		if(n!=0 || $('input[name=photo]').val()==''){
+			e.preventDefault();
+			alert('completare campi foto oppure rimuoverli (a meno che non sia l\'immagine principale che va compilata obbligatoriamente\)');
+		
+		}
+	});
+})
+
+
+</script>
 </html>

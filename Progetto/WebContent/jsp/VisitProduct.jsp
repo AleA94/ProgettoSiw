@@ -10,64 +10,89 @@
 <body>
 	<%@include file="header.jsp"%>
 	<div class="container tile navTop">
-			<div class="col-lg-12 col-sm-12 ">
-				<div class="container">
-					<div class="card">
-						<div class="container-fliud">
-							<div class="wrapper row">
-								<div class="preview col-md-6">
+		<div class="col-lg-12 col-sm-12 ">
+			<div class="container">
+				<div class="card">
+					<div class="container-fliud">
+						<div class="wrapper row">
+							<div class="preview col-md-4">
 
-									<div class="preview-pic tab-content">
-										<div class="tab-pane active" id="pic-1">
-											<img src="http://placekitten.com/400/252" />
-										</div>
+								<div class="preview-pic tab-content">
+									<div class="tab-pane active" id="pic-1">
+										<img src="${prodotto.getProdotto().immagine}" />
+									</div>
+									<c:forEach items="${prodotto.getProdotto().immaginiAggiuntive}"
+										var="i">
 										<div class="tab-pane" id="pic-2">
-											<img src="http://placekitten.com/400/252" />
+											<img src="${i}" class="editImage img-responsive" />
 										</div>
 										<div class="tab-pane" id="pic-3">
-											<img src="http://placekitten.com/400/252" />
+											<img src="${i}" class="editImage img-responsive" />
 										</div>
 										<div class="tab-pane" id="pic-4">
-											<img src="http://placekitten.com/400/252" />
+											<img src="${i}" class="editImage img-responsive" />
 										</div>
-										<div class="tab-pane" id="pic-5">
-											<img src="http://placekitten.com/400/252" />
-										</div>
-									</div>
-									<ul class="preview-thumbnail nav nav-tabs">
-										<li class="active"><a data-target="#pic-1"
-											data-toggle="tab"><img
-												src="http://placekitten.com/200/126" /></a></li>
+									</c:forEach>
+								</div>
+								<ul class="preview-thumbnail nav nav-tabs">
+									<li class="active"><a data-target="#pic-1"
+										data-toggle="tab"><img
+											src="${prodotto.getProdotto().immagine}" /></a></li>
+									<c:forEach items="${prodotto.getProdotto().immaginiAggiuntive}"
+										var="i">
 										<li><a data-target="#pic-2" data-toggle="tab"><img
-												src="http://placekitten.com/200/126" /></a></li>
-										<li><a data-target="#pic-3" data-toggle="tab"><img
-												src="http://placekitten.com/200/126" /></a></li>
-										<li><a data-target="#pic-4" data-toggle="tab"><img
-												src="http://placekitten.com/200/126" /></a></li>
-										<li><a data-target="#pic-5" data-toggle="tab"><img
-												src="http://placekitten.com/200/126" /></a></li>
-									</ul>
+												src="${i}" class="editImage img-responsive" /></a></li>
+		
+									</c:forEach>
+								</ul>
 
-								</div>
-								<div class="details col-md-6">
-
-									<h3 class="product-title">${prodotto.nome}</h3>
-
-									<p class="product-description">>${prodotto.descrizione}</p>
-									<h4 class="price">
-										current price: <span>>${prodotto.prezzo} &euro;</span>
-									</h4>
-									<div class="action">
-										<button class="add-to-cart btn btn-default" type="button">add
-											to cart</button>
-
-									</div>
-								</div>
 							</div>
+							<c:choose>
+								<c:when test="${prodotto.getProdotto().inAsta==0}">
+									<div class="details col-md-6">
+
+										<h3 class="product-title">${prodotto.getProdotto().nome}</h3>
+										<p class="product-description">>${prodotto.getProdotto().descrizione}</p>
+
+										<h4 class="price">
+											current price: <span>>${prodotto.getProdotto().prezzo}
+												&euro;</span>
+										</h4>
+										<div class="action">
+											<button class="add-to-cart btn btn-default" type="button">add
+												to cart</button>
+											<br> <br>
+
+										</div>
+									</div>
+								</c:when>
+								<c:when test="${prodotto.getProdotto().inAsta==1}">
+									<div class="details col-md-6">
+
+										<h3 class="product-title">${prodotto.getProdotto().nome}</h3>
+										<p class="product-description">>${prodotto.getProdotto().descrizione}</p>
+										<p class="product-description">${prodotto.dataInizio}</p>
+										<p class="product-description">${prodotto.dataFine}</p>
+										<h4 class="price">
+											current price: <span>>${prodotto.getProdotto().inAsta}
+												&euro;</span>
+										</h4>
+										<div class="action">
+											<button class="add-to-cart btn btn-default" type="button">add
+												to cart</button>
+											<br> <br>
+											<button class="add-to-cart btn btn-default" type="button">Fai
+												un'offerta</button>
+
+										</div>
+									</div>
+								</c:when>
+							</c:choose>
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
 	</div>
 </body>
 </html>

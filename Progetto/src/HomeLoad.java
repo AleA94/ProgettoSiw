@@ -19,7 +19,7 @@ import persistence.MySQLDaoFactory;
 public class HomeLoad extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	CategoriaDAO d = MySQLDaoFactory.getDAOFactory().getCategoriaDao();
-	AstaProdottoDAO a = MySQLDaoFactory.getDAOFactory().getAstaDao();
+	AstaProdottoDAO a = MySQLDaoFactory.getDAOFactory().getAstaProdottoDao();
 
 	/**
 	 * @see HttpServlet#HttpServlet()

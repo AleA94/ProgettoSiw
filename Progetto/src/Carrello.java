@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import DAO.AcquistaDao;
 import DAO.CarrelloProdottoDAO;
 import data.Acquisto;
@@ -66,6 +69,27 @@ public class Carrello extends HttpServlet {
 					.getAttribute("cart");
 			carrello.remove(id);
 			d.removeItem(id, ((Utente) request.getSession().getAttribute("account")).getEmail());
+		} else if (request.getParameter("addCart") != null) {
+			String mail = ((Utente) request.getSession().getAttribute("account")).getEmail();
+			try {
+				JSONObject o = new JSONObject(request.getParameter("addCart"));
+				d.addToCart(mail, o.getInt("id"), o.getInt("qt"));
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		} else if (request.getParameter("buyNow") != null) {
+			try {
+				String mail = ((Utente) request.getSession().getAttribute("account")).getEmail();
+				JSONObject o = new JSONObject(request.getParameter("buyNow"));
+				Acquisto a = new Acquisto(o.getInt("id"), o.getInt("qt"), mail, new Date());
+				acquisti.save(a);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		} else if (request.getParameter("action") != null) {
 			if (request.getParameter("action").equals("confirmAll")) {
 				String mail = ((Utente) request.getSession().getAttribute("account")).getEmail();
@@ -74,7 +98,7 @@ public class Carrello extends HttpServlet {
 				List<Acquisto> l = new ArrayList<>();
 				for (int i = 0; i < ids.length; i++) {
 					int id = Integer.parseInt(ids[i]);
-					l.add(new Acquisto(0, id, Integer.parseInt(qts[i]), mail, new Date()));
+					l.add(new Acquisto(id, Integer.parseInt(qts[i]), mail, new Date()));
 					d.setQuantityAfterBuy(Integer.parseInt(qts[i]), id, mail);
 				}
 				d.cleanCart(mail);
@@ -90,6 +114,16 @@ public class Carrello extends HttpServlet {
 				}
 				request.setAttribute("daAcquistare", carrelloByUtente.values());
 				forwardOnJsp(request, response, "/jsp/ConfermaAcquisto.jsp");
+			} else if (request.getParameter("action").equals("buyNowAll")) {
+				String mail = ((Utente) request.getSession().getAttribute("account")).getEmail();
+				String[] ids = request.getParameterValues("id");
+				String[] qts = request.getParameterValues("qts");
+				List<Acquisto> l = new ArrayList<>();
+				for (int i = 0; i < ids.length; i++) {
+					int id = Integer.parseInt(ids[i]);
+					l.add(new Acquisto(id, Integer.parseInt(qts[i]), mail, new Date()));
+				}
+				acquisti.saveAll(l);
 			}
 		}
 	}
