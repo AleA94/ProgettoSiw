@@ -3,6 +3,16 @@ package data;
 public class AstaProdotto {
 	Integer idCategoriaProdotto, idAsta, idProdotto, tempoInizioAsta, tempoFineAsta;
 	float baseAsta, prezzoRiserva, prezzoProdotto, prezzoCorrente;
+	String urlImg;
+	String DataFineAsta, DataInizioAsta, NomeProdotto, descrizioneProdotto, Negozio;
+
+	public String getUrlImg() {
+		return urlImg;
+	}
+
+	public void setUrlImg(String urlImg) {
+		this.urlImg = urlImg;
+	}
 
 	public float getPrezzoCorrente() {
 		return prezzoCorrente;
@@ -11,8 +21,6 @@ public class AstaProdotto {
 	public void setPrezzoCorrente(float prezzoCorrente) {
 		this.prezzoCorrente = prezzoCorrente;
 	}
-
-	String DataFineAsta, DataInizioAsta, NomeProdotto, descrizioneProdotto, Negozio;
 
 	public Integer getIdCategoriaProdotto() {
 		return idCategoriaProdotto;

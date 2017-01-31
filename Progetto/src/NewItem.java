@@ -83,7 +83,7 @@ public class NewItem extends HttpServlet {
 		float prezzo = Float.parseFloat(request.getParameter("prezzo"));
 
 		Utente utente = (Utente) request.getSession().getAttribute("account");
-		Prodotto p = new Prodotto(inAsta, categoria, inizio, fine, prezzo, nome, descrizione, utente.getEmail());
+		Prodotto p = new Prodotto(inAsta, categoria, inizio, fine, prezzo, nome, descrizione, utente.getEmail(), "da");
 
 		d.save(p);
 

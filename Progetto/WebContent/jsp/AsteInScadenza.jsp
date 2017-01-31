@@ -18,11 +18,11 @@
 	<div class="col-sm-12 col-lg-12">
 		<div id="rangeAste">
 			 <div class="range range-info"   > 
-            	<input id="sliderOre" type="range" name="range" min="0" max="24" value="1" onchange="rangeInfo1.value=value + ' ore'" >
+            	<input id="sliderOre" type="range" name="range" min="0" max="24" value="1" onchange="cambioData(sliderGiorni.value,this.value)" >
             	<output id="rangeInfo1">1 ore</output>
          	 </div>  
         	 <div class="range range-info"   > 
-        	    <input id "sliderGiorni" type="range" name="range" min="0" max="10" value="0" onchange="cambioData(this.value)" >
+        	    <input id="sliderGiorni" type="range" name="range" min="0" max="10" value="0" onchange="cambioData(this.value,sliderOre.value)" >
             	<output id="rangeInfo2">0 giorni</output>
          	</div> 
          </div>
@@ -48,12 +48,11 @@
 						<h3 class="description">Descrizione:</h3>
 						<p id="ciao" class="product-description">${c.descrizioneProdotto}</p>
 						<h4 class="price">
-							current price: <span>${c.prezzoCorrente}</span>
+							current price: <span id="prezzoCorr">${c.prezzoCorrente}</span>
 						</h4>
 						<div class="action">
-							<button class="add-to-cart btn btn-default" type="button">fai
-								un offerta</button>
-								<input type="text" id="offertaMassima" placeholder="${c.prezzoCorrente+1}">
+							<button id="faiUnOfferta" class="add-to-cart btn btn-default" type="button" onclick="offertaLampo(${c.idAsta},sliderGiorni.value,sliderOre.value)">fai un offerta</button>
+							<input type="text" id="offertaMassima" placeholder="${c.prezzoCorrente+1}">
 						</div>
 					</div>
 				</div>	

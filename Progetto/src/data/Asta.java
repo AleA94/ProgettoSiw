@@ -4,20 +4,29 @@ import java.util.Date;
 
 public class Asta {
 	Date dataInizio, dataFine;
-	int idProdotto;
+	int idAsta, idProdotto;
 	float baseAsta, prezzoRiserva, prezzoCorrente;
 
 	public Asta() {
 	}
 
-	public Asta(Date dataInizio, Date datafine, int idProdotto, float baseAsta, float prezzoRiserva,
+	public Asta( Date dataInizio, Date datafine, int idProdotto, float baseAsta, float prezzoRiserva,
 			float prezzoCorrente) {
+		this.idAsta = idAsta;
 		this.dataInizio = dataInizio;
 		dataFine = datafine;
 		this.idProdotto = idProdotto;
 		this.baseAsta = baseAsta;
 		this.prezzoRiserva = prezzoRiserva;
 		this.prezzoCorrente = prezzoCorrente;
+	}
+
+	public int getIdAsta() {
+		return idAsta;
+	}
+
+	public void setIdAsta(int idAsta) {
+		this.idAsta = idAsta;
 	}
 
 	public Date getDataInizio() {
