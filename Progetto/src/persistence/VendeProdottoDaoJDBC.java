@@ -186,7 +186,25 @@ public class VendeProdottoDaoJDBC implements VendeProdottoDAO {
 				throw new PersistenceException(e.getMessage());
 			}
 		}
-
+		cleanVendite();
 	}
 
+	@Override
+	public void cleanVendite() {
+		Connection connection = this.dataSource.getConnection();
+		try {
+			PreparedStatement statement;
+			String query = "delete from Vende where Quantita=0";
+			statement = connection.prepareStatement(query);
+			statement.executeUpdate();
+		} catch (Exception e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (Exception e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+	}
 }

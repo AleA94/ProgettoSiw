@@ -17,6 +17,7 @@ import org.json.JSONObject;
 
 import DAO.AcquistaDao;
 import DAO.CarrelloProdottoDAO;
+import DAO.VendeProdottoDAO;
 import data.Acquisto;
 import data.CarrelloItem;
 import data.Utente;
@@ -30,6 +31,7 @@ public class Carrello extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private CarrelloProdottoDAO d = MySQLDaoFactory.getDAOFactory().getCarrelloProdottoDAO();
 	private AcquistaDao acquisti = MySQLDaoFactory.getDAOFactory().getAcquistaDAO();
+	private VendeProdottoDAO vende = MySQLDaoFactory.getDAOFactory().getVendeProdottoDAO();
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -85,6 +87,7 @@ public class Carrello extends HttpServlet {
 				JSONObject o = new JSONObject(request.getParameter("buyNow"));
 				Acquisto a = new Acquisto(o.getInt("id"), o.getInt("qt"), mail, new Date());
 				acquisti.save(a);
+				vende.updateQuantity(o.getInt("qt"), o.getInt("id"));
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

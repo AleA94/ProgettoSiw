@@ -16,4 +16,6 @@ public interface VendeProdottoDAO {
 	public void edit(VendeProdotto vende);
 
 	public void updateQuantity(int qty, int id);
+
+	public void cleanVendite();
 }

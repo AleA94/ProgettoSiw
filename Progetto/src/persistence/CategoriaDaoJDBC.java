@@ -71,4 +71,32 @@ public class CategoriaDaoJDBC implements CategoriaDAO {
 		return categorie;
 	}
 
+	@Override
+	public List<Categoria> getSubbyMacro(int macro) {
+		Connection connection = this.dataSource.getConnection();
+		List<Categoria> categorie = new ArrayList<Categoria>();
+		try {
+			PreparedStatement statement;
+			String query = "select * FROM Categoria where sottocategoria=?";
+			statement = connection.prepareStatement(query);
+			statement.setInt(1, macro);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				Categoria c = new Categoria();
+				c.setId(result.getInt("idCategoria"));
+				c.setNome(result.getString("Nome"));
+				categorie.add(c);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return categorie;
+	}
+
 }

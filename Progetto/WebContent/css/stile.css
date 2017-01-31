@@ -12,6 +12,14 @@ body {
 	color:black;
 }
 
+.padding{
+	padding-left:20px;
+}
+
+.product-description{
+	max-width: 250px;
+}
+
 .num{
 	width: 50px;
 }
