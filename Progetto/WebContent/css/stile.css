@@ -12,6 +12,12 @@ body {
 	color:black;
 }
 
+.padding{
+	padding-left:20px;
+}
+
+
+
 .num{
 	width: 50px;
 }

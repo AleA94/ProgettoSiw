@@ -8,4 +8,6 @@ public interface CategoriaDAO {
 	public List<Categoria> getMacroCategorie();
 
 	public List<Categoria> getSottoCategorie();
+
+	public List<Categoria> getSubbyMacro(int macro);
 }

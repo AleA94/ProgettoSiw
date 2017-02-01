@@ -7,20 +7,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.taglibs.standard.tag.common.sql.ResultImpl;
-
 import DAO.VendeProdottoAstaDAO;
-import data.Asta;
 import data.Prodotto;
 import data.VendeProdottoAsta;
 
-public class VendeProdottoAstaJDBC implements VendeProdottoAstaDAO{
+public class VendeProdottoAstaJDBC implements VendeProdottoAstaDAO {
 	DataSource dataSource;
 
 	public VendeProdottoAstaJDBC(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
-	
+
 	@Override
 	public List<VendeProdottoAsta> findProdotto(String nameProduct) {
 		Connection connection = this.dataSource.getConnection();
@@ -45,6 +42,7 @@ public class VendeProdottoAstaJDBC implements VendeProdottoAstaDAO{
 				prodotto.setPrezzo(result.getFloat("Prezzo"));
 				prodotto.setIdCategoria(result.getInt("idCategoria"));
 				prodotto.setImmagine(result.getString("ImmaginePrincipale"));
+				p.setQuantita(result.getInt("Quantita"));
 				p.setProdotto(prodotto);
 				prodotti.add(p);
 			}
@@ -83,6 +81,7 @@ public class VendeProdottoAstaJDBC implements VendeProdottoAstaDAO{
 				prodotto.setPrezzo(result.getFloat("Prezzo"));
 				prodotto.setIdCategoria(result.getInt("idCategoria"));
 				prodotto.setImmagine(result.getString("ImmaginePrincipale"));
+				p.setQuantita(result.getInt("Quantita"));
 				if (result.getString("ImmaginiAggiuntive") != null)
 					prodotto.setImmaginiAggiuntive(result.getString("ImmaginiAggiuntive").split(";"));
 				p.setProdotto(prodotto);
@@ -124,6 +123,7 @@ public class VendeProdottoAstaJDBC implements VendeProdottoAstaDAO{
 				prodotto.setPrezzo(result.getFloat("Prezzo"));
 				prodotto.setIdCategoria(result.getInt("idCategoria"));
 				prodotto.setImmagine(result.getString("ImmaginePrincipale"));
+				p.setQuantita(result.getInt("Quantita"));
 				p.setProdotto(prodotto);
 				prodotti.add(p);
 			}
@@ -138,5 +138,96 @@ public class VendeProdottoAstaJDBC implements VendeProdottoAstaDAO{
 		}
 		return prodotti;
 	}
-	
+
+	@Override
+	public List<VendeProdottoAsta> getProdottiByCategoriaAndOrder(String nomeProdotto, List<String> categorie,
+			String orderBy) {
+		Connection connection = this.dataSource.getConnection();
+		List<VendeProdottoAsta> prodotti = new ArrayList<VendeProdottoAsta>();
+		try {
+			PreparedStatement statement;
+			String query = "select * From Vende v inner join Prodotto p on v.idProdotto=p.idProdotto LEFT JOIN asta a on p.idProdotto=a.id_prodotto where p.nome like ? Order by "
+					+ orderBy;
+			statement = connection.prepareStatement(query);
+			if (nomeProdotto != null)
+				statement.setString(1, "%" + nomeProdotto + "%");
+			else
+				statement.setString(1, "%%");
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				if (categorie.contains(result.getString("idCategoria"))) {
+					Prodotto prodotto = new Prodotto();
+					VendeProdottoAsta p = new VendeProdottoAsta();
+					p.setIdProdotto(result.getInt("idProdotto"));
+					p.setDataInizio(result.getDate("data_inizio"));
+					p.setDataFine(result.getDate("data_fine"));
+					p.setBaseAsta(result.getFloat("base_asta"));
+					p.setPrezzoCorrente(result.getFloat("prezzoCorrente"));
+					prodotto.setNome(result.getString("Nome"));
+					prodotto.setDescrizione(result.getString("Descrizione"));
+					prodotto.setInAsta(result.getInt("inAsta"));
+					prodotto.setPrezzo(result.getFloat("Prezzo"));
+					prodotto.setIdCategoria(result.getInt("idCategoria"));
+					prodotto.setImmagine(result.getString("ImmaginePrincipale"));
+					p.setQuantita(result.getInt("Quantita"));
+					p.setProdotto(prodotto);
+					prodotti.add(p);
+				}
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return prodotti;
+	}
+
+	@Override
+	public List<VendeProdottoAsta> getProdottiOrdered(String nomeProdotto, String orderBy) {
+		Connection connection = this.dataSource.getConnection();
+		List<VendeProdottoAsta> prodotti = new ArrayList<VendeProdottoAsta>();
+		try {
+			PreparedStatement statement;
+			String query = "select * From Vende v inner join Prodotto p on v.idProdotto=p.idProdotto LEFT JOIN asta a on p.idProdotto=a.id_prodotto where p.nome like ? Order by "
+					+ orderBy;
+			statement = connection.prepareStatement(query);
+			if (nomeProdotto != null)
+				statement.setString(1, "%" + nomeProdotto + "%");
+			else
+				statement.setString(1, "%%");
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				Prodotto prodotto = new Prodotto();
+				VendeProdottoAsta p = new VendeProdottoAsta();
+				p.setIdProdotto(result.getInt("idProdotto"));
+				p.setDataInizio(result.getDate("data_inizio"));
+				p.setDataFine(result.getDate("data_fine"));
+				p.setBaseAsta(result.getFloat("base_asta"));
+				p.setPrezzoCorrente(result.getFloat("prezzoCorrente"));
+				prodotto.setNome(result.getString("Nome"));
+				prodotto.setDescrizione(result.getString("Descrizione"));
+				prodotto.setInAsta(result.getInt("inAsta"));
+				prodotto.setPrezzo(result.getFloat("Prezzo"));
+				prodotto.setIdCategoria(result.getInt("idCategoria"));
+				prodotto.setImmagine(result.getString("ImmaginePrincipale"));
+				p.setQuantita(result.getInt("Quantita"));
+				p.setProdotto(prodotto);
+				prodotti.add(p);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return prodotti;
+	}
+
 }

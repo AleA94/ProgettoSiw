@@ -52,17 +52,18 @@
 									<div class="details col-md-6">
 
 										<h3 class="product-title">${prodotto.getProdotto().nome}</h3>
-										<p class="product-description">>${prodotto.getProdotto().descrizione}</p>
-
+										<h4 class="price">Descrizione:</h4>
+										${prodotto.getProdotto().descrizione}
+									
 										<h4 class="price">
-											current price: <span>>${prodotto.getProdotto().prezzo}
-												&euro;</span>
+											Prezzo: <span>${prodotto.getProdotto().prezzo} &euro;</span>
+										</h4>
+										<h4>
+											Quantit&agrave;: <input type="number" max="${prodotto.quantita}" class="num" min="1" value="${prodotto.quantita}">
 										</h4>
 										<div class="action">
-											<button class="add-to-cart btn btn-default" type="button">add
-												to cart</button>
-											<br> <br>
-
+											<p><input class="add-to-cart btn btn-default" on="${prodotto.idProdotto}" type="submit" value="Aggiungi al Carrello"/></p>
+											<p><input class="buy-now btn btn-default" on="${prodotto.idProdotto}" type="submit" value="Compralo Subito"/></p>
 										</div>
 									</div>
 								</c:when>
@@ -70,18 +71,15 @@
 									<div class="details col-md-6">
 
 										<h3 class="product-title">${prodotto.getProdotto().nome}</h3>
-										<p class="product-description">>${prodotto.getProdotto().descrizione}</p>
-										<p class="product-description">${prodotto.dataInizio}</p>
-										<p class="product-description">${prodotto.dataFine}</p>
+										<span>${prodotto.getProdotto().descrizione}</span>
+										<h4 class="price">Data Inizio: <span>${prodotto.dataInizio}</span></h4>
+										<h4 class="price">Data Fine: <span>${prodotto.dataFine}</span></h4>
 										<h4 class="price">
 											current price: <span>>${prodotto.getProdotto().inAsta}
 												&euro;</span>
 										</h4>
 										<div class="action">
-											<button class="add-to-cart btn btn-default" type="button">add
-												to cart</button>
-											<br> <br>
-											<button class="add-to-cart btn btn-default" type="button">Fai
+											<button class="btn btn-default" type="button">Fai
 												un'offerta</button>
 
 										</div>
@@ -95,4 +93,5 @@
 		</div>
 	</div>
 </body>
+<script src="js/Search.js"></script>
 </html>

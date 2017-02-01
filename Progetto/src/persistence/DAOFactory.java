@@ -6,6 +6,7 @@ import DAO.AstaDAO;
 import DAO.AstaProdottoDAO;
 import DAO.CarrelloProdottoDAO;
 import DAO.CategoriaDAO;
+import DAO.NegozioDAO;
 import DAO.NotificaDAO;
 import DAO.OffertaDao;
 import DAO.OffertaVeloceDao;
@@ -50,4 +51,6 @@ public abstract class DAOFactory {
 	public abstract WishlistProdottoDAO getWishlistProdottoDAO();
 
 	public abstract NotificaDAO getNotificaDao();
+
+	public abstract NegozioDAO getNegozioDAO();
 }

@@ -6,6 +6,7 @@ import DAO.AstaDAO;
 import DAO.AstaProdottoDAO;
 import DAO.CarrelloProdottoDAO;
 import DAO.CategoriaDAO;
+import DAO.NegozioDAO;
 import DAO.NotificaDAO;
 import DAO.OffertaDao;
 import DAO.ProdottoDAO;
@@ -102,6 +103,11 @@ public class MySQLDaoFactory extends DAOFactory {
 	@Override
 	public VendeProdottoAstaDAO getVendeProdottoAstaDAO() {
 		return new VendeProdottoAstaJDBC(dataSource);
+	}
+
+	@Override
+	public NegozioDAO getNegozioDAO() {
+		return new NegozioDaoJDBC(dataSource);
 	}
 
 }

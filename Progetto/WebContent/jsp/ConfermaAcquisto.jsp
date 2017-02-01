@@ -28,7 +28,7 @@
 				<c:forEach var="p" items="${daAcquistare}">
 					<tr>
 					<input name="id" type="hidden" value="${p.prodotto.idProdotto }">
-						<td><img class="pic" src="immagini/categorie/Elettronica.jpg"></td>
+						<td><img class="pic" src="${p.prodotto.immagine}"></td>
 						<td>${p.prodotto.nome}</td>
 						<td>${p.prodotto.descrizione}</td>
 						<td>${p.prodotto.prezzo}&euro;</td>

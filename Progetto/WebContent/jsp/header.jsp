@@ -93,12 +93,17 @@
 					style="display: none;">
 					<div class="modal-dialog">
 						<div class="loginmodal-container">
-							<h1>Registrati sul nostro sito</h1>
-							<br> <input type="text" id="Rmail" placeholder="Email">
+							<p>
+								<h1>Registrati sul nostro sito</h1>
+							<p>
+							<input type="text" id="Rmail" placeholder="Email">
 							<input type="text" id="Rnome" placeholder="Nome"> <input
 								type="text" id="Rcogn" placeholder="Cognome"> <input
 								type="text" id="Raddr" placeholder="Indirizzo"> <input
-								type="password" id="Rpass" placeholder="password"> <input
+								type="password" id="Rpass" placeholder="Password">
+								<input type="checkbox" id="RVend" value=1> Venditore
+								<input type=text placeholder="Nome Negozio" id="nomeNegozio" class=disappear>
+								 <input
 								type="submit" id="register" class="login loginmodal-submit"
 								value="Registrati">
 						</div>

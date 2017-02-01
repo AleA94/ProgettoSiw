@@ -118,7 +118,6 @@ public class CarrelloProdottoDaoJDBC implements CarrelloProdottoDAO {
 				throw new PersistenceException(e.getMessage());
 			}
 		}
-
 	}
 
 	@Override
