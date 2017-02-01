@@ -15,6 +15,6 @@ public interface ProdottoDAO {
 
 	public void edit(Prodotto p);
 
-	
+	public void UpdatePrice(int idProduct, float newPrice);
 
 }

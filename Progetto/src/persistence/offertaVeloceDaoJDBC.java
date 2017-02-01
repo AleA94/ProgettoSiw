@@ -18,6 +18,7 @@ public class offertaVeloceDaoJDBC implements OffertaVeloceDao {
 	public void insertOfferta(String emaiUtente, float offerta, float offertaMax, String idAsta) {
 		Connection connection = this.dataSource.getConnection();
 		try {
+			System.out.println(offertaMax);
 			String insert = "insert into offerta (email_utente, asta, importo,offerta_max) values (?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setString(1, emaiUtente);

@@ -2,9 +2,10 @@ package data;
 
 public class AstaProdotto {
 	Integer idCategoriaProdotto, idAsta, idProdotto, tempoInizioAsta, tempoFineAsta;
-	float baseAsta, prezzoRiserva, prezzoProdotto, prezzoCorrente;
+	float baseAsta, prezzoRiserva, prezzoProdotto;
 	String urlImg;
 	String DataFineAsta, DataInizioAsta, NomeProdotto, descrizioneProdotto, Negozio;
+	int prezzoCorrente;
 
 	public String getUrlImg() {
 		return urlImg;
@@ -14,11 +15,11 @@ public class AstaProdotto {
 		this.urlImg = urlImg;
 	}
 
-	public float getPrezzoCorrente() {
+	public int getPrezzoCorrente() {
 		return prezzoCorrente;
 	}
 
-	public void setPrezzoCorrente(float prezzoCorrente) {
+	public void setPrezzoCorrente(int prezzoCorrente) {
 		this.prezzoCorrente = prezzoCorrente;
 	}
 

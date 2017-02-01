@@ -76,10 +76,12 @@ public class Asta extends HttpServlet {
 
 				OffertaDao offerta_m = MySQLDaoFactory.getDAOFactory().getOfferta();
 				Offerta offertaMax = offerta_m.getOffertaMax(7);
+
 				float offMax;
 				if (!(request.getParameter("offMax")).toString().equals("null"))
 					offMax = Float.parseFloat((request.getParameter("offMax")));
 				else {
+					System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
 					offMax = Float.parseFloat(request.getParameter("off"));
 				}
 

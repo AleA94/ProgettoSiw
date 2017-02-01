@@ -76,8 +76,6 @@ public class ProdottoDaoJDBC implements ProdottoDAO {
 		return prodotti;
 	}
 
-	
-
 	@Override
 	public void removeById(int id) {
 		Connection connection = this.dataSource.getConnection();
@@ -164,6 +162,28 @@ public class ProdottoDaoJDBC implements ProdottoDAO {
 			}
 		}
 
+	}
+
+	@Override
+	public void UpdatePrice(int idProduct, float newPrice) {
+		Connection connection = this.dataSource.getConnection();
+		try {
+			String update = "update Prodotto Set Prezzo=? where idProdotto=?";
+			PreparedStatement statement = connection.prepareStatement(update);
+			statement.setFloat(1, newPrice);
+			statement.setFloat(2, idProduct);
+
+			statement.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
 	}
 
 }

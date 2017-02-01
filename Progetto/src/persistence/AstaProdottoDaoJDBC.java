@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import DAO.AstaProdottoDAO;
+import DAO.ProdottoDAO;
 import data.AstaProdotto;
 
 public class AstaProdottoDaoJDBC implements AstaProdottoDAO {
@@ -37,7 +38,7 @@ public class AstaProdottoDaoJDBC implements AstaProdottoDAO {
 			statement = connection.prepareStatement(queryScadenzaOggi);
 			statement.executeQuery();
 
-			queryScadenzaOggi = "SELECT asta.id, Nome,Descrizione,prezzoCorrente,data_fine,data_inizio,idProdotto,ImmaginePrincipale FROM asta , Prodotto where asta.id_prodotto=Prodotto.idProdotto and data_fine>=current_timestamp() and data_fine<=DATE_ADD(current_timestamp(),INTERVAL  @tot hour)";
+			queryScadenzaOggi = "SELECT asta.id, Nome,Descrizione,id_prodotto,prezzoCorrente,data_fine,data_inizio,idProdotto,ImmaginePrincipale FROM asta , Prodotto where asta.id_prodotto=Prodotto.idProdotto and data_fine>=current_timestamp() and data_fine<=DATE_ADD(current_timestamp(),INTERVAL  @tot hour)";
 			statement = connection.prepareStatement(queryScadenzaOggi);
 			statement.executeQuery();
 
@@ -47,11 +48,11 @@ public class AstaProdottoDaoJDBC implements AstaProdottoDAO {
 				a.setIdAsta(result.getInt("id"));
 				a.setNomeProdotto(result.getString("Nome"));
 				a.setDescrizioneProdotto(result.getString("Descrizione"));
-				a.setPrezzoCorrente(result.getFloat("prezzoCorrente"));
+				a.setPrezzoCorrente(result.getInt("prezzoCorrente"));
 				a.setUrlImg(result.getString("ImmaginePrincipale"));
 				a.setDataFineAsta(result.getString("data_fine"));
 				a.setDataInizioAsta(result.getString("data_inizio"));
-
+				a.setIdProdotto(result.getInt("id_prodotto"));
 				aste.add(a);
 			}
 		} catch (Exception e) {
@@ -81,11 +82,24 @@ public class AstaProdottoDaoJDBC implements AstaProdottoDAO {
 			throw new PersistenceException(e.getMessage());
 		} finally {
 			try {
+				String idProduct = "select id_prodotto from asta where id=?";
+				PreparedStatement stat = connection.prepareStatement(idProduct);
+				stat.setInt(1, idAsta);
+
+				stat.executeQuery();
+
+				ResultSet result = stat.executeQuery();
+				while (result.next()) {
+					ProdottoDAO prodotto = MySQLDaoFactory.getDAOFactory().getProdottoDao();
+					prodotto.UpdatePrice(result.getInt("id_prodotto"), prezzoCorrente);
+				}
 				connection.close();
 			} catch (SQLException e) {
 				throw new PersistenceException(e.getMessage());
 			}
+
 		}
+
 	}
 
 }
