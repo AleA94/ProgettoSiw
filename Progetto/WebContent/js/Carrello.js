@@ -19,7 +19,7 @@ $(document).ready(function(){
 				if(data=="false"){
 					window.location.href = href+q;
 				}else{
-					alert('la quantità selezionata non è più disponibile');
+					alert('la quantit&#224; selezionata non &#232; pi&#249; disponibile');
 				}
 			},
 			fail : function() {
