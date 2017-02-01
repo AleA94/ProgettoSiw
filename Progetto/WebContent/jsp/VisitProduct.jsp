@@ -75,13 +75,14 @@
 										<h4 class="price">Data Inizio: <span>${prodotto.dataInizio}</span></h4>
 										<h4 class="price">Data Fine: <span>${prodotto.dataFine}</span></h4>
 										<h4 class="price">
-											current price: <span>>${prodotto.getProdotto().inAsta}
-												&euro;</span>
+											current price: <span>${prodotto.prezzoCorrente}
+												</span>&euro;
 										</h4>
 										<div class="action">
-											<button class="btn btn-default" type="button">Fai
-												un'offerta</button>
-
+											<p>
+											<button id="faiUnOfferta" on="${prodotto.idAsta}" class="make-offer btn btn-default" type="button" >fai un offerta</button>
+											<input type="text" id="offertaMassima" placeholder="${prodotto.prezzoCorrente+1}">
+											</p>
 										</div>
 									</div>
 								</c:when>

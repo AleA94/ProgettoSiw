@@ -2,8 +2,33 @@ $(document).ready(function(){
 	$('.remove').click(rimuovi);
 	$('.buy').click(function(e){
 		e.preventDefault();
-		$(this).attr('href',$(this).attr('href')+$(this).parent().prev().children().first().val())
-		window.location.href = $(this).attr('href');
+		
+		var href=$(this).attr('href');
+		var q=$(this).parent().prev().children().first().val();
+		$.ajax({
+			type : "POST",
+			url : "Carrello",
+			datatype : "json",
+			mimeType: "textPlain",
+			data : {
+				idQuantity : $(this).attr('on'),
+				quantity:q,
+			},
+			success : function(data) {
+				console.log(data);
+				if(data=="false"){
+					window.location.href = href+q;
+				}else{
+					alert('la quantità selezionata non è più disponibile');
+				}
+			},
+			fail : function() {
+				alert('niente');
+			}
+		});
+		
+		
+		
 	});
 })
 

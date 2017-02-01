@@ -26,9 +26,7 @@
 					<th>Descrizione</th>
 					<th>Prezzo Unitario</th>
 					<th>in Asta</th>
-					<th>Quantità</th>
-					<th>Aggiungi in Carrello</th>
-					<th>Compra Subito</th>
+					<th>Visita pagina prodotto</th>
 					<th>Rimuovi</th>
 				</tr>
 			</thead>
@@ -50,13 +48,7 @@
 								<td>No</td>
 							</c:otherwise>				
 						</c:choose>
-						<td>
-						<c:if test="${p.quantita ne 0}">
-							<input class="num" name="qts" type="number" min="1" max="${p.quantita}" value="${p.quantita}"/>
-						</c:if>
-						</td>
-						<td><c:if test="${p.prodotto.inAsta ne 1}"><a on="${p.prodotto.idProdotto}" href="#" class="addCart"><span class="glyphicon glyphicon-shopping-cart"></span></a></c:if></td>
-						<td><c:if test="${p.prodotto.inAsta ne 1}"><a on="${p.prodotto.idProdotto}" href="#" class="buy"><span class="glyphicon glyphicon-edit"></span></a></c:if></td>
+						<td><a href="<%=request.getContextPath()%>/VisitProduct?idProdotto=${p.prodotto.idProdotto}" title="visita pagina"><span class="glyphicon glyphicon-edit"></span></a></td>
 						<td><a class="remove" on="${p.prodotto.idProdotto}" href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
 					</tr>
 				</c:forEach>

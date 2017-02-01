@@ -104,25 +104,26 @@ public class ProfileManager extends HttpServlet {
 			include(request, response, "/Carrello");
 
 			Utente u = (Utente) request.getSession().getAttribute("account");
-			System.out.println("asd");
 			try {
 				JSONObject o = new JSONObject(request.getParameter("buyNow"));
 				w.removeItem(u.getEmail(), o.getInt("id"));
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
+		} else if (request.getParameter("wishlist") != null) {
+			try {
+				JSONObject o = new JSONObject(request.getParameter("wishlist"));
+				Utente u = (Utente) request.getSession().getAttribute("account");
+				w.add(u.getEmail(), o.getInt("id"), o.getInt("qt"));
+
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else if (request.getParameter("action") != null) {
 			if (request.getParameter("action").equals("buyNowAll")) {
 				include(request, response, "/Carrello");
 
-				Utente u = (Utente) request.getSession().getAttribute("account");
-				String[] ids = request.getParameterValues("id");
-				String[] qts = request.getParameterValues("qts");
-				for (int i = 0; i < ids.length; i++) {
-					int id = Integer.parseInt(ids[i]);
-					w.setQuantityAfterBuy(Integer.parseInt(qts[i]), id, u.getEmail());
-				}
-				w.cleanWish(u.getEmail());
 				response.sendRedirect(request.getContextPath() + "/ProfileManager?action=wish");
 			}
 		}

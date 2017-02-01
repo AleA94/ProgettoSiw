@@ -18,4 +18,6 @@ public interface VendeProdottoDAO {
 	public void updateQuantity(int qty, int id);
 
 	public void cleanVendite();
+
+	public int getQuantitybyProduct(int id);
 }

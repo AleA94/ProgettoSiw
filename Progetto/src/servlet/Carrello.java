@@ -93,6 +93,13 @@ public class Carrello extends HttpServlet {
 				e.printStackTrace();
 			}
 
+		} else if (request.getParameter("idQuantity") != null) {
+			int n = vende.getQuantitybyProduct(Integer.parseInt(request.getParameter("idQuantity")));
+			if (n < Integer.parseInt(request.getParameter("quantity")))
+				response.getWriter().print(true);
+			else
+				response.getWriter().print(false);
+
 		} else if (request.getParameter("action") != null) {
 			if (request.getParameter("action").equals("confirmAll")) {
 				String mail = ((Utente) request.getSession().getAttribute("account")).getEmail();

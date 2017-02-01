@@ -51,4 +51,117 @@ $(document).ready(function(){
 			})
 		}
 	});
+	
+	$('.add-to-wish').click(function(e){
+		e.preventDefault();
+		if($('#user').hasClass('disappear')){
+			alert('devi effettuare il login prima di poter aggiungere un prodotto alla wishlist oppure registrati');
+		}else{
+			var product={
+					id:$(this).attr('on'),
+					qt:$(this).parent().parent().prev().children().val()
+			}
+			$.ajax({
+				type : "POST",
+				url : "ProfileManager",
+				datatype : "json",
+				data : {
+					wishlist : JSON.stringify(product),
+				},
+				success : function(data) {
+					alert('il prodotto \xE8 stato inserito con successo nella wishlist');
+				},
+				fail : function() {
+					alert('niente');
+				}
+			})
+			
+		}
+	});
+	
+	$('.make-offer').click(function(){
+		var prezzoCorrente=$(this).parent().parent().prev().children();
+		var offertaMassima=$(this).next();
+		if(prezzoCorrente.text()>offertaMassima.val())
+			alert('l\'offerta massima deve essere maggiore dell\'importo corrente');
+		else{
+			offertaLampo($(this).attr('on'),prezzoCorrente,offertaMassima.val());
+		}
+		
+	});
+	
+	
+	function aggiornaAsta(idAsta,prezzoCorrente){
+		$.ajax({
+			type : "GET",
+			url : "Asta",
+			datatype : "json",
+			data :
+			{
+				aggiorna : idAsta,
+			},
+			success : function(data){
+				var prodotto=JSON.parse(data);
+				prezzoCorrente.text(prodotto.prezzoCorrente);
+			},
+			fail : function()
+			{
+			alert('niente');
+			}
+		});
+	}
+	
+	function offertaLampo(idasta,prezzoCorr,offertaMassima){
+	if ($('#user').hasClass('disappear')){
+		alert('devi effettuare il login prima di poter effettuare un offerta');
+	}else{
+		var prezzoCorrente = parseInt(prezzoCorr.text());
+		var offerta = parseInt(prezzoCorrente) + 1;
+		var offertaMax;
+		if (offertaMassima != "")
+		{
+			offertaMax = parseInt(offertaMassima);
+		}
+		else
+			offertaMax = prezzoCorrente + 1;
+		
+		console.log(offerta);
+		$.ajax(
+		{
+			type : "GET",
+			url : "Asta",
+			datatype : "json",
+			data :
+			{
+				asta : idasta,
+				prezzoCor : prezzoCorrente,
+				off : offerta,
+				offMax : offertaMax
+			},
+			success : function(data){
+
+			if (data == "attualeVincitore")
+			{
+				alert('sei il vincitore attuale');
+
+			}
+			else if (data == "OffertaMaxBassa")
+			{
+				alert('la tua offerta \u00e9 stata superata');
+
+			}
+			else if (data == "OffertaMaxMinoreImporto")
+			{
+				alert('offerta massima minore dell\' importo offerto');
+
+			}
+			aggiornaAsta(idasta,prezzoCorr);
+			},
+			fail : function()
+			{
+			alert('niente');
+			}
+		});
+		}
+	};
 })

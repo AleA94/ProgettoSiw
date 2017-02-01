@@ -64,6 +64,14 @@ function register() {
 		success : function(data) {
 			alert('registrazione completata con successo');
 			$('#register-modal').modal('hide');
+			$('#Rmail').val('');
+			$('#Rpass').val('');
+			$('#Rnome').val('');
+			$('#Rcogn').val('');
+			$('#Raddr').val('');
+			$('#RVend').prop('checked', false); 
+			$('#nomeNegozio').val('');
+			$('#nomeNegozio').toggleClass('disappear');
 		},
 		fail : function() {
 			alert('niente');

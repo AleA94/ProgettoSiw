@@ -207,4 +207,29 @@ public class VendeProdottoDaoJDBC implements VendeProdottoDAO {
 			}
 		}
 	}
+
+	@Override
+	public int getQuantitybyProduct(int id) {
+		Connection connection = this.dataSource.getConnection();
+		int n = 0;
+		try {
+			PreparedStatement statement;
+			String query = "select Quantita From Vende where idProdotto=?";
+			statement = connection.prepareStatement(query);
+			statement.setInt(1, id);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				n = result.getInt("Quantita");
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return n;
+	}
 }

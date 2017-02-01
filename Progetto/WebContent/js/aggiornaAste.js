@@ -17,9 +17,15 @@ console.log($('#sliderOre').val())
 
 $(document).on('click', '.add-to-cart', function()
 {
-offertaLampo($(this).attr('on'), $('#sliderGiorni').val(), $('#sliderOre').val())
+	var prezzoCorrente = $(this).parent().prev().children().text();
+	var offerta = parseInt(prezzoCorrente)+1;
+	var offertaMax=$(this).next().val();
+	if(prezzoCorrente>offertaMax)
+		alert('l\'offerta massima deve essere maggiore dell\'importo corrente');
+	else{
+		offertaLampo($(this).attr('on'), $('#sliderGiorni').val(), $('#sliderOre').val(),prezzoCorrente,offerta,offertaMax)
+}
 
-console.log("fsdfs")
 })
 
 function cambioData(value, value1)
@@ -101,7 +107,7 @@ $.ajax(
 
 }
 
-function offertaLampo(idasta, value, value1)
+function offertaLampo(idasta, value, value1,prezzoCorrente,offerta,offertaMax)
 {
 if ($('#user').hasClass('disappear'))
 {
@@ -109,16 +115,8 @@ if ($('#user').hasClass('disappear'))
 }
 else
 {
-	var prezzoCorrente = parseInt($("#prezzoCorr").text());
-	var offerta = parseInt($("#prezzoCorr").text()) + 1;
-	var offertaMax;
-	if ($("#offertaMassima").val() != "")
-	{
-		offertaMax = parseInt($("#offertaMassima").val());
-		console.log(offertaMax)
-	}
-	else
-		offertaMax = prezzoCorrente + 1;
+	if (offertaMax == "")
+		offertaMax = parseInt(prezzoCorrente) + 1;
 	$.ajax(
 	{
 		type : "GET",

@@ -43,6 +43,7 @@ public class VendeProdottoAstaJDBC implements VendeProdottoAstaDAO {
 				prodotto.setIdCategoria(result.getInt("idCategoria"));
 				prodotto.setImmagine(result.getString("ImmaginePrincipale"));
 				p.setQuantita(result.getInt("Quantita"));
+				p.setIdAsta(result.getInt("id"));
 				p.setProdotto(prodotto);
 				prodotti.add(p);
 			}
@@ -82,6 +83,7 @@ public class VendeProdottoAstaJDBC implements VendeProdottoAstaDAO {
 				prodotto.setIdCategoria(result.getInt("idCategoria"));
 				prodotto.setImmagine(result.getString("ImmaginePrincipale"));
 				p.setQuantita(result.getInt("Quantita"));
+				p.setIdAsta(result.getInt("id"));
 				if (result.getString("ImmaginiAggiuntive") != null)
 					prodotto.setImmaginiAggiuntive(result.getString("ImmaginiAggiuntive").split(";"));
 				p.setProdotto(prodotto);
@@ -123,6 +125,7 @@ public class VendeProdottoAstaJDBC implements VendeProdottoAstaDAO {
 				prodotto.setPrezzo(result.getFloat("Prezzo"));
 				prodotto.setIdCategoria(result.getInt("idCategoria"));
 				prodotto.setImmagine(result.getString("ImmaginePrincipale"));
+				p.setIdAsta(result.getInt("id"));
 				p.setQuantita(result.getInt("Quantita"));
 				p.setProdotto(prodotto);
 				prodotti.add(p);
@@ -171,6 +174,7 @@ public class VendeProdottoAstaJDBC implements VendeProdottoAstaDAO {
 					prodotto.setImmagine(result.getString("ImmaginePrincipale"));
 					p.setQuantita(result.getInt("Quantita"));
 					p.setProdotto(prodotto);
+					p.setIdAsta(result.getInt("id"));
 					prodotti.add(p);
 				}
 			}
@@ -215,6 +219,7 @@ public class VendeProdottoAstaJDBC implements VendeProdottoAstaDAO {
 				prodotto.setIdCategoria(result.getInt("idCategoria"));
 				prodotto.setImmagine(result.getString("ImmaginePrincipale"));
 				p.setQuantita(result.getInt("Quantita"));
+				p.setIdAsta(result.getInt("id"));
 				p.setProdotto(prodotto);
 				prodotti.add(p);
 			}

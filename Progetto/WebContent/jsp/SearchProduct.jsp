@@ -75,6 +75,7 @@
 									<div class="action">
 										<p><input class="add-to-cart btn btn-default" on="${i.idProdotto}" type="submit" value="Aggiungi al Carrello"/></p>
 										<p><input class="buy-now btn btn-default" on="${i.idProdotto}" type="submit" value="Compralo Subito"/></p>
+										<p><input class="add-to-wish btn btn-default" on="${i.idProdotto}" type="submit" value="aggiungi alla wishlist"/></p>
 										<p>
 										<form action="VisitProduct" name="myForm">
 											<input type="hidden" name="idProdotto" value="${i.idProdotto}">  
@@ -93,11 +94,13 @@
 									<h4 class="price">Data Inizio: <span>${i.dataInizio}</span></h4>
 									<h4 class="price">Data Fine: <span>${i.dataFine}</span></h4>
 									<h4 class="price">
-										current price: <span>${i.prezzoCorrente} &euro;</span>
+										current price: <span>${i.prezzoCorrente}</span>&euro;
 									</h4>
 									<div class="action">
-										<button class="btn btn-default" type="button">Fai un'offerta</button>
-										<br> <br>
+										<p>
+											<button id="faiUnOfferta" on="${i.idAsta}" class="make-offer btn btn-default" type="button" >fai un offerta</button>
+											<input type="text" id="offertaMassima" placeholder="${i.prezzoCorrente+1}">
+										</p>
 										<form action="VisitProduct" name="myForm">
 										<input type="hidden" name="idProdotto" value="${i.idProdotto}">  
 										<button  class="btn btn-default" type="submit" >visita

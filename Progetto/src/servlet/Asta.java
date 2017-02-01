@@ -13,6 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import DAO.AstaDAO;
 import DAO.AstaProdottoDAO;
 import DAO.OffertaDao;
 import DAO.OffertaVeloceDao;
@@ -75,15 +76,9 @@ public class Asta extends HttpServlet {
 				OffertaVeloceDao offerta = MySQLDaoFactory.getDAOFactory().getOffertaVeloceDao();
 
 				OffertaDao offerta_m = MySQLDaoFactory.getDAOFactory().getOfferta();
-				Offerta offertaMax = offerta_m.getOffertaMax(7);
+				Offerta offertaMax = offerta_m.getOffertaMax(Integer.parseInt(request.getParameter("asta")));
 
-				float offMax;
-				if (!(request.getParameter("offMax")).toString().equals("null"))
-					offMax = Float.parseFloat((request.getParameter("offMax")));
-				else {
-					System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
-					offMax = Float.parseFloat(request.getParameter("off"));
-				}
+				float offMax = Float.parseFloat((request.getParameter("offMax")));
 
 				if (Float.parseFloat(request.getParameter("off")) > offertaMax.getOfferta_max()) {
 					asteProd.updateAsta(Integer.parseInt(request.getParameter("asta")),
@@ -100,19 +95,30 @@ public class Asta extends HttpServlet {
 							(offertaMax.getOfferta_max() + 1), offMax, request.getParameter("asta"));
 					response.getWriter().print("attualeVincitore");
 
-				}
-
-				else if (offMax > offertaMax.getImporto()) {
+				} else if (offMax == offertaMax.getOfferta_max()) {
+					System.out.println("entro qui");
+					asteProd.updateAsta(Integer.parseInt(request.getParameter("asta")), offMax);
+					offerta.insertOfferta(offertaMax.getEmail_utente(), offMax, offertaMax.getOfferta_max(),
+							request.getParameter("asta"));
+					response.getWriter().print("OffertaMaxBassa");
+				} else if (offMax > offertaMax.getImporto()) {
 
 					asteProd.updateAsta(Integer.parseInt(request.getParameter("asta")), offMax + 1);
 					offerta.insertOfferta(offertaMax.getEmail_utente(), offMax + 1, offertaMax.getOfferta_max(),
 							request.getParameter("asta"));
 					response.getWriter().print("OffertaMaxBassa");
 
-				} else {
+				}
+
+				else {
 					response.getWriter().print("OffertaMaxMinoreImporto");
 
 				}
+			} else if (request.getParameter("aggiorna") != null) {
+				int id = Integer.parseInt(request.getParameter("aggiorna"));
+				AstaDAO a = MySQLDaoFactory.getDAOFactory().getAstaDao();
+				JSONObject asta = new JSONObject(a.getAsta(id));
+				response.getWriter().print(asta);
 			}
 		}
 	}

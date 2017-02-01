@@ -19,6 +19,12 @@ public class WishlistProdotto implements Serializable {
 		this.prodotto = prodotto;
 	}
 
+	public WishlistProdotto(String utente, Prodotto prodotto, int quantita) {
+		Utente = utente;
+		this.prodotto = prodotto;
+		this.quantita = quantita;
+	}
+
 	public int getQuantita() {
 		return quantita;
 	}

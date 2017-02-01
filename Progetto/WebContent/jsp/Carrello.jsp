@@ -36,7 +36,7 @@
 									<td>${p.prodotto.prezzo}&euro;</td>
 									<td><input name="qts" type="number" class="num" min=1 max="${p.quantita}" value="${p.quantita}"></td>
 									<td>
-									<a class="buy" href="<%=request.getContextPath() %>/Carrello?action=acquista&id=${p.prodotto.idProdotto}&qt="><span
+									<a class="buy" on="${p.prodotto.idProdotto}" href="<%=request.getContextPath() %>/Carrello?action=acquista&id=${p.prodotto.idProdotto}&qt="><span
 											class="glyphicon glyphicon-edit"></span></a></td>
 									<td><a class="remove"  on="${p.prodotto.idProdotto}" class="removeItem" href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
 								</tr>

@@ -42,7 +42,6 @@ public class WishlistProdottoDaoJDBC implements WishlistProdottoDAO {
 					p.setImmaginiAggiuntive(result.getString("ImmaginiAggiuntive").split(";"));
 				w.setUtente(utente);
 				w.setProdotto(p);
-				w.setQuantita(result.getInt("Quantita"));
 				lista.add(w);
 			}
 		} catch (SQLException e) {
@@ -79,35 +78,15 @@ public class WishlistProdottoDaoJDBC implements WishlistProdottoDAO {
 	}
 
 	@Override
-	public void setQuantityAfterBuy(int quantity, int id, String utente) {
+	public void add(String utente, int id, int qt) {
 		Connection connection = this.dataSource.getConnection();
 		try {
 			PreparedStatement statement;
-			String query = "update WishList set Quantita=Quantita-? where Prodotto=? and Utente=?";
-			statement = connection.prepareStatement(query);
-			statement.setInt(1, quantity);
-			statement.setInt(2, id);
-			statement.setString(3, utente);
-			statement.executeUpdate();
-		} catch (Exception e) {
-			throw new PersistenceException(e.getMessage());
-		} finally {
-			try {
-				connection.close();
-			} catch (Exception e) {
-				throw new PersistenceException(e.getMessage());
-			}
-		}
-	}
-
-	@Override
-	public void cleanWish(String utente) {
-		Connection connection = this.dataSource.getConnection();
-		try {
-			PreparedStatement statement;
-			String query = "delete from WishList where Utente=? and Quantita=0";
+			String query = "insert into WishList (Utente,Prodotto,Quantita) values (?,?,?)";
 			statement = connection.prepareStatement(query);
 			statement.setString(1, utente);
+			statement.setInt(2, id);
+			statement.setInt(3, qt);
 			statement.executeUpdate();
 		} catch (Exception e) {
 			throw new PersistenceException(e.getMessage());

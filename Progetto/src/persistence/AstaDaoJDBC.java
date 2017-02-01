@@ -16,7 +16,7 @@ public class AstaDaoJDBC implements AstaDAO {
 	}
 
 	@Override
-	public Asta getAsta(int idProdotto) {
+	public Asta getAstabyProdotto(int idProdotto) {
 		Connection connection = this.dataSource.getConnection();
 		Asta a = new Asta();
 		try {
@@ -93,5 +93,34 @@ public class AstaDaoJDBC implements AstaDAO {
 			}
 		}
 
+	}
+
+	@Override
+	public Asta getAsta(int idAsta) {
+		Connection connection = this.dataSource.getConnection();
+		Asta a = new Asta();
+		try {
+			String query = "select * from asta where id=?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setInt(1, idAsta);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				a.setBaseAsta(result.getInt("base_asta"));
+				a.setDataFine(result.getTimestamp("data_fine"));
+				a.setDataInizio(result.getTimestamp("data_inizio"));
+				a.setPrezzoRiserva(result.getFloat("prezzo_riserva"));
+				a.setPrezzoCorrente(result.getFloat("prezzoCorrente"));
+			}
+
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return a;
 	}
 }

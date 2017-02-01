@@ -21,10 +21,13 @@ public class offertaDaoJDBC implements OffertaDao {
 		Connection connection = this.dataSource.getConnection();
 		Offerta o = new Offerta();
 		try {
-			String query = "select email_utente,asta,id_offerta,importo,offerta_max  from offerta where asta=7 and offerta_max=(select max(offerta_max) from offerta)";
+			String query = "select email_utente,asta,id_offerta,importo,offerta_max  from offerta where asta=? and offerta_max=(select max(offerta_max) from offerta where asta=?)";
 			PreparedStatement statement = connection.prepareStatement(query);
 
+			statement.setInt(1, idAsta);
+			statement.setInt(2, idAsta);
 			ResultSet result = statement.executeQuery();
+
 			while (result.next()) {
 
 				o.setEmail_utente(result.getString("email_utente"));
