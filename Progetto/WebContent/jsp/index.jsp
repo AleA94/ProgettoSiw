@@ -9,7 +9,8 @@
 <body>
 
 	<%@include file="header.jsp"%>
-
+	<%@include file="AsteInScadenza.jsp"%>
+	
 	<div class="container tile navTop">
 		<div class="row">
 			<div class="page-header">
@@ -42,7 +43,7 @@
 		</section>
 
 	</div>
-	<%@include file="AsteInScadenza.jsp"%>
+	
 
 </body>
 </html>

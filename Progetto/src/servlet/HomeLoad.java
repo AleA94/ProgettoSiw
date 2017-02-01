@@ -42,7 +42,7 @@ public class HomeLoad extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setAttribute("asteProdotto", a.getAste(0, 1));
-		request.setAttribute("categorie", d.getMacroCategorie());
+		request.getSession().setAttribute("categorie", d.getMacroCategorie());
 
 		forwardOnJsp(request, response, "/jsp/index.jsp");
 
