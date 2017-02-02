@@ -1,6 +1,12 @@
 package data;
 
-public class CarrelloItem {
+import java.io.Serializable;
+
+public class CarrelloItem implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 318446708226709555L;
 	String utente;
 	Prodotto prodotto;
 	int quantita;

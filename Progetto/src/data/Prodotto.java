@@ -1,10 +1,15 @@
 package data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Prodotto {
+public class Prodotto implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2021709082383482100L;
 	int idProdotto, inAsta, idCategoria;
 	float prezzo;
 	String nome, descrizione, immagine;

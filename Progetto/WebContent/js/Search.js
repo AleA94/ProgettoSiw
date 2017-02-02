@@ -5,24 +5,28 @@ $(document).ready(function(){
 			alert('devi effettuare il login prima di poter aggiungere un prodotto al carrello oppure registrati');
 		}else{
 			var btn=$(this);
-			var product={
-				id:btn.attr('on'),
-				qt:btn.parent().parent().prev().children().val()
-			}
-			$.ajax({
-				type : "POST",
-				url : "Carrello",
-				datatype : "json",
-				data : {
-					addCart : JSON.stringify(product),
-				},
-				success : function(data) {
-					alert('il prodotto \xE8 stato aggiunto con successo al carrello');
-				},
-				fail : function() {
-					alert('niente');
+			var q=parseInt(btn.parent().parent().prev().children().val());
+			var max=parseInt(btn.parent().parent().prev().children().attr('max'));
+			if(q<=max){
+				var product={
+					id:btn.attr('on'),
+					qt:btn.parent().parent().prev().children().val()
 				}
-			})
+				$.ajax({
+					type : "POST",
+					url : "Carrello",
+					datatype : "json",
+					data : {
+						addCart : JSON.stringify(product),
+					},
+					success : function(data) {
+						alert('il prodotto \xE8 stato aggiunto con successo al carrello');
+					},
+					fail : function() {
+						alert('niente');
+					}
+				});
+			}
 		}
 	});
 	$('.buy-now').click(function(e){
@@ -31,24 +35,29 @@ $(document).ready(function(){
 			alert('devi effettuare il login prima di poter acquistare un prodotto oppure registrati');
 		}else{
 			var btn=$(this);
-			var product={
-				id:btn.attr('on'),
-				qt:btn.parent().parent().prev().children().val()
-			}
-			$.ajax({
-				type : "POST",
-				url : "Carrello",
-				datatype : "json",
-				data : {
-					buyNow : JSON.stringify(product),
-				},
-				success : function(data) {
-					alert('il prodotto \xE8 stato acquistato con successo');
-				},
-				fail : function() {
-					alert('niente');
+			var q=parseInt(btn.parent().parent().prev().children().val());
+			var max=parseInt(btn.parent().parent().prev().children().attr('max'));
+			if(q<=max){
+				var product={
+					id:btn.attr('on'),
+					qt:btn.parent().parent().prev().children().val()
 				}
-			})
+				$.ajax({
+					type : "POST",
+					url : "Carrello",
+					datatype : "json",
+					data : {
+						buyNow : JSON.stringify(product),
+					},
+					success : function(data) {
+						alert('il prodotto \xE8 stato acquistato con successo');
+						btn.parent().parent().prev().children().attr('max',btn.parent().parent().prev().children().attr('max')-btn.parent().parent().prev().children().val())
+					},
+					fail : function() {
+						alert('niente');
+					}
+				})
+			}
 		}
 	});
 	

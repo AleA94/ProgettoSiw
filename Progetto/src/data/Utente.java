@@ -1,6 +1,13 @@
 package data;
 
-public class Utente {
+import java.io.Serializable;
+
+public class Utente implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2307203965882081353L;
+
 	public Utente(String email, String nome, String cognome, String indirizzo, String password, Integer eVenditore,
 			Integer eAttivo) {
 		super();

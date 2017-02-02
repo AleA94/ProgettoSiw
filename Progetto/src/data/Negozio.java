@@ -1,6 +1,12 @@
 package data;
 
-public class Negozio {
+import java.io.Serializable;
+
+public class Negozio implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5168049897170076364L;
 	String email;
 	String nome;
 

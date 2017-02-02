@@ -1,6 +1,12 @@
 package data;
 
-public class AstaProdotto {
+import java.io.Serializable;
+
+public class AstaProdotto implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3706133093638336765L;
 	Integer idCategoriaProdotto, idAsta, idProdotto, tempoInizioAsta, tempoFineAsta;
 	float baseAsta, prezzoRiserva, prezzoProdotto;
 	String urlImg;

@@ -78,15 +78,14 @@ public class WishlistProdottoDaoJDBC implements WishlistProdottoDAO {
 	}
 
 	@Override
-	public void add(String utente, int id, int qt) {
+	public void add(String utente, int id) {
 		Connection connection = this.dataSource.getConnection();
 		try {
 			PreparedStatement statement;
-			String query = "insert into WishList (Utente,Prodotto,Quantita) values (?,?,?)";
+			String query = "insert into WishList (Utente,Prodotto) values (?,?)";
 			statement = connection.prepareStatement(query);
 			statement.setString(1, utente);
 			statement.setInt(2, id);
-			statement.setInt(3, qt);
 			statement.executeUpdate();
 		} catch (Exception e) {
 			throw new PersistenceException(e.getMessage());

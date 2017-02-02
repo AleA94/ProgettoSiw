@@ -1,8 +1,13 @@
 package data;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Asta {
+public class Asta implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5431569966105152620L;
 	Date dataInizio, dataFine;
 	int idAsta, idProdotto;
 	float baseAsta, prezzoRiserva, prezzoCorrente;
@@ -10,7 +15,7 @@ public class Asta {
 	public Asta() {
 	}
 
-	public Asta( Date dataInizio, Date datafine, int idProdotto, float baseAsta, float prezzoRiserva,
+	public Asta(Date dataInizio, Date datafine, int idProdotto, float baseAsta, float prezzoRiserva,
 			float prezzoCorrente) {
 		this.idAsta = idAsta;
 		this.dataInizio = dataInizio;

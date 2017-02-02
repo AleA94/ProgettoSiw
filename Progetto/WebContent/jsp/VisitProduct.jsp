@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>${prodotto.prodotto.nome}</title>
 <link href="css/product.css" rel="stylesheet">
 </head>
 <body>
@@ -59,7 +59,7 @@
 											Prezzo: <span>${prodotto.getProdotto().prezzo} </span>&euro;
 										</h4>
 										<h4>
-											Quantit&agrave;: <input type="number" max="${prodotto.quantita}" class="num" min="1" value="${prodotto.quantita}">
+											Quantit&agrave;: <input type="number" max="${prodotto.quantita}" class="num" min="1" value="1">
 										</h4>
 										<div class="action">
 											<p><input class="add-to-cart btn btn-default" on="${prodotto.idProdotto}" type="submit" value="Aggiungi al Carrello"/></p>

@@ -84,6 +84,7 @@ public class ProfileManager extends HttpServlet {
 		} else if (request.getParameter("newPass") != null) {
 			String s = request.getParameter("newPass");
 			d.editPass(((Utente) request.getSession().getAttribute("account")).getEmail(), s);
+			response.sendRedirect(request.getContextPath() + "/ProfileManager");
 		} else if (request.getParameter("rimuovi") != null) {
 			String utente = ((Utente) request.getSession().getAttribute("account")).getEmail();
 			int id = Integer.parseInt(request.getParameter("rimuovi"));
@@ -114,7 +115,7 @@ public class ProfileManager extends HttpServlet {
 			try {
 				JSONObject o = new JSONObject(request.getParameter("wishlist"));
 				Utente u = (Utente) request.getSession().getAttribute("account");
-				w.add(u.getEmail(), o.getInt("id"), o.getInt("qt"));
+				w.add(u.getEmail(), o.getInt("id"));
 
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block

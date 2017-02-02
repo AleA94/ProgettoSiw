@@ -1,7 +1,13 @@
 package data;
 
-public class Offerta {
+import java.io.Serializable;
 
+public class Offerta implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7396158922279962861L;
 	String email_utente;
 	int asta, id_offerta;
 	float importo, offerta_max;

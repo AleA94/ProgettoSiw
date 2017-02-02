@@ -89,7 +89,7 @@
 
 													<h4>
 														Quantit&agrave;: <input type="number" max="${i.quantita}"
-															class="num" min="1" value="${i.quantita}">
+															class="num" min="1" value="1">
 													</h4>
 
 													<div class="action">
@@ -139,7 +139,7 @@
 																class="make-offer btn btn-default" type="button">fai
 																un offerta</button>
 															<input type="text" id="offertaMassima"
-																placeholder="${i.prezzoCorrente+1}">
+																value="${i.prezzoCorrente+1}">
 														</p>
 														<form action="VisitProduct" name="myForm">
 															<input type="hidden" name="idProdotto"

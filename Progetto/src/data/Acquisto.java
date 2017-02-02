@@ -1,8 +1,13 @@
 package data;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Acquisto {
+public class Acquisto implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5096125900105026763L;
 	int idAcquisto, prodotto, quantita;
 	String utente;
 	Date data;

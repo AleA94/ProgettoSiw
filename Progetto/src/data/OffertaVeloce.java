@@ -1,6 +1,13 @@
 package data;
 
-public class OffertaVeloce {
+import java.io.Serializable;
+
+public class OffertaVeloce implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7843134639567878897L;
+
 	public float getOfferta() {
 		return offerta;
 	}

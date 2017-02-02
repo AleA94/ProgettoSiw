@@ -9,5 +9,5 @@ public interface WishlistProdottoDAO {
 
 	void removeItem(String utente, int id);
 
-	void add(String utente, int id, int qt);
+	void add(String utente, int id);
 }

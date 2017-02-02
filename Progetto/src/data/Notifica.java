@@ -1,6 +1,12 @@
 package data;
 
-public class Notifica {
+import java.io.Serializable;
+
+public class Notifica implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3881474517416572624L;
 	String notifica;
 	int nonLetta;
 

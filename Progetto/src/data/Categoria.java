@@ -1,6 +1,12 @@
 package data;
 
-public class Categoria {
+import java.io.Serializable;
+
+public class Categoria implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7631376796822082875L;
 	Integer id, sottocategoria;
 	String nome;
 
