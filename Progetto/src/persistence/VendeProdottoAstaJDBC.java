@@ -144,18 +144,25 @@ public class VendeProdottoAstaJDBC implements VendeProdottoAstaDAO {
 
 	@Override
 	public List<VendeProdottoAsta> getProdottiByCategoriaAndOrder(String nomeProdotto, List<String> categorie,
-			String orderBy) {
+			String orderBy, String inAsta) {
 		Connection connection = this.dataSource.getConnection();
 		List<VendeProdottoAsta> prodotti = new ArrayList<VendeProdottoAsta>();
 		try {
 			PreparedStatement statement;
-			String query = "select * From Vende v inner join Prodotto p on v.idProdotto=p.idProdotto LEFT JOIN asta a on p.idProdotto=a.id_prodotto where p.nome like ? Order by "
-					+ orderBy;
+			String query = "";
+			if (inAsta.equals(""))
+				query = "select * From Vende v inner join Prodotto p on v.idProdotto=p.idProdotto LEFT JOIN asta a on p.idProdotto=a.id_prodotto where p.nome like ? Order by "
+						+ orderBy;
+			else
+				query = "select * From Vende v inner join Prodotto p on v.idProdotto=p.idProdotto LEFT JOIN asta a on p.idProdotto=a.id_prodotto where p.nome like ? and p.inAsta=? Order by "
+						+ orderBy;
 			statement = connection.prepareStatement(query);
 			if (nomeProdotto != null)
 				statement.setString(1, "%" + nomeProdotto + "%");
 			else
 				statement.setString(1, "%%");
+			if (!inAsta.equals(""))
+				statement.setInt(2, Integer.parseInt(inAsta));
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
 				if (categorie.contains(result.getString("idCategoria"))) {
@@ -191,18 +198,26 @@ public class VendeProdottoAstaJDBC implements VendeProdottoAstaDAO {
 	}
 
 	@Override
-	public List<VendeProdottoAsta> getProdottiOrdered(String nomeProdotto, String orderBy) {
+	public List<VendeProdottoAsta> getProdottiOrdered(String nomeProdotto, String orderBy, String inAsta) {
 		Connection connection = this.dataSource.getConnection();
 		List<VendeProdottoAsta> prodotti = new ArrayList<VendeProdottoAsta>();
 		try {
 			PreparedStatement statement;
-			String query = "select * From Vende v inner join Prodotto p on v.idProdotto=p.idProdotto LEFT JOIN asta a on p.idProdotto=a.id_prodotto where p.nome like ? Order by "
-					+ orderBy;
+			String query = "";
+			if (inAsta.equals("")) {
+				query = "select * From Vende v inner join Prodotto p on v.idProdotto=p.idProdotto LEFT JOIN asta a on p.idProdotto=a.id_prodotto where p.nome like ? Order by "
+						+ orderBy;
+			} else {
+				query = "select * From Vende v inner join Prodotto p on v.idProdotto=p.idProdotto LEFT JOIN asta a on p.idProdotto=a.id_prodotto where p.nome like ? and p.inAsta=? Order by "
+						+ orderBy;
+			}
 			statement = connection.prepareStatement(query);
 			if (nomeProdotto != null)
 				statement.setString(1, "%" + nomeProdotto + "%");
 			else
 				statement.setString(1, "%%");
+			if (!inAsta.equals(""))
+				statement.setInt(2, Integer.parseInt(inAsta));
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
 				Prodotto prodotto = new Prodotto();

@@ -59,16 +59,18 @@ public class SearchProduct extends HttpServlet {
 			if (request.getParameter("action").equals("filter")) {
 				String nomeProdotto = request.getParameter("nomeProdotto");
 				String orderBy = request.getParameter("order");
+				String tipo = request.getParameter("tipo");
 				List<VendeProdottoAsta> ricerca = null;
 				if (request.getParameterValues("categoria") != null) {
 					String[] categorie = request.getParameterValues("categoria");
 					ricerca = d.getProdottiByCategoriaAndOrder(nomeProdotto, new ArrayList<>(Arrays.asList(categorie)),
-							orderBy);
+							orderBy, tipo);
 				} else {
-					ricerca = d.getProdottiOrdered(nomeProdotto, orderBy);
+					ricerca = d.getProdottiOrdered(nomeProdotto, orderBy, tipo);
 				}
 				request.setAttribute("cat", c.getSottoCategorie());
 				request.setAttribute("prodotti", ricerca);
+
 			}
 			forwardOnJsp(request, response, "/jsp/SearchProduct.jsp");
 		}

@@ -13,7 +13,7 @@ public interface VendeProdottoAstaDAO {
 	public VendeProdottoAsta visitProdotto(int nameProduct);
 
 	public List<VendeProdottoAsta> getProdottiByCategoriaAndOrder(String nomeProdotto, List<String> categorie,
-			String orderBy);
+			String orderBy, String inAsta);
 
-	public List<VendeProdottoAsta> getProdottiOrdered(String nomeProdotto, String orderBy);
+	public List<VendeProdottoAsta> getProdottiOrdered(String nomeProdotto, String orderBy, String inAsta);
 }

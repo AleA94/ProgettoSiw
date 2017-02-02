@@ -30,6 +30,22 @@
 				</c:choose>
 			</div>
 			<div class="col-lg-3 col-sm-3">
+				<div class="radio"> 
+					<label>
+						<input type="radio" name="tipo" id="optionsRadios1" value="" checked> Tutti
+					</label> 
+				</div> 
+				<div class="radio"> 
+					<label> 
+						<input type="radio" name="tipo" id="optionsRadios2" value="0"> In Vendita
+					</label> 
+				</div>
+				<div class="radio"> 
+					<label> 
+						<input type="radio" name="tipo" id="optionsRadios2" value="1"> In Asta
+					</label> 
+				</div>
+			
 				<h3>Ordina Per</h3>
 				<p>
 					<select name="order" class="form-control">
