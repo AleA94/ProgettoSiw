@@ -57,7 +57,7 @@
 						</h4>
     					<div class="action">
 							<button id="faiUnOfferta" on="${c.idAsta}" class="add-to-cart btn btn-default" type="button" >fai un offerta</button>
-							<input type="text" id="offertaMassima" placeholder="${c.prezzoCorrente+1}">
+							<input type="text" id="offertaMassima" value="${c.prezzoCorrente+1}">
 						</div>
 					</div>
 				</div>	

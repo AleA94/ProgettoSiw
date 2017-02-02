@@ -20,12 +20,14 @@ $(document).on('click', '.add-to-cart', function()
 	var prezzoCorrente = $(this).parent().prev().children().text();
 	var offerta = parseInt(prezzoCorrente)+1;
 	var offertaMax=$(this).next().val();
-	if(prezzoCorrente>offertaMax)
-		alert('l\'offerta massima deve essere maggiore dell\'importo corrente');
-	else{
-		offertaLampo($(this).attr('on'), $('#sliderGiorni').val(), $('#sliderOre').val(),prezzoCorrente,offerta,offertaMax)
-}
-
+	if(offertaMax==""){
+		alert("inserire un offerta massima")
+	}else{
+		if(parseFloat(prezzoCorrente)>=parseFloat(offertaMax))
+			alert('l\'offerta massima deve essere maggiore dell\'importo corrente');
+		else
+			offertaLampo($(this).attr('on'), $('#sliderGiorni').val(), $('#sliderOre').val(),prezzoCorrente,offerta,offertaMax)
+	}
 })
 
 function cambioData(value, value1)
@@ -87,7 +89,7 @@ $.ajax(
 						+ data[i].idAsta
 						+ ">fai"
 						+ "				un offerta</button>"
-						+ " <input type='text' id='offertaMassima'placeholder="
+						+ " <input type='text' id='offertaMassima'value="
 						+ p
 						+ ">"
 						+ "		</div>"

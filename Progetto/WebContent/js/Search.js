@@ -91,10 +91,14 @@ $(document).ready(function(){
 	$('.make-offer').click(function(){
 		var prezzoCorrente=$(this).parent().parent().prev().children();
 		var offertaMassima=$(this).next();
-		if(prezzoCorrente.text()>offertaMassima.val())
-			alert('l\'offerta massima deve essere maggiore dell\'importo corrente');
-		else{
-			offertaLampo($(this).attr('on'),prezzoCorrente,offertaMassima.val());
+		if(offertaMassima.val()==""){
+			alert('inserire un valore per le offerta massima');
+		}else{
+			if(parseFloat(prezzoCorrente.text())>=parseFloat(offertaMassima.val()))
+				alert('l\'offerta massima deve essere maggiore dell\'importo corrente');
+			else{
+				offertaLampo($(this).attr('on'),prezzoCorrente,offertaMassima.val());
+			}
 		}
 		
 	});

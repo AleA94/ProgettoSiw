@@ -81,7 +81,7 @@
 										<div class="action">
 											<p>
 											<button id="faiUnOfferta" on="${prodotto.idAsta}" class="make-offer btn btn-default" type="button" >fai un offerta</button>
-											<input type="text" id="offertaMassima" placeholder="${prodotto.prezzoCorrente+1}">
+											<input type="text" id="offertaMassima" value="${prodotto.prezzoCorrente+1}">
 											</p>
 										</div>
 									</div>
