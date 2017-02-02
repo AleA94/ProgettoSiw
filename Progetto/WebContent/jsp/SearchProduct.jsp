@@ -68,7 +68,7 @@
 													${i.prodotto.descrizione}
 
 													<h4 class="price">
-														Prezzo: <span>${i.prodotto.prezzo} &euro;</span>
+														Prezzo: <span>${i.prodotto.prezzo} </span>&euro;
 													</h4>
 
 													<h4>

@@ -56,7 +56,7 @@
 										${prodotto.getProdotto().descrizione}
 									
 										<h4 class="price">
-											Prezzo: <span>${prodotto.getProdotto().prezzo} &euro;</span>
+											Prezzo: <span>${prodotto.getProdotto().prezzo} </span>&euro;
 										</h4>
 										<h4>
 											Quantit&agrave;: <input type="number" max="${prodotto.quantita}" class="num" min="1" value="${prodotto.quantita}">
