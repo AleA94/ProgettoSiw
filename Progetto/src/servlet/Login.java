@@ -12,6 +12,7 @@ import org.json.JSONObject;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import DAO.CarrelloProdottoDAO;
 import DAO.NegozioDAO;
 import DAO.NotificaDAO;
 import DAO.UtenteDAO;
@@ -24,6 +25,7 @@ public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	UtenteDAO d = DAOFactory.getDAOFactory().getUtenteDao();
 	NotificaDAO n = DAOFactory.getDAOFactory().getNotificaDao();
+	private CarrelloProdottoDAO c = MySQLDaoFactory.getDAOFactory().getCarrelloProdottoDAO();
 
 	@Override
 	public void init() throws ServletException {
@@ -65,6 +67,7 @@ public class Login extends HttpServlet {
 				response.setContentType("application/json");
 				response.getWriter().write(r.toString());
 				request.getSession().setAttribute("account", u);
+				request.getSession().setAttribute("cart", c.getCarrelloByUtente(u.getEmail()));
 				request.getSession().setAttribute("numNotifiche", n.getUnread(u.getEmail()));
 			} else
 				response.getWriter().print("false");

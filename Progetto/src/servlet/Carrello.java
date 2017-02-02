@@ -76,6 +76,7 @@ public class Carrello extends HttpServlet {
 			try {
 				JSONObject o = new JSONObject(request.getParameter("addCart"));
 				d.addToCart(mail, o.getInt("id"), o.getInt("qt"));
+				request.getSession().setAttribute("cart", d.getCarrelloByUtente(mail));
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -100,6 +101,11 @@ public class Carrello extends HttpServlet {
 			else
 				response.getWriter().print(false);
 
+		} else if (request.getParameter("inCart") != null) {
+			int id = Integer.parseInt(request.getParameter("inCart"));
+			HashMap<Integer, CarrelloItem> c = (HashMap<Integer, CarrelloItem>) request.getSession()
+					.getAttribute("cart");
+			response.getWriter().print(c.containsKey(id));
 		} else if (request.getParameter("action") != null) {
 			if (request.getParameter("action").equals("confirmAll")) {
 				String mail = ((Utente) request.getSession().getAttribute("account")).getEmail();

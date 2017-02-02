@@ -8,19 +8,37 @@ $(document).ready(function(){
 			var q=parseInt(btn.parent().parent().prev().children().val());
 			var max=parseInt(btn.parent().parent().prev().children().attr('max'));
 			if(q<=max){
-				var product={
-					id:btn.attr('on'),
-					qt:btn.parent().parent().prev().children().val()
-				}
 				$.ajax({
 					type : "POST",
 					url : "Carrello",
 					datatype : "json",
 					data : {
-						addCart : JSON.stringify(product),
+						inCart : btn.attr('on'),
 					},
 					success : function(data) {
-						alert('il prodotto \xE8 stato aggiunto con successo al carrello');
+						console.log(data);
+						if(data!="true"){
+							var product={
+								id:btn.attr('on'),
+								qt:btn.parent().parent().prev().children().val()
+							}
+							$.ajax({
+								type : "POST",
+								url : "Carrello",
+								datatype : "json",
+								data : {
+									addCart : JSON.stringify(product),
+								},
+								success : function(data) {
+									alert('il prodotto \xE8 stato aggiunto con successo al carrello');
+								},
+								fail : function() {
+									alert('niente');
+								}
+							});
+						}else{
+							alert('il prodotto \xE8 gi\xE0 presente nel Carrello')
+						}
 					},
 					fail : function() {
 						alert('niente');
