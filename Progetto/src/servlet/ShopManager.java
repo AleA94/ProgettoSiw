@@ -154,7 +154,6 @@ public class ShopManager extends HttpServlet {
 		} else if (request.getParameter("rmvImages") != null) {
 			VendeProdotto v = (VendeProdotto) request.getSession().getAttribute("p");
 			v.getProdotto().getImmaginiAggiuntive().remove(request.getParameter("rmvImages"));
-			System.out.println(request.getParameter("rmvImages"));
 		} else if (request.getParameter("rmvImage") != null) {
 			VendeProdotto v = (VendeProdotto) request.getSession().getAttribute("p");
 			v.getProdotto().setImmagine(null);

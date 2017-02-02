@@ -31,6 +31,9 @@
          </div>
          <div id="asteInScadenza">
          <li id="divider"></li>
+		<c:choose>
+		<c:when test="${not empty asteProdotto}">
+		
 		<c:forEach var="c" items="${asteProdotto}">
 		
 			<div class="row">
@@ -64,6 +67,15 @@
 			</div>
 		<li id="divider"></li>
 		</c:forEach>
+		</c:when>
+		<c:otherwise>
+			<div class="row">
+				<div class="page-header">
+					<h1 style="text-align: center">nessuna asta in scadenza per l'intervallo selezionato</h1>
+				</div>
+			</div>
+		</c:otherwise>
+		</c:choose>
 	</div>
 	</div>
 </div>

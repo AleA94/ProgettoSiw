@@ -96,7 +96,6 @@ public class Asta extends HttpServlet {
 					response.getWriter().print("attualeVincitore");
 
 				} else if (offMax == offertaMax.getOfferta_max()) {
-					System.out.println("entro qui");
 					asteProd.updateAsta(Integer.parseInt(request.getParameter("asta")), offMax);
 					offerta.insertOfferta(offertaMax.getEmail_utente(), offMax, offertaMax.getOfferta_max(),
 							request.getParameter("asta"));

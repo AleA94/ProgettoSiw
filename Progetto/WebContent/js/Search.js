@@ -137,8 +137,6 @@ $(document).ready(function(){
 		}
 		else
 			offertaMax = prezzoCorrente + 1;
-		
-		console.log(offerta);
 		$.ajax(
 		{
 			type : "GET",

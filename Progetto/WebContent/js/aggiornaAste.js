@@ -9,7 +9,6 @@ cambioData($('#sliderGiorni').val(), $(this).val())
 $('#sliderGiorni').change(function()
 {
 cambioData($(this).val(), $('#sliderOre').val())
-console.log($('#sliderOre').val())
 
 });
 
@@ -49,6 +48,9 @@ $.ajax(
 	{
 	$("#asteInScadenza").replaceWith("<div id='asteInScadenza'></div>");
 	$("#asteInScadenza").append("	<li id='divider'></li>");
+	if(data.length==0){
+		$("#asteInScadenza").append('<div class="row"><div class="page-header"><h1 style="text-align: center">nessuna asta in scadenza per l\'intervallo selezionato</h1></div></div>');
+	}else{
 	for (var i = 0; i < data.length; i++)
 	{
 		var p = parseInt(data[i].prezzo) + 1;
@@ -99,6 +101,7 @@ $.ajax(
 						+ "	<li id='divider'></li>"
 
 						+ "</div>");
+		}
 	}
 	},
 	fail : function()

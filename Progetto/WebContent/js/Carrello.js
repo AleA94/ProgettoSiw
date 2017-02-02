@@ -15,7 +15,6 @@ $(document).ready(function(){
 				quantity:q,
 			},
 			success : function(data) {
-				console.log(data);
 				if(data=="false"){
 					window.location.href = href+q;
 				}else{
