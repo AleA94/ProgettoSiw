@@ -59,7 +59,8 @@ public class ShopManager extends HttpServlet {
 					request.getSession().setAttribute("p", productbyId);
 					request.setAttribute("subCategorie", c.getSottoCategorie());
 					if (productbyId.getProdotto().getInAsta() == 1)
-						request.getSession().setAttribute("a", a.getAstabyProdotto(Integer.parseInt(request.getParameter("id"))));
+						request.getSession().setAttribute("a",
+								a.getAstabyProdotto(Integer.parseInt(request.getParameter("id"))));
 					else
 						request.getSession().setAttribute("a", null);
 					forwardOnJsp(request, response, "/jsp/EditItem.jsp");
@@ -130,7 +131,7 @@ public class ShopManager extends HttpServlet {
 					p.setInAsta(0);
 					vende.setQuantita(Integer.parseInt(request.getParameter("quantita")));
 				}
-				p.setPrezzo(Float.parseFloat("prezzo"));
+				p.setPrezzo(Float.parseFloat(request.getParameter("prezzo")));
 				vende.setNegozio(((Utente) request.getSession().getAttribute("account")).getEmail());
 				vende.setProdotto(p);
 
