@@ -26,7 +26,7 @@
 </head>
 
 <body>
-	<input type="hidden" id="context" value="<%=request.getContextPath()%>">
+	<input type="hidden" id="context" value='${pageContext.request.contextPath}'/>
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"> 
 	<div class="navbar-header">
 		<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -34,7 +34,7 @@
 			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
 			<span class="icon-bar"></span> <span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="<%=request.getContextPath() %>/">
+		<a class="navbar-brand" href="<c:url value="/"/>">
 			uBuy</a>
 	</div>
 
@@ -114,16 +114,16 @@
 					<b class="caret"></b>
 			</a>
 				<ul class="dropdown-menu user-menu">
-					<li><a href="<%=request.getContextPath()%>/ProfileManager">I tuoi dati</a></li>
-         			<li><a href="<%=request.getContextPath()%>/ProfileManager?action=purchases">I tuoi ordini</a></li>
-         			<li><a href="<%=request.getContextPath()%>/ProfileManager?action=wish">I tuoi desideri</a></li>
-         			<li><a href="<%=request.getContextPath()%>/ProfileManager?action=notifica">Notifiche <span class="badge badge-notify">${numNotifiche}</span>
+					<li><a href="<c:url value="ProfileManager"/>">I tuoi dati</a></li>
+         			<li><a href="<c:url value="/ProfileManager?action=purchases"/>">I tuoi ordini</a></li>
+         			<li><a href="<c:url value="/ProfileManager?action=wish"/>">I tuoi desideri</a></li>
+         			<li><a href="<c:url value="/ProfileManager?action=notifica"/>">Notifiche <span class="badge badge-notify">${numNotifiche}</span>
          			</a></li>
 					<li class="divider"></li>
 					<li><a id="logout" href="#"><span
 							class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 				</ul></li>
-			<li><a href="<%=request.getContextPath() %>/Carrello"><span class="glyphicon glyphicon-shopping-cart"></span>
+			<li><a href="<c:url value="/Carrello"/>"><span class="glyphicon glyphicon-shopping-cart"></span>
           Carrello</a></li>
 		</ul>
 	</div>

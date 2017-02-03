@@ -11,10 +11,10 @@
 	<section class="container tile navTop">
 	<div class="row">
 		<div class="page-header">
-			<h1 style="text-align: center">il tuo negozio ${nome}</h1>
+			<h1 class=title>il tuo negozio ${nome}</h1>
 		</div>
 	</div>
-	<a href="<%=request.getContextPath() %>/ShopManager?action=new" class="btn btn-default">Nuovo Prodotto</a>
+	<a href="<c:url value="/ShopManager?action=new"/>" class="btn btn-default">Nuovo Prodotto</a>
 	<br>
 	<br>
 	<c:choose>
@@ -53,7 +53,7 @@
 							${p.quantita}
 						</c:if>
 						</td>
-						<td><a href="<%=request.getContextPath() %>/ShopManager?action=edit&id=${p.prodotto.idProdotto}"><span class="glyphicon glyphicon-edit"></span></a></td>
+						<td><a href="<c:url value="/ShopManager?action=edit&id=${p.prodotto.idProdotto}"/>"><span class="glyphicon glyphicon-edit"></span></a></td>
 						<td><c:if test="${p.prodotto.inAsta eq 0}"><a class="remove" on="${p.prodotto.idProdotto}" href="#"><span class="glyphicon glyphicon-trash"></span></a></c:if></td>
 					</tr>
 				</c:forEach>

@@ -14,10 +14,9 @@
 	<div class="container tile navTop">
 		<div class="row">
 			<div class="page-header">
-				<h1 style="text-align: center">Le nostre categorie</h1>
+				<h1 class=title>Le nostre categorie</h1>
 			</div>
 		</div>
-
 		<section class="no-padding" id="portfolio">
 		<div class="container-fluid">
 			<div class="row no-gutter popup-gallery">

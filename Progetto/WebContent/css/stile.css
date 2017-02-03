@@ -12,6 +12,10 @@ body {
 	color:black;
 }
 
+.title{
+	text-align: center;
+}
+
 .padding{
 	padding-left:20px;
 }
@@ -22,6 +26,9 @@ body {
 	width: 50px;
 }
 
+textarea{
+	resize: vertical; min-height: 200px;
+}
 
 .tile {
     background-color: #5C87CB;

@@ -16,7 +16,7 @@
 </head>
 <body>
 <div class="container tile navTop">
-	<h1 style="text-align: center">Aste in scadenza</h1>
+	<h1 class=title>Aste in scadenza</h1>
 
 	<div class="col-sm-12 col-lg-12">
 		<div id="rangeAste">
@@ -71,7 +71,7 @@
 		<c:otherwise>
 			<div class="row">
 				<div class="page-header">
-					<h1 style="text-align: center">nessuna asta in scadenza per l'intervallo selezionato</h1>
+					<h1 class=title>nessuna asta in scadenza per l'intervallo selezionato</h1>
 				</div>
 			</div>
 		</c:otherwise>

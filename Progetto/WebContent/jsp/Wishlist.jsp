@@ -11,7 +11,7 @@
 <section class="container tile navTop">
 	<div class="row">
 		<div class="page-header">
-			<h1 style="text-align: center">La tua wishlist</h1>
+			<h1 class=title>La tua wishlist</h1>
 		</div>
 	</div>
 	<c:choose>
@@ -48,7 +48,7 @@
 								<td>No</td>
 							</c:otherwise>				
 						</c:choose>
-						<td><a href="<%=request.getContextPath()%>/VisitProduct?idProdotto=${p.prodotto.idProdotto}" title="visita pagina"><span class="glyphicon glyphicon-edit"></span></a></td>
+						<td><a href="<c:url value="/VisitProduct?idProdotto=${p.prodotto.idProdotto}"/>" title="visita pagina"><span class="glyphicon glyphicon-edit"></span></a></td>
 						<td><a class="remove" on="${p.prodotto.idProdotto}" href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
 					</tr>
 				</c:forEach>

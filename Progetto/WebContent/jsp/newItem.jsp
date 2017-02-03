@@ -15,7 +15,7 @@
 	<section class="container tile navTop">
 	<div class="row">
 		<div class="page-header">
-			<h1 style="text-align: center">Aggiungi un nuovo prodotto</h1>
+			<h1 class=title>Aggiungi un nuovo prodotto</h1>
 		</div>
 	</div>
 	<form method="post" action="ShopManager?par=new" role="form">
@@ -26,8 +26,7 @@
 		</div>
 		<div class="form-group">
 			<label for="description">Descrizione</label>
-			<textarea required name="descrizione" id="description"
-				style="resize: vertical; min-height: 200px;" class="form-control"
+			<textarea required name="descrizione" id="description" class="form-control"
 				rows="3"></textarea>
 		</div>
 		<div class="form-group">

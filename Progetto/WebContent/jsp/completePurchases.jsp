@@ -11,7 +11,7 @@
 <section class="container tile navTop">
 	<div class="row">
 		<div class="page-header">
-			<h1 style="text-align: center">I tuoi acquisti</h1>
+			<h1 class=title>I tuoi acquisti</h1>
 		</div>
 	</div>
 	
