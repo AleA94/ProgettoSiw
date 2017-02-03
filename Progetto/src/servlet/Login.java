@@ -71,6 +71,8 @@ public class Login extends HttpServlet {
 				request.getSession().setAttribute("numNotifiche", n.getUnread(u.getEmail()));
 			} else
 				response.getWriter().print("false");
+		} else if (request.getParameter("mail") != null) {
+			response.getWriter().print(d.exists(request.getParameter("mail")));
 		} else if (request.getParameter("session") != null) {
 			Utente a = (Utente) request.getSession().getAttribute("account");
 			if (a != null) {

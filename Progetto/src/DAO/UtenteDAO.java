@@ -10,4 +10,6 @@ public interface UtenteDAO {
 	public void updateDatas(Utente u);
 
 	void editPass(String user, String pass);
+
+	public boolean exists(String mail);
 }

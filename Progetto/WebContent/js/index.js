@@ -2,6 +2,27 @@
 
 $(document).ready(function() {
 	checkSession();
+	
+	$('#Rmail').focusout(function(){
+		var t=$(this);
+		$.ajax({
+			type : "POST",
+			url : "Login",
+			datatype : "json",
+			data : {
+				mail :t.val(),
+			},
+			success : function(data) {
+				if(data=="true"){
+					alert('l\'indirizzo \xE8 gia stato utilizzato')
+					t.val('');
+				}
+			},
+			fail : function() {
+				alert('niente');
+			}
+		})
+	});
 
 	$('#RVend').click(function(){
 		$('#nomeNegozio').toggleClass('disappear');

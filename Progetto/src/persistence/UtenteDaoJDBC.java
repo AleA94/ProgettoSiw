@@ -124,4 +124,29 @@ public class UtenteDaoJDBC implements UtenteDAO {
 
 	}
 
+	@Override
+	public boolean exists(String mail) {
+		Connection connection = this.dataSource.getConnection();
+		int i = 0;
+		try {
+			PreparedStatement statement;
+			String query = "select Count(*) as c From Utente where Email=?";
+			statement = connection.prepareStatement(query);
+			statement.setString(1, mail);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				i = result.getInt("c");
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return i == 1;
+	}
+
 }
